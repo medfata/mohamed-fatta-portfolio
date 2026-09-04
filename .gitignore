@@ -1,6 +1,19 @@
 # wrangler files
-.wrangler
+.wrangler/
 .dev.vars*
 !.dev.vars.example
 .env*
 !.env.example
+
+# local build tooling
+*.bak
+dist/
+wrangler.toml
+_extract.mjs
+_pack.mjs
+_verify.cjs
+_checklive.cjs
+_template.html
+_manifest.json
+_app.jsx
+live.html
