@@ -3,218 +3,218 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
 <title>Mohamed Fatta — Shopify Developer</title>
-<meta name="description" content="Custom Shopify features that raise order value — bundle builders, gift experiences and theme upgrades, built natively into your theme. Built for Postcards and Honey Swim; maker of the Bundlora app.">
-<meta property="og:title" content="Mohamed Fatta — Shopify features that sell more">
-<meta property="og:description" content="Bundle builders, gift experiences and theme upgrades, built natively into your Shopify theme. No monthly app fees.">
+<meta name="description" content="Custom Shopify features that raise order value — bundle builders, gift experiences and theme upgrades, built into your theme. No monthly app fees.">
+<meta property="og:title" content="Mohamed Fatta — Shopify features that raise order value">
+<meta property="og:description" content="Bundle builders, gift experiences and theme upgrades, built into your Shopify theme. No monthly app fees.">
 <meta property="og:image" content="assets/work/postcards-builder-desktop.webp">
-<meta name="theme-color" content="#f4efe6">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316211c'/%3E%3Cpath d='M16 44V20l16 14 16-14v24' stroke='%23f6c544' stroke-width='6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#faf6ee">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23173a2e'/%3E%3Cpath d='M16 44V20l16 14 16-14v24' stroke='%23f5c451' stroke-width='6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f4efe6; --paper-2:#ebe4d7; --card:#fffdf8; --ink:#16211c; --ink-2:#3b4540; --muted:#6e6a61;
-  --line:#d9d1c3; --tag:#e0452b; --tag-ink:#fff; --sun:#f6c544; --leaf:#1f5d4b;
-  --shadow:0 1px 0 rgba(22,33,28,.06),0 18px 40px -24px rgba(22,33,28,.35);
+  color-scheme:light;
+  --paper:#faf6ee;      /* warm cream page */
+  --paper-2:#f2ebdd;    /* band background */
+  --card:#ffffff;
+  --ink:#173a2e;        /* deep forest green: money, growth, trust */
+  --ink-2:#3e5a4f;
+  --muted:#76807a;
+  --line:#e3dac8;
+  --tag:#e2553a;        /* coral sale-sticker, used sparingly */
+  --sun:#f5c451;        /* one warm highlight */
+  --mint:#dcebe2;
+  --shadow:0 1px 0 rgba(23,58,46,.05),0 22px 44px -28px rgba(23,58,46,.38);
   --display:"Young Serif",Georgia,serif; --body:"Schibsted Grotesk",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
-  --paper:#12181a; --paper-2:#182023; --card:#1c2528; --ink:#f1ece2; --ink-2:#cfc8bb; --muted:#9a958b;
-  --line:#2e393c; --tag:#ff6a4d; --sun:#f6c544; --leaf:#5fbf9f; --shadow:0 18px 40px -24px rgba(0,0,0,.7);
-}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 a{color:inherit}
 img{max-width:100%;display:block;height:auto}
-.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 20px}
-.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
-.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
-h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;line-height:1.05;margin:0}
-h2{font-size:clamp(34px,4.6vw,58px)}
-h3{font-size:26px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;line-height:1.08;margin:0}
+h2{font-size:clamp(32px,4.2vw,52px)}
+h3{font-size:25px}
 p{margin:0}
 .btn{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);transition:transform .2s ease,background .2s ease,color .2s ease}
 .btn:hover{transform:translateY(-2px)}
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn.primary:hover{background:var(--tag);border-color:var(--tag);color:#fff}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#0f2a21}
 .btn.ghost{background:transparent;color:var(--ink)}
-.tag{display:inline-block;font:600 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--tag);color:var(--tag-ink);padding:6px 9px 6px 12px;transform:rotate(-2deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 70%,4px 50%,0 30%)}
+.btn.ghost:hover{background:var(--card)}
+.tag{display:inline-block;font:600 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--tag);color:#fff;padding:6px 9px 6px 12px;transform:rotate(-2deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 70%,4px 50%,0 30%)}
+.pill{font:500 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--ink-2);background:var(--card)}
 
 /* nav */
-header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.nav{position:sticky;top:0;z-index:20;background:rgba(250,246,238,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
 .brand{font-family:var(--display);font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
-.brand i{width:10px;height:10px;border-radius:50%;background:var(--tag);display:inline-block}
-nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--tag)}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--ink-2)}
 nav a:hover{color:var(--ink)}
 .nav .btn{padding:11px 18px;font-size:14.5px}
 .nav .short{display:none}
-@media (max-width:560px){.nav .long{display:none}.nav .short{display:inline}}
 @media (max-width:860px){nav ul{display:none}}
-@media (max-width:420px){.nav .btn{padding:10px 13px;font-size:13.5px}.brand{font-size:19px}}
+@media (max-width:560px){.nav .long{display:none}.nav .short{display:inline}.brand{font-size:20px}}
 
 /* hero */
-.hero{padding:72px 0 56px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(44px,6.4vw,84px)}
+.hero{padding:76px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(44px,6vw,78px)}
 .hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--sun) 62% 92%,transparent 92%)}
-.hero .lede{font-size:20px;color:var(--ink-2);max-width:560px;margin:26px 0 32px}
+.hero .lede{font-size:20px;color:var(--ink-2);max-width:520px;margin:24px 0 32px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.trust{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--muted);font-size:14.5px}
+.trust{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 24px;color:var(--muted);font-size:14.5px}
 .trust span{display:flex;align-items:center;gap:8px}
-.trust span::before{content:"✓";font-weight:700;color:var(--leaf)}
+.trust span::before{content:"✓";font-weight:700;color:var(--ink)}
 @media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:44px}.hero{padding-top:44px}.hero .lede{font-size:18px}}
 
-/* demo builder */
+/* demo */
 .demo{background:var(--card);border:1.5px solid var(--ink);border-radius:18px;box-shadow:var(--shadow);padding:22px;position:relative}
 .demo-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
-.demo-top .mono{color:var(--muted)}
 .demo-title{font-family:var(--display);font-size:24px;margin-top:4px}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .tier{border:1.5px solid var(--line);border-radius:10px;padding:9px 10px;font:500 12.5px/1.35 var(--mono);transition:.25s}
 .tier b{display:block;font:600 15px var(--body)}
 .tier .sv::before{content:" · "}
-.tier.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.tier.on{border-color:var(--ink);background:var(--ink);color:#fff}
 .tier.next{border-color:var(--tag);border-style:dashed}
 .items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .item{border:1.5px solid var(--line);border-radius:12px;padding:12px 10px 10px;text-align:left;background:var(--paper);cursor:pointer;font:inherit;color:inherit;transition:transform .15s,border-color .15s;position:relative}
 .item:hover{transform:translateY(-2px);border-color:var(--ink)}
 .item:focus-visible{outline:2px solid var(--tag);outline-offset:2px}
-.item .swatch{height:38px;border-radius:8px;margin-bottom:8px}
+.item .swatch{height:36px;border-radius:8px;margin-bottom:8px}
 .item b{font-size:14.5px;display:block;line-height:1.2}
-.item small{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .item .count{position:absolute;top:7px;right:7px;min-width:22px;height:22px;border-radius:11px;background:var(--tag);color:#fff;font:600 12px/22px var(--mono);text-align:center;transform:scale(0);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
 .item .count.show{transform:scale(1)}
-.meter{margin:16px 0 6px;height:10px;border-radius:5px;background:var(--paper-2);overflow:hidden}
-.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--leaf),var(--sun));transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.meter{margin:16px 0 6px;height:10px;border-radius:5px;background:var(--mint);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ink),#2f7a5d);transition:width .45s cubic-bezier(.2,.8,.2,1)}
 .nudge{font-size:14.5px;color:var(--ink-2);min-height:24px}
 .nudge b{color:var(--tag)}
 .total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:14px;border-top:1px dashed var(--line)}
 .total .price{font-family:var(--display);font-size:34px;line-height:1}
 .total .was{font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:line-through;margin-right:8px}
-.demo-actions button{font:600 12.5px var(--mono);border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:8px 12px;cursor:pointer}
-.demo-caption{margin-top:14px;font-size:13.5px;color:var(--muted)}
+.reset{font:600 12px var(--mono);border:1.5px solid var(--line);background:transparent;color:var(--ink-2);border-radius:999px;padding:7px 12px;cursor:pointer}
+.reset:hover{border-color:var(--ink);color:var(--ink)}
 .demo .tag{position:absolute;top:-14px;right:22px}
-@media (max-width:560px){.tier span{display:block}.tier .sv::before{content:""}.tier .sv{font-size:11px;color:var(--tag)}.tier.on .sv{color:var(--sun)}}
-@media (max-width:420px){.demo{padding:18px 14px}.item{padding:10px 8px 8px}.item small{display:none}.tier{font-size:11px;padding:8px}}
+.demo-caption{margin-top:12px;font-size:13.5px;color:var(--muted)}
+@media (max-width:560px){.tier span{display:block}.tier .sv{font-size:11px;color:var(--tag)}.tier.on .sv{color:var(--sun)}.tier .sv::before{content:""}}
+@media (max-width:420px){.demo{padding:18px 14px}.tier{padding:8px}}
 
 /* proof strip */
-.strip{position:relative;z-index:1;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
-.strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 18px;padding-top:20px;padding-bottom:20px}
-.strip .logos{display:flex;flex-wrap:wrap;gap:12px 34px;align-items:baseline}
-.strip .logos a{font-family:var(--display);font-size:24px;text-decoration:none;opacity:.85}
-.strip .logos a:hover{opacity:1}
-.strip .logos a small{font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+.strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;padding-top:20px;padding-bottom:20px}
+.strip .logos{display:flex;flex-wrap:wrap;gap:12px 38px;align-items:baseline}
+.strip .logos a{font-family:var(--display);font-size:24px;text-decoration:none}
+.strip .logos a:hover{color:var(--tag)}
+.strip .logos small{font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:8px}
 
-section{position:relative;z-index:1}
-.section{padding:110px 0}
-.head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:54px}
-.head p{color:var(--ink-2);font-size:18px;max-width:520px}
-@media (max-width:860px){.head{grid-template-columns:1fr;gap:18px;margin-bottom:40px}.section{padding:80px 0}}
+.section{padding:104px 0}
+.head{max-width:680px;margin-bottom:48px}
+.head h2{margin-top:14px}
+.head p{color:var(--ink-2);font-size:18px;margin-top:16px}
+@media (max-width:860px){.section{padding:76px 0}.head{margin-bottom:36px}}
 
 /* case studies */
-.case{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:start;padding:54px 0 64px;border-top:1px solid var(--line)}
+.case{display:grid;grid-template-columns:1.25fr .75fr;gap:52px;align-items:center;padding:56px 0 64px;border-top:1px solid var(--line)}
 .case:first-of-type{border-top:0;padding-top:0}
-.case .shots{position:relative;padding-bottom:36px}
+.case .shots{position:relative;padding-bottom:34px}
 .case .desk{border-radius:14px;border:1.5px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
-.case .desk .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);font:500 11.5px var(--mono);color:var(--muted)}
-.case .desk .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
-.case .desk .bar span{margin-left:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.case .phone{position:absolute;right:-18px;bottom:0;width:28%;aspect-ratio:9/18.5;border-radius:24px;border:6px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--ink)}
+.case .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);font:500 11.5px var(--mono);color:var(--muted)}
+.case .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
+.case .bar span{margin-left:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.case .phone{position:absolute;right:-16px;bottom:0;width:28%;aspect-ratio:9/18.5;border-radius:24px;border:6px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--ink)}
 .case .phone img{width:100%;height:100%;object-fit:cover;object-position:top}
-.case .meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
-.pill{font:500 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--ink-2)}
-.case h3{margin:10px 0 12px;font-size:30px}
-.case .problem{color:var(--ink-2)}
-.case ul{margin:18px 0 22px;padding:0;list-style:none}
-.case li{padding:10px 0 10px 28px;border-top:1px dashed var(--line);position:relative;font-size:16px}
+.case h3{margin:10px 0 14px;font-size:30px}
+.case ul{margin:0 0 22px;padding:0;list-style:none}
+.case li{padding:10px 0 10px 26px;border-top:1px dashed var(--line);position:relative;color:var(--ink-2)}
 .case li::before{content:"→";position:absolute;left:0;color:var(--tag);font-weight:700}
 .case .link{font-weight:600;text-underline-offset:4px}
-@media (max-width:960px){.case{grid-template-columns:1fr;gap:26px}.case .phone{right:10px;width:30%}}
+@media (max-width:960px){.case{grid-template-columns:1fr;gap:28px}.case .phone{right:10px;width:30%}}
 
-/* bundlora card */
-.app{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;background:var(--ink);color:var(--paper);border-radius:20px;padding:30px 34px;margin-top:20px}
-.app .icon{width:74px;height:74px;border-radius:18px;background:var(--sun);display:grid;place-items:center;color:#16211c;font:400 36px var(--display)}
-.app h3{font-size:30px;margin-top:6px}
-.app p{color:color-mix(in srgb,var(--paper) 78%,transparent);margin-top:8px;max-width:640px}
-.app .btn{border-color:var(--paper);color:var(--paper);white-space:nowrap}
-.app .btn:hover{background:var(--paper);color:var(--ink)}
+.app{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;background:var(--ink);color:#fff;border-radius:20px;padding:30px 34px;margin-top:16px}
+.app .icon{width:70px;height:70px;border-radius:18px;background:var(--sun);display:grid;place-items:center;color:var(--ink);font:400 34px var(--display)}
+.app .mono{color:rgba(255,255,255,.6)}
+.app h3{font-size:28px;margin-top:6px}
+.app p{color:rgba(255,255,255,.78);margin-top:8px;max-width:600px}
+.app .btn{border-color:rgba(255,255,255,.7);color:#fff;white-space:nowrap}
+.app .btn:hover{background:#fff;color:var(--ink)}
 @media (max-width:860px){.app{grid-template-columns:1fr;padding:28px 24px}}
 
 /* services */
+.band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.svc{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s}
+.svc{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
 .svc:hover{border-color:var(--ink);transform:translateY(-3px)}
-.svc .num{font:500 12.5px var(--mono);color:var(--muted)}
-.svc h3{font-size:28px}
+.svc h3{font-size:26px}
 .svc p{color:var(--ink-2)}
-.svc .for{font-size:14.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;margin-top:auto}
-.svc .price{font:600 14px var(--mono)}
-.svc.new{border-color:var(--ink);background:linear-gradient(160deg,var(--card) 55%,color-mix(in srgb,var(--sun) 30%,var(--card)))}
+.svc .price{font:600 13.5px var(--mono);margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
+.svc.new{border-color:var(--ink)}
+.svc .new-tag{align-self:flex-start}
 @media (max-width:960px){.services{grid-template-columns:1fr}}
 
 /* promises */
 .promises{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--card)}
 .promise{padding:26px 24px;border-right:1px solid var(--line)}
 .promise:last-child{border-right:0}
-.promise b{display:block;font-family:var(--display);font-weight:400;font-size:22px;line-height:1.15;margin:10px 0 8px}
+.promise b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1.2;margin-bottom:8px}
 .promise p{font-size:15px;color:var(--ink-2)}
-.promise .mono{color:var(--tag)}
 @media (max-width:960px){.promises{grid-template-columns:1fr 1fr}.promise:nth-child(2){border-right:0}.promise:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 @media (max-width:560px){.promises{grid-template-columns:1fr}.promise{border-right:0;border-bottom:1px solid var(--line)}.promise:last-child{border-bottom:0}}
 
-/* process */
+/* steps */
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .step{counter-increment:s;padding-top:18px;border-top:2px solid var(--ink)}
 .step::before{content:"0" counter(s);font:500 13px var(--mono);color:var(--tag)}
-.step h3{font-size:24px;margin:10px 0 8px}
+.step h3{font-size:22px;margin:10px 0 6px}
 .step p{color:var(--ink-2);font-size:15.5px}
-.step .when{font:500 12px var(--mono);color:var(--muted);margin-top:12px;display:block}
 @media (max-width:960px){.steps{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.steps{grid-template-columns:1fr}}
 
 /* faq */
-.faq{max-width:860px}
+.faq{max-width:820px}
 details{border-top:1px solid var(--line)}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font:400 23px/1.25 var(--display)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font:400 22px/1.25 var(--display)}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";flex:none;font:400 30px/1 var(--body);transition:transform .25s}
+summary::after{content:"+";flex:none;font:400 28px/1 var(--body);transition:transform .25s}
 details[open] summary::after{transform:rotate(45deg)}
-details p{padding:0 0 24px;color:var(--ink-2);max-width:720px}
-@media (max-width:560px){summary{font-size:20px}}
+details p{padding:0 0 22px;color:var(--ink-2);max-width:700px}
+@media (max-width:560px){summary{font-size:19px}}
 
 /* about */
-.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:54px;align-items:center}
+.about{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;align-items:center}
 .about .photo{position:relative}
-.about .photo img{border-radius:18px;border:1.5px solid var(--ink);aspect-ratio:4/5;object-fit:cover;width:100%}
-.about .photo .tag{position:absolute;left:18px;bottom:18px}
-.about p{color:var(--ink-2);font-size:18px;margin-top:18px}
+.about .photo img{border-radius:18px;border:1.5px solid var(--ink);aspect-ratio:1/1;object-fit:cover;width:100%}
+.about .photo .tag{position:absolute;left:16px;bottom:16px}
+.about p{color:var(--ink-2);font-size:18px;margin-top:16px;max-width:620px}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-@media (max-width:860px){.about{grid-template-columns:1fr;gap:34px}.about .photo{max-width:320px}}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:32px}.about .photo{max-width:300px}}
 
 /* cta */
-.cta{background:var(--ink);color:var(--paper);border-radius:28px;padding:74px 48px;text-align:center;position:relative;overflow:hidden}
-.cta::after{content:"";position:absolute;inset:14px;border:2px dashed color-mix(in srgb,var(--paper) 28%,transparent);border-radius:20px;pointer-events:none}
-.cta h2{font-size:clamp(34px,5vw,62px);max-width:840px;margin:14px auto 18px}
-.cta p{color:color-mix(in srgb,var(--paper) 78%,transparent);max-width:560px;margin:0 auto 30px;font-size:18px}
+.cta{background:var(--ink);color:#fff;border-radius:28px;padding:72px 44px;text-align:center;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;inset:14px;border:2px dashed rgba(255,255,255,.22);border-radius:20px;pointer-events:none}
+.cta h2{font-size:clamp(32px,4.6vw,56px);max-width:760px;margin:14px auto 16px}
+.cta p{color:rgba(255,255,255,.78);max-width:520px;margin:0 auto 30px;font-size:18px}
 .cta .btn{position:relative;z-index:1}
-.cta .btn.primary{background:var(--sun);color:#16211c;border-color:var(--sun)}
-.cta .btn.primary:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.cta .btn.ghost{color:var(--paper);border-color:color-mix(in srgb,var(--paper) 50%,transparent)}
-.cta .eyebrow{justify-content:center;color:color-mix(in srgb,var(--paper) 70%,transparent)}
+.cta .btn.primary{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+.cta .btn.primary:hover{background:#fff;border-color:#fff}
+.cta .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+.cta .btn.ghost:hover{background:rgba(255,255,255,.1)}
+.cta .eyebrow{justify-content:center;color:rgba(255,255,255,.7)}
 @media (max-width:560px){.cta{padding:56px 22px;border-radius:22px}}
 
-footer{position:relative;z-index:1;padding:34px 0 50px;color:var(--muted);font-size:14.5px}
+footer{padding:34px 0 50px;color:var(--muted);font-size:14.5px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px}
-footer .links{display:flex;flex-wrap:wrap;gap:6px 18px}
+footer .links{display:flex;flex-wrap:wrap;gap:6px 20px}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
 
@@ -236,9 +236,9 @@ footer a:hover{color:var(--ink)}
     <nav aria-label="Main">
       <ul>
         <li><a href="#work">Work</a></li>
-        <li><a href="#services">What I build</a></li>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#faq">Questions</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
     <a class="btn primary" href="#contact"><span class="long">Talk about your store</span><span class="short">Contact</span></a>
@@ -249,17 +249,17 @@ footer a:hover{color:var(--ink)}
 <section class="hero">
   <div class="wrap">
     <div class="stagger">
-      <div class="eyebrow">Shopify developer · Shopify app maker</div>
+      <div class="eyebrow">Shopify developer</div>
       <h1>More revenue from the <em>visitors you already have.</em></h1>
-      <p class="lede">I build custom Shopify features that raise order value: bundle builders, gift experiences and theme upgrades. Written straight into your theme, so there's no monthly app fee, no extra app slowing your store down, and everything stays editable from the theme editor.</p>
+      <p class="lede">Custom Shopify features that raise order value — built into your theme, with no monthly app fees.</p>
       <div class="ctas">
         <a class="btn primary" href="#contact">Get a free idea for your store →</a>
-        <a class="btn ghost" href="#work">See live stores</a>
+        <a class="btn ghost" href="#work">See my work</a>
       </div>
       <div class="trust">
-        <span>Built for live stores</span>
-        <span>Published app on the Shopify App Store</span>
-        <span>Fixed price, agreed upfront</span>
+        <span>Live on real stores</span>
+        <span>Shopify App Store developer</span>
+        <span>Fixed prices</span>
       </div>
     </div>
 
@@ -267,31 +267,31 @@ footer a:hover{color:var(--ink)}
       <span class="tag">Try it</span>
       <div class="demo-top">
         <div>
-          <div class="mono">Live demo · build your own bundle</div>
-          <div class="demo-title" id="demo-title">Pick your candles</div>
+          <div class="mono">Live demo</div>
+          <div class="demo-title" id="demo-title">Build your bundle</div>
         </div>
-        <div class="demo-actions"><button type="button" id="reset">Reset</button></div>
+        <button type="button" class="reset" id="reset">Reset</button>
       </div>
       <div class="tiers" id="tiers"></div>
       <div class="items" id="items"></div>
       <div class="meter" aria-hidden="true"><i id="meter"></i></div>
       <p class="nudge" id="nudge" aria-live="polite"></p>
       <div class="total">
-        <div class="mono" style="color:var(--muted)">Order value</div>
+        <div class="mono">Order value</div>
         <div><span class="was" id="was"></span><span class="price" id="price">$0</span></div>
       </div>
-      <p class="demo-caption">The pattern behind the bundle page I built for Postcards: every extra item earns a bigger saving, so shoppers happily add one more. Sample products for the demo.</p>
+      <p class="demo-caption">The idea behind the page I built for Postcards: bigger sets, bigger savings.</p>
     </div>
   </div>
 </section>
 
 <div class="strip">
   <div class="wrap">
-    <span class="mono" style="color:var(--muted)">Work running on live stores</span>
+    <span class="mono">Live on</span>
     <div class="logos">
-      <a href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Postcards<small>Candles · US</small></a>
-      <a href="https://honeyswim.co/" target="_blank" rel="noopener">Honey Swim<small>Swimwear · US</small></a>
-      <a href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">Bundlora<small>My Shopify app</small></a>
+      <a href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Postcards<small>Candles</small></a>
+      <a href="https://honeyswim.co/" target="_blank" rel="noopener">Honey Swim<small>Swimwear</small></a>
+      <a href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">Bundlora<small>My app</small></a>
     </div>
   </div>
 </div>
@@ -299,32 +299,27 @@ footer a:hover{color:var(--ink)}
 <section class="section" id="work">
   <div class="wrap">
     <div class="head reveal">
-      <div>
-        <div class="eyebrow">Selected work</div>
-        <h2>Real stores. Real shoppers using it today.</h2>
-      </div>
-      <p>No mockups. Everything below is live — open the store and try it yourself.</p>
+      <div class="eyebrow">Selected work</div>
+      <h2>Real stores. Live today.</h2>
+      <p>Open them and try it yourself.</p>
     </div>
 
     <article class="case reveal">
       <div class="shots">
         <div class="desk">
           <div class="bar"><i></i><i></i><i></i><span>postcards.shop/pages/build-a-bundle</span></div>
-          <img src="assets/work/postcards-builder-desktop.webp" alt="Postcards build-a-bundle page: pack sizes from 3 to 8 candles with growing savings, candle grid with Add buttons, and gift slots" width="1600" height="1000" loading="lazy">
+          <img src="assets/work/postcards-builder-desktop.webp" alt="Postcards build-a-bundle page with 3 to 8-pack tiers, growing savings and a candle grid" width="1600" height="1000" loading="lazy">
         </div>
-        <div class="phone"><img src="assets/work/postcards-builder-mobile.webp" alt="The same bundle builder on a phone" width="720" height="1500" loading="lazy"></div>
+        <div class="phone"><img src="assets/work/postcards-builder-mobile.webp" alt="The Postcards bundle builder on a phone" width="720" height="1500" loading="lazy"></div>
       </div>
-      <div class="text">
-        <div class="mono" style="color:var(--muted)">01 · Postcards — scented candles</div>
-        <h3>A "build your own gift" page that sells bigger packs</h3>
-        <p class="problem">Shoppers were buying one candle at a time. The goal: make the bigger pack the obvious choice, especially for gifts.</p>
+      <div>
+        <div class="mono">Postcards · Candles</div>
+        <h3>A build-your-own gift page that sells bigger packs</h3>
         <ul>
-          <li>Pick a 3, 4, 6 or 8-pack — the saving grows with every size, up to $79 off</li>
-          <li>Candles fill "postcard stamp" slots as they're added, with a clear "pick 3 more" prompt</li>
-          <li>The whole set goes to the cart in one click, designed for phones first</li>
-          <li>Built into the theme: no bundle app, no monthly fee</li>
+          <li>3 to 8-pack tiers — the saving grows up to $79</li>
+          <li>Clear "pick 3 more" prompt as the set fills</li>
+          <li>Whole set to cart in one click, mobile-first</li>
         </ul>
-        <div class="meta"><span class="pill">Liquid</span><span class="pill">Theme sections</span><span class="pill">Cart API</span><span class="pill">JavaScript</span></div>
         <a class="link" href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Try the live page ↗</a>
       </div>
     </article>
@@ -333,21 +328,18 @@ footer a:hover{color:var(--ink)}
       <div class="shots">
         <div class="desk">
           <div class="bar"><i></i><i></i><i></i><span>honeyswim.co/pages/size-guide</span></div>
-          <img src="assets/work/honeyswim-size-guide-desktop.webp" alt="Honey Swim size and coverage guide with Tops, Bottoms and One Pieces tabs and fit notes" width="1600" height="1000" loading="lazy">
+          <img src="assets/work/honeyswim-size-guide-desktop.webp" alt="Honey Swim size and coverage guide with tops, bottoms and one-pieces tabs" width="1600" height="1000" loading="lazy">
         </div>
         <div class="phone"><img src="assets/work/honeyswim-size-guide-mobile.webp" alt="The Honey Swim size guide on a phone" width="720" height="1500" loading="lazy"></div>
       </div>
-      <div class="text">
-        <div class="mono" style="color:var(--muted)">02 · Honey Swim — vacation swimwear</div>
-        <h3>A theme rework, a size guide, and sales you switch on in one place</h3>
-        <p class="problem">Swimwear lives and dies on fit, and running a store-wide sale used to mean editing prices everywhere.</p>
+      <div>
+        <div class="mono">Honey Swim · Swimwear</div>
+        <h3>A theme rework, a size guide, and one-click sales</h3>
         <ul>
-          <li>A size guide for tops, bottoms and one-pieces, with fit notes the team edits from the theme editor</li>
-          <li>Store-wide sale pricing controlled by one store setting: product cards, product pages and the cart update together</li>
-          <li>Separate discounts per collection, for targeted promotions</li>
-          <li>A full-site theme rework, plus an AI-based automation behind the scenes</li>
+          <li>Size guide for tops, bottoms and one-pieces</li>
+          <li>Store-wide sales switched on from a single setting</li>
+          <li>Separate discounts per collection</li>
         </ul>
-        <div class="meta"><span class="pill">Liquid</span><span class="pill">Shop metafields</span><span class="pill">Theme settings</span><span class="pill">AI automation</span></div>
         <a class="link" href="https://honeyswim.co/pages/size-guide" target="_blank" rel="noopener">See the size guide ↗</a>
       </div>
     </article>
@@ -355,64 +347,53 @@ footer a:hover{color:var(--ink)}
     <div class="app reveal">
       <div class="icon">B</div>
       <div>
-        <div class="mono" style="color:color-mix(in srgb,var(--paper) 60%,transparent)">03 · My own product</div>
-        <h3>Bundlora — a bundle builder app on the Shopify App Store</h3>
-        <p>I designed, built and published a full Shopify app: mix-and-match, tiered and guided bundles with automatic discounts. It passed Shopify's app review and has paying merchants. When I build for your store, I bring what I learned building it.</p>
+        <div class="mono">My own product</div>
+        <h3>Bundlora, on the Shopify App Store</h3>
+        <p>A bundle builder app I designed, built and published — reviewed by Shopify and used by paying merchants.</p>
       </div>
-      <a class="btn" href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">View on the App Store ↗</a>
+      <a class="btn" href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">View the app ↗</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="services" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section class="section band" id="services">
   <div class="wrap">
     <div class="head reveal">
-      <div>
-        <div class="eyebrow">What I build</div>
-        <h2>Three ways to make each order worth more.</h2>
-      </div>
-      <p>Each one is built around your store and your products — not a template dropped on top.</p>
+      <div class="eyebrow">Services</div>
+      <h2>Three ways to make every order worth more.</h2>
     </div>
     <div class="services">
       <div class="svc reveal">
-        <span class="num">01</span>
         <h3>Bundle builder pages</h3>
-        <p>Shoppers build their own set, watch the saving grow as they add, and buy it in one click. Tiered pricing, a progress nudge, gift notes and wrapping — styled like the rest of your store.</p>
-        <p class="for">Best for: candles, beauty, coffee & tea, snacks, jewelry — anything people buy more than one of.</p>
+        <p>Shoppers build their own set, see the saving grow, and buy it in one click.</p>
         <span class="price">From $800 · 1–2 weeks</span>
       </div>
       <div class="svc new reveal">
-        <span class="num">02 · <span style="color:var(--tag)">New — 2 pilot spots</span></span>
+        <span class="tag new-tag">New</span>
         <h3>AI Gift Concierge</h3>
-        <p>A shopper types "birthday, my sister, loves the beach, around $80". AI picks a ready-made gift from <em>your</em> catalog and prices, explains each pick, writes a gift note, and adds it all to the cart. Each week you see what gift shoppers wanted that you don't sell yet.</p>
-        <p class="for">Best for: gift-heavy stores, and holiday traffic that browses and leaves.</p>
-        <span class="price">Pilot pricing · ask me</span>
+        <p>Shoppers describe who it's for. AI builds the gift from your own products and adds it to the cart.</p>
+        <span class="price">2 pilot spots · ask me</span>
       </div>
       <div class="svc reveal">
-        <span class="num">03</span>
-        <h3>Theme features & upgrades</h3>
-        <p>The things apps charge monthly for, built into your theme: size guides, sale pricing you switch on in one place, product page upgrades, custom sections your team edits themselves.</p>
-        <p class="for">Best for: stores that have outgrown their theme but don't want a rebuild.</p>
+        <h3>Theme features</h3>
+        <p>Size guides, sale logic, product page upgrades — without another monthly app.</p>
         <span class="price">Fixed quote per feature</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="promises">
+<section class="section">
   <div class="wrap">
     <div class="head reveal">
-      <div>
-        <div class="eyebrow">The worries, answered</div>
-        <h2>Your store is your income. I treat it that way.</h2>
-      </div>
-      <p>Most merchants have been burned once — by a broken theme, a slow app or a developer who disappeared. Here's how I make sure that doesn't happen to you.</p>
+      <div class="eyebrow">Why merchants feel safe</div>
+      <h2>Your store is your income. I treat it that way.</h2>
     </div>
     <div class="promises reveal">
-      <div class="promise"><span class="mono">Nothing breaks</span><b>Built on a copy of your theme</b><p>Your live store is never touched while I work. You get a preview link and publish only when you're happy.</p></div>
-      <div class="promise"><span class="mono">No new bills</span><b>You own the code</b><p>It lives in your theme. No subscription, and no app that raises its price next year.</p></div>
-      <div class="promise"><span class="mono">No slowdown</span><b>Native and lightweight</b><p>Written in Liquid with a little JavaScript — no heavy app scripts loading on every page.</p></div>
-      <div class="promise"><span class="mono">No surprises</span><b>Fixed price, fixed scope</b><p>You get the price and the timeline in writing before any work starts.</p></div>
+      <div class="promise"><b>Your live store is never touched</b><p>I work on a copy. You preview, then publish.</p></div>
+      <div class="promise"><b>No monthly fees</b><p>The code lives in your theme. You own it.</p></div>
+      <div class="promise"><b>No slowdown</b><p>Native Liquid. No heavy app scripts.</p></div>
+      <div class="promise"><b>No surprises</b><p>Price and timeline in writing, upfront.</p></div>
     </div>
   </div>
 </section>
@@ -420,49 +401,43 @@ footer a:hover{color:var(--ink)}
 <section class="section" id="how" style="padding-top:0">
   <div class="wrap">
     <div class="head reveal">
-      <div>
-        <div class="eyebrow">How it works</div>
-        <h2>From first message to live in about two weeks.</h2>
-      </div>
-      <p>You stay in control at every step. I handle the code.</p>
+      <div class="eyebrow">Process</div>
+      <h2>Live in about two weeks.</h2>
     </div>
     <div class="steps reveal">
-      <div class="step"><h3>A free idea</h3><p>Tell me about your store. I look at it and send back one concrete idea for raising your order value — useful even if we never work together.</p><span class="when">Day 1</span></div>
-      <div class="step"><h3>Fixed quote</h3><p>We agree on exactly what gets built, the price and the date. In writing.</p><span class="when">Day 2–3</span></div>
-      <div class="step"><h3>Preview link</h3><p>I build on a copy of your theme. You click through it on your phone and desktop and ask for changes.</p><span class="when">Week 1–2</span></div>
-      <div class="step"><h3>Launch & handover</h3><p>You publish. I show you how to edit everything from the theme editor, and stay on hand after launch.</p><span class="when">Week 2</span></div>
+      <div class="step"><h3>Free idea</h3><p>Send your store. I reply with one concrete idea.</p></div>
+      <div class="step"><h3>Fixed quote</h3><p>Scope, price and date — agreed in writing.</p></div>
+      <div class="step"><h3>Preview</h3><p>Built on a copy of your theme for you to test.</p></div>
+      <div class="step"><h3>Launch</h3><p>You publish. I show your team how to edit it.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section" id="faq" style="padding-top:0">
-  <div class="wrap faq">
-    <div class="eyebrow reveal">Questions merchants ask me</div>
-    <h2 class="reveal" style="margin:14px 0 30px">Good questions. Straight answers.</h2>
-    <details class="reveal"><summary>Why not just install a bundle app?</summary><p>Apps work — I built one. But you pay every month, their scripts load on every page, and you can only customize what the app allows. A custom build costs once, fits your brand exactly and loads faster. If an app really is the better choice for your store, I'll tell you.</p></details>
-    <details class="reveal"><summary>Will this work with my theme?</summary><p>Yes. I work directly in Liquid, the language every Shopify theme is written in, so it works with Dawn, paid themes and custom themes. I build on a copy of your theme first, so we find out before anything goes live.</p></details>
-    <details class="reveal"><summary>Can my team change it later without you?</summary><p>That's the point. Texts, colors, prices, products and sizes are settings you change in the Shopify theme editor — the same place you already edit your store.</p></details>
-    <details class="reveal"><summary>What happens when my theme updates?</summary><p>Everything I add lives in its own sections and snippets, and I document where it sits. When you update your theme, it carries over cleanly instead of being tangled into files Shopify replaces.</p></details>
-    <details class="reveal"><summary>How much does it cost?</summary><p>A fixed price you agree to before I start. Bundle pages start from $800. Other features are quoted after a short call, once I know exactly what you need. No hourly surprises.</p></details>
-    <details class="reveal"><summary>Where are you, and how do we communicate?</summary><p>I'm based in Agadir, Morocco, and work with stores in the US and Europe. You get updates in plain language, by email or whatever you already use, and a preview link you can check any time.</p></details>
-    <details class="reveal"><summary>What does the AI Gift Concierge actually use?</summary><p>Only your own products and prices — it never invents a product. It suggests, the shopper decides, and your checkout stays exactly as it is. I'm launching it with two pilot stores first, at a reduced price in exchange for honest feedback.</p></details>
-  </div>
+  <div class="wrap"><div class="faq">
+    <div class="head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">FAQ</div>
+      <h2>Straight answers.</h2>
+    </div>
+    <details class="reveal"><summary>Why not just install an app?</summary><p>Apps charge every month, load scripts on every page, and only do what they allow. A custom build costs once and fits your brand exactly. If an app is truly better for you, I'll say so.</p></details>
+    <details class="reveal"><summary>Will it work with my theme?</summary><p>Yes. I build in Liquid, which every Shopify theme uses — on a copy of your theme first.</p></details>
+    <details class="reveal"><summary>Can my team edit it later?</summary><p>Yes. Text, colors, products and prices are settings in the Shopify theme editor.</p></details>
+    <details class="reveal"><summary>How much does it cost?</summary><p>A fixed price, agreed before I start. Bundle pages start at $800.</p></details>
+    <details class="reveal"><summary>Where are you based?</summary><p>Agadir, Morocco. I work with stores in the US and Europe, in English or French.</p></details>
+  </div></div>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="wrap about">
     <div class="photo reveal">
-      <img src="assets/mohamed.png" alt="Mohamed Fatta" loading="lazy">
+      <img src="assets/mohamed.png" alt="Mohamed Fatta" width="400" height="400" loading="lazy">
       <span class="tag">Hi, I'm Mohamed</span>
     </div>
     <div class="reveal">
-      <div class="eyebrow">Who you'd work with</div>
+      <div class="eyebrow">About</div>
       <h2 style="margin-top:14px">An engineer who thinks like a store owner.</h2>
-      <p>I've spent 4+ years building software professionally — including cloud systems at NTT DATA serving thousands of users at once. Now I put that to work for Shopify merchants: features that are fast, reliable and easy for your team to run.</p>
-      <p>I'd rather ship one change that clearly lifts your average order than ten that only look nice. When I suggest something, it's because I think it will make you money.</p>
-      <div class="facts">
-        <span class="pill">Liquid & Shopify themes</span><span class="pill">Shopify apps</span><span class="pill">JavaScript / TypeScript</span><span class="pill">AI & automation</span><span class="pill">English · French · Arabic</span>
-      </div>
+      <p>4+ years building software, including cloud systems at NTT DATA. Now I build Shopify features that are fast, reliable, and easy for your team to run.</p>
+      <div class="facts"><span class="pill">Shopify themes</span><span class="pill">Shopify apps</span><span class="pill">AI & automation</span><span class="pill">English · French</span></div>
     </div>
   </div>
 </section>
@@ -470,12 +445,12 @@ footer a:hover{color:var(--ink)}
 <section class="section" id="contact" style="padding-top:0">
   <div class="wrap">
     <div class="cta reveal">
-      <div class="eyebrow">Free, no strings</div>
-      <h2>Send me your store link. I'll send back one idea to raise your order value.</h2>
-      <p>A short, specific suggestion for your store — whether or not we work together.</p>
+      <div class="eyebrow">Free · no strings</div>
+      <h2>Send your store link. Get one idea to raise your order value.</h2>
+      <p>Specific to your store, whether or not we work together.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-        <a class="btn primary" href="mailto:med3fata@gmail.com?subject=Idea%20for%20my%20Shopify%20store&amp;body=Hi%20Mohamed%2C%0A%0AMy%20store%3A%20%0AWhat%20I%20sell%3A%20%0AWhat%20I%27d%20like%20to%20improve%3A%20%0A">Email me your store →</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/mohamed-fatta/" target="_blank" rel="noopener">Message on LinkedIn</a>
+        <a class="btn primary" href="mailto:med3fata@gmail.com?subject=Idea%20for%20my%20Shopify%20store&amp;body=Hi%20Mohamed%2C%0A%0AMy%20store%3A%20%0AWhat%20I%27d%20like%20to%20improve%3A%20%0A">Email me your store →</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/mohamed-fatta/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -491,7 +466,7 @@ footer a:hover{color:var(--ink)}
 
 <script>
 (() => {
-  // Live bundle-builder demo (sample products; the pattern mirrors the Postcards page).
+  // Live bundle-builder demo (sample products; mirrors the Postcards pattern).
   const tiers = [
     { size: 3, price: 69, save: 9 },
     { size: 4, price: 83, save: 21 },
@@ -499,12 +474,12 @@ footer a:hover{color:var(--ink)}
   ];
   const single = 26;
   const products = [
-    { name: "Sea Salt", notes: "salt · driftwood", color: "linear-gradient(135deg,#8fc3c9,#dfeee9)" },
-    { name: "Fig Leaf", notes: "fig · green tea", color: "linear-gradient(135deg,#7f9b6b,#dbe5c6)" },
-    { name: "Cedar", notes: "cedar · smoke", color: "linear-gradient(135deg,#8a6a52,#e3cdb6)" },
-    { name: "Neroli", notes: "orange blossom", color: "linear-gradient(135deg,#f0a35c,#fbe2c4)" },
-    { name: "Amber", notes: "amber · vanilla", color: "linear-gradient(135deg,#c9803e,#f3d6a9)" },
-    { name: "Coconut", notes: "coconut · lime", color: "linear-gradient(135deg,#e2d6bd,#fbf8f1)" },
+    { name: "Sea Salt", color: "linear-gradient(135deg,#8fc3c9,#dfeee9)" },
+    { name: "Fig Leaf", color: "linear-gradient(135deg,#7f9b6b,#dbe5c6)" },
+    { name: "Cedar", color: "linear-gradient(135deg,#8a6a52,#e3cdb6)" },
+    { name: "Neroli", color: "linear-gradient(135deg,#f0a35c,#fbe2c4)" },
+    { name: "Amber", color: "linear-gradient(135deg,#c9803e,#f3d6a9)" },
+    { name: "Coconut", color: "linear-gradient(135deg,#e2d6bd,#fbf8f1)" },
   ];
   const max = tiers[tiers.length - 1].size;
   const counts = products.map(() => 0);
@@ -515,7 +490,7 @@ footer a:hover{color:var(--ink)}
     const b = document.createElement("button");
     b.type = "button"; b.className = "item";
     b.setAttribute("aria-label", "Add " + p.name);
-    b.innerHTML = '<span class="count" id="c' + i + '">0</span><div class="swatch" style="background:' + p.color + '"></div><b>' + p.name + '</b><small>' + p.notes + '</small>';
+    b.innerHTML = '<span class="count" id="c' + i + '">0</span><div class="swatch" style="background:' + p.color + '"></div><b>' + p.name + '</b>';
     b.addEventListener("click", () => { if (total() < max) { counts[i]++; update(); } else { shake(); } });
     itemsEl.appendChild(b);
   });
@@ -559,9 +534,9 @@ footer a:hover{color:var(--ink)}
     });
     $("meter").style.width = Math.min(100, (n / max) * 100) + "%";
     const nudge = $("nudge");
-    if (n === 0) nudge.innerHTML = "Tap a candle to start your set.";
-    else if (next) nudge.innerHTML = "Add <b>" + (next.size - n) + " more</b> for the " + next.size + "-pack and <b>save $" + next.save + "</b>.";
-    else nudge.innerHTML = "Best value unlocked — <b>you save $" + tiers[tiers.length - 1].save + "</b> on " + n + " candles.";
+    if (n === 0) nudge.innerHTML = "Tap a candle to start.";
+    else if (next) nudge.innerHTML = "Add <b>" + (next.size - n) + " more</b> to <b>save $" + next.save + "</b>.";
+    else nudge.innerHTML = "Best value — <b>you save $" + tiers[tiers.length - 1].save + "</b>.";
     const r = priceFor(n);
     $("was").textContent = r.was ? "$" + r.was : "";
     animatePrice(r.price);
@@ -569,7 +544,6 @@ footer a:hover{color:var(--ink)}
   $("reset").addEventListener("click", () => { counts.fill(0); update(); });
   update();
 
-  // Reveal on scroll.
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
