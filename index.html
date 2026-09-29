@@ -127,8 +127,17 @@ nav a:hover{color:var(--ink)}
 @media (max-width:860px){.section{padding:74px 0}.head{margin-bottom:34px}}
 
 /* case studies */
-.case{display:grid;grid-template-columns:1.2fr .8fr;gap:52px;align-items:center;padding:56px 0 64px;border-top:1px solid var(--line)}
-.case:first-of-type{border-top:0;padding-top:0}
+.work-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 32px;margin-bottom:36px}
+.work-head h2{margin-top:14px}
+.tabs{display:flex;gap:4px;padding:4px;background:var(--paper-2);border:1px solid var(--line);border-radius:999px}
+.tabs button{font:600 14.5px var(--body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:10px 16px;cursor:pointer;transition:background .2s,color .2s}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.case{display:grid;grid-template-columns:1.2fr .8fr;gap:52px;align-items:center}
+.case[hidden]{display:none}
+.case.show{animation:fade .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:560px){.tabs{width:100%}.tabs button{flex:1;padding:10px 6px;font-size:13.5px}}
 .shots{position:relative;padding-bottom:34px}
 .frame{border-radius:14px;border:1.5px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
 .frame .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);font:500 11.5px var(--mono);color:var(--muted)}
@@ -284,7 +293,7 @@ footer a:hover{color:var(--ink)}
 
 <div class="strip" aria-label="Stores my work runs on">
   <div class="wrap">
-    <span class="mono">Live on</span>
+    <span class="mono">Built for</span>
     <a href="https://postcards.shop/" target="_blank" rel="noopener"><img class="pc" src="assets/work/postcards-logo.svg" alt="Postcards" width="160" height="26"></a>
     <a href="https://honeyswim.co/" target="_blank" rel="noopener"><img src="assets/work/honeyswim-logo.webp" alt="Honey Swim" width="64" height="30"></a>
   </div>
@@ -292,13 +301,20 @@ footer a:hover{color:var(--ink)}
 
 <section class="section" id="work">
   <div class="wrap">
-    <div class="head reveal">
-      <div class="eyebrow">Selected work</div>
-      <h2>Real stores. Live today.</h2>
-      <p>Open them and try it yourself.</p>
+    <div class="work-head reveal">
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2>Live on real stores.</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Case studies">
+        <button type="button" role="tab" id="tab-bundle" aria-controls="case-bundle" aria-selected="true">Bundle page</button>
+        <button type="button" role="tab" id="tab-cart" aria-controls="case-cart" aria-selected="false" tabindex="-1">Cart drawer</button>
+        <button type="button" role="tab" id="tab-size" aria-controls="case-size" aria-selected="false" tabindex="-1">Size guide</button>
+      </div>
     </div>
 
-    <article class="case reveal">
+    <div class="panels reveal">
+    <article class="case" role="tabpanel" id="case-bundle" aria-labelledby="tab-bundle">
       <div class="shots">
         <div class="frame">
           <div class="bar"><i></i><i></i><i></i><span>postcards.shop/pages/build-a-bundle</span></div>
@@ -318,7 +334,7 @@ footer a:hover{color:var(--ink)}
       </div>
     </article>
 
-    <article class="case reveal">
+    <article class="case" role="tabpanel" id="case-cart" aria-labelledby="tab-cart" hidden>
       <div class="shots duo">
         <div class="frame">
           <div class="bar"><i></i><i></i><i></i><span>Cart drawer</span></div>
@@ -338,7 +354,7 @@ footer a:hover{color:var(--ink)}
       </div>
     </article>
 
-    <article class="case reveal">
+    <article class="case" role="tabpanel" id="case-size" aria-labelledby="tab-size" hidden>
       <div class="shots">
         <div class="frame">
           <div class="bar"><i></i><i></i><i></i><span>honeyswim.co/pages/size-guide</span></div>
@@ -357,6 +373,7 @@ footer a:hover{color:var(--ink)}
         <a class="link" href="https://honeyswim.co/pages/size-guide" target="_blank" rel="noopener">See it live ↗</a>
       </div>
     </article>
+    </div>
   </div>
 </section>
 
@@ -548,6 +565,24 @@ footer a:hover{color:var(--ink)}
   }
   $("reset").addEventListener("click", () => { counts.fill(0); update(); });
   update();
+
+  // Case-study tabs (WAI-ARIA tabs pattern).
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach((t) => {
+      const on = t === tab, panel = document.getElementById(t.getAttribute("aria-controls"));
+      t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+      panel.hidden = !on; panel.classList.toggle("show", on);
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(t, false));
+    t.addEventListener("keydown", (e) => {
+      const k = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (k) { e.preventDefault(); select(tabs[(i + k + tabs.length) % tabs.length], true); }
+    });
+  });
 
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
