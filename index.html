@@ -61,7 +61,7 @@ p{margin:0}
 header.nav{position:sticky;top:0;z-index:20;background:rgba(250,246,238,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
 .brand{font-family:var(--display);font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
-.brand i{width:10px;height:10px;border-radius:50%;background:var(--tag)}
+.brand .avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid var(--ink);box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--line)}
 nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--ink-2)}
 nav a:hover{color:var(--ink)}
@@ -92,10 +92,10 @@ nav a:hover{color:var(--ink)}
 .tier.on{border-color:var(--ink);background:var(--ink);color:#fff}
 .tier.next{border-color:var(--tag);border-style:dashed}
 .items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.item{border:1.5px solid var(--line);border-radius:12px;padding:12px 10px 10px;text-align:left;background:var(--paper);cursor:pointer;font:inherit;color:inherit;transition:transform .15s,border-color .15s;position:relative}
+.item{border:1.5px solid var(--line);border-radius:12px;padding:8px 8px 10px;text-align:left;background:var(--paper);cursor:pointer;font:inherit;color:inherit;transition:transform .15s,border-color .15s;position:relative}
 .item:hover{transform:translateY(-2px);border-color:var(--ink)}
-.item .swatch{height:36px;border-radius:8px;margin-bottom:8px}
-.item b{font-size:14.5px;display:block;line-height:1.2}
+.item img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:8px;background:var(--paper-2)}
+.item b{font-size:14px;display:block;line-height:1.2;padding:0 2px}
 .item .count{position:absolute;top:7px;right:7px;min-width:22px;height:22px;border-radius:11px;background:var(--tag);color:#fff;font:600 12px/22px var(--mono);text-align:center;transform:scale(0);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
 .item .count.show{transform:scale(1)}
 .meter{margin:16px 0 6px;height:10px;border-radius:5px;background:var(--mint);overflow:hidden}
@@ -238,7 +238,7 @@ footer a:hover{color:var(--ink)}
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Mohamed Fatta, back to top"><i></i>Mohamed Fatta</a>
+    <a class="brand" href="#top" aria-label="Mohamed Fatta, back to top"><img class="avatar" src="assets/avatar.webp" alt="" width="36" height="36">Mohamed Fatta</a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#work">Work</a></li>
@@ -274,7 +274,7 @@ footer a:hover{color:var(--ink)}
       <div class="demo-top">
         <div>
           <div class="mono">Live demo</div>
-          <div class="demo-title" id="demo-title">Build your bundle</div>
+          <div class="demo-title" id="demo-title">Build your gift set</div>
         </div>
         <button type="button" class="reset" id="reset">Reset</button>
       </div>
@@ -286,7 +286,7 @@ footer a:hover{color:var(--ink)}
         <div class="mono">Order value</div>
         <div><span class="was" id="was"></span><span class="price" id="price">$0</span></div>
       </div>
-      <p class="demo-caption">The idea behind my Postcards bundle page: bigger sets, bigger savings.</p>
+      <p class="demo-caption">Recreated from the bundle page I built for Postcards — real candles, real pack prices.</p>
     </div>
   </div>
 </section>
@@ -488,7 +488,7 @@ footer a:hover{color:var(--ink)}
 
 <script>
 (() => {
-  // Live bundle-builder demo (sample products; mirrors the Postcards pattern).
+  // Live bundle-builder demo: Postcards candles and pack prices, recreated.
   const tiers = [
     { size: 3, price: 69, save: 9 },
     { size: 4, price: 83, save: 21 },
@@ -496,12 +496,12 @@ footer a:hover{color:var(--ink)}
   ];
   const single = 26;
   const products = [
-    { name: "Sea Salt", color: "linear-gradient(135deg,#8fc3c9,#dfeee9)" },
-    { name: "Fig Leaf", color: "linear-gradient(135deg,#7f9b6b,#dbe5c6)" },
-    { name: "Cedar", color: "linear-gradient(135deg,#8a6a52,#e3cdb6)" },
-    { name: "Neroli", color: "linear-gradient(135deg,#f0a35c,#fbe2c4)" },
-    { name: "Amber", color: "linear-gradient(135deg,#c9803e,#f3d6a9)" },
-    { name: "Coconut", color: "linear-gradient(135deg,#e2d6bd,#fbf8f1)" },
+    { name: "Road to Hana", img: "road-to-hana" },
+    { name: "North Shore", img: "north-shore" },
+    { name: "Na Pali Coast", img: "na-pali-coast" },
+    { name: "Lanikai Beach", img: "lanikai-beach" },
+    { name: "Honolua Bay", img: "honolua-bay" },
+    { name: "Manoa Valley", img: "manoa-valley" },
   ];
   const max = tiers[tiers.length - 1].size;
   const counts = products.map(() => 0);
@@ -512,7 +512,7 @@ footer a:hover{color:var(--ink)}
     const b = document.createElement("button");
     b.type = "button"; b.className = "item";
     b.setAttribute("aria-label", "Add " + p.name);
-    b.innerHTML = '<span class="count" id="c' + i + '">0</span><div class="swatch" style="background:' + p.color + '"></div><b>' + p.name + '</b>';
+    b.innerHTML = '<span class="count" id="c' + i + '">0</span><img src="assets/demo/' + p.img + '.webp" alt="" width="300" height="300"><b>' + p.name + '</b>';
     b.addEventListener("click", () => { if (total() < max) { counts[i]++; update(); } else { shake(); } });
     itemsEl.appendChild(b);
   });
@@ -556,7 +556,7 @@ footer a:hover{color:var(--ink)}
     });
     $("meter").style.width = Math.min(100, (n / max) * 100) + "%";
     const nudge = $("nudge");
-    if (n === 0) nudge.innerHTML = "Tap a candle to start.";
+    if (n === 0) nudge.innerHTML = "Tap a candle to add it.";
     else if (next) nudge.innerHTML = "Add <b>" + (next.size - n) + " more</b> to <b>save $" + next.save + "</b>.";
     else nudge.innerHTML = "Best value — <b>you save $" + tiers[tiers.length - 1].save + "</b>.";
     const r = priceFor(n);
