@@ -1,0 +1,14 @@
+# Files Cloudflare must not publish from the repo root (assets.directory = ".")
+.git
+.github
+.wrangler
+node_modules
+dist
+*.bak
+*.md
+wrangler.jsonc
+wrangler.toml
+.gitignore
+.assetsignore
+_*
+live.html

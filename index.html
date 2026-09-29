@@ -5,43 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
 <title>Mohamed Fatta — Shopify Developer</title>
-<meta name="description" content="Custom Shopify features that raise order value — bundle builders, gift experiences and theme upgrades, built into your theme. No monthly app fees.">
+<meta name="description" content="Custom Shopify features that raise order value: bundle builders, cart drawers and theme upgrades, built into your theme. No monthly app fees.">
+<link rel="canonical" href="https://mohamed-fatta-portfolio.medfata3.workers.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamed-fatta-portfolio.medfata3.workers.dev/">
 <meta property="og:title" content="Mohamed Fatta — Shopify features that raise order value">
-<meta property="og:description" content="Bundle builders, gift experiences and theme upgrades, built into your Shopify theme. No monthly app fees.">
-<meta property="og:image" content="assets/work/postcards-builder-desktop.webp">
+<meta property="og:description" content="Bundle builders, cart drawers and theme upgrades, built into your Shopify theme. No monthly app fees.">
+<meta property="og:image" content="https://mohamed-fatta-portfolio.medfata3.workers.dev/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf6ee">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23173a2e'/%3E%3Cpath d='M16 44V20l16 14 16-14v24' stroke='%23f5c451' stroke-width='6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Mohamed Fatta","jobTitle":"Shopify Developer","url":"https://mohamed-fatta-portfolio.medfata3.workers.dev/","address":{"@type":"PostalAddress","addressLocality":"Agadir","addressCountry":"MA"},"sameAs":["https://www.linkedin.com/in/mohamed-fatta/","https://github.com/medfata"]}
+</script>
 <style>
 :root{
   color-scheme:light;
-  --paper:#faf6ee;      /* warm cream page */
-  --paper-2:#f2ebdd;    /* band background */
-  --card:#ffffff;
-  --ink:#173a2e;        /* deep forest green: money, growth, trust */
-  --ink-2:#3e5a4f;
-  --muted:#76807a;
-  --line:#e3dac8;
-  --tag:#e2553a;        /* coral sale-sticker, used sparingly */
-  --sun:#f5c451;        /* one warm highlight */
-  --mint:#dcebe2;
+  --paper:#faf6ee; --paper-2:#f2ebdd; --card:#ffffff;
+  --ink:#173a2e; --ink-2:#3e5a4f; --muted:#737d77; --line:#e3dac8;
+  --tag:#d94f33; --sun:#f5c451; --mint:#dcebe2;
   --shadow:0 1px 0 rgba(23,58,46,.05),0 22px 44px -28px rgba(23,58,46,.38);
   --display:"Young Serif",Georgia,serif; --body:"Schibsted Grotesk",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeLegibility}
 a{color:inherit}
 img{max-width:100%;display:block;height:auto}
-.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:10px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;z-index:50}
+.skip:focus{left:10px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .mono{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
 h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;line-height:1.08;margin:0}
-h2{font-size:clamp(32px,4.2vw,52px)}
-h3{font-size:25px}
+h2{font-size:clamp(32px,4.2vw,50px)}
 p{margin:0}
 .btn{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);transition:transform .2s ease,background .2s ease,color .2s ease}
 .btn:hover{transform:translateY(-2px)}
@@ -53,7 +58,7 @@ p{margin:0}
 .pill{font:500 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--ink-2);background:var(--card)}
 
 /* nav */
-header.nav{position:sticky;top:0;z-index:20;background:rgba(250,246,238,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.nav{position:sticky;top:0;z-index:20;background:rgba(250,246,238,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
 .brand{font-family:var(--display);font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .brand i{width:10px;height:10px;border-radius:50%;background:var(--tag)}
@@ -61,20 +66,19 @@ nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--ink-2)}
 nav a:hover{color:var(--ink)}
 .nav .btn{padding:11px 18px;font-size:14.5px}
-.nav .short{display:none}
 @media (max-width:860px){nav ul{display:none}}
-@media (max-width:560px){.nav .long{display:none}.nav .short{display:inline}.brand{font-size:20px}}
+@media (max-width:420px){.brand{font-size:19px}.nav .btn{padding:10px 15px}}
 
 /* hero */
-.hero{padding:76px 0 64px}
+.hero{padding:76px 0 68px}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
-.hero h1{font-size:clamp(44px,6vw,78px)}
+.hero h1{font-size:clamp(44px,6vw,76px)}
 .hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--sun) 62% 92%,transparent 92%)}
-.hero .lede{font-size:20px;color:var(--ink-2);max-width:520px;margin:24px 0 32px}
+.hero .lede{font-size:20px;color:var(--ink-2);max-width:500px;margin:24px 0 32px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.trust{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 24px;color:var(--muted);font-size:14.5px}
-.trust span{display:flex;align-items:center;gap:8px}
-.trust span::before{content:"✓";font-weight:700;color:var(--ink)}
+.trust{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 24px;color:var(--muted);font-size:14.5px;list-style:none;padding:0}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust li::before{content:"✓";font-weight:700;color:var(--ink)}
 @media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:44px}.hero{padding-top:44px}.hero .lede{font-size:18px}}
 
 /* demo */
@@ -90,7 +94,6 @@ nav a:hover{color:var(--ink)}
 .items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .item{border:1.5px solid var(--line);border-radius:12px;padding:12px 10px 10px;text-align:left;background:var(--paper);cursor:pointer;font:inherit;color:inherit;transition:transform .15s,border-color .15s;position:relative}
 .item:hover{transform:translateY(-2px);border-color:var(--ink)}
-.item:focus-visible{outline:2px solid var(--tag);outline-offset:2px}
 .item .swatch{height:36px;border-radius:8px;margin-bottom:8px}
 .item b{font-size:14.5px;display:block;line-height:1.2}
 .item .count{position:absolute;top:7px;right:7px;min-width:22px;height:22px;border-radius:11px;background:var(--tag);color:#fff;font:600 12px/22px var(--mono);text-align:center;transform:scale(0);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
@@ -109,56 +112,49 @@ nav a:hover{color:var(--ink)}
 @media (max-width:560px){.tier span{display:block}.tier .sv{font-size:11px;color:var(--tag)}.tier.on .sv{color:var(--sun)}.tier .sv::before{content:""}}
 @media (max-width:420px){.demo{padding:18px 14px}.tier{padding:8px}}
 
-/* proof strip */
+/* live-on strip */
 .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
-.strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;padding-top:20px;padding-bottom:20px}
-.strip .logos{display:flex;flex-wrap:wrap;gap:12px 38px;align-items:baseline}
-.strip .logos a{font-family:var(--display);font-size:24px;text-decoration:none}
-.strip .logos a:hover{color:var(--tag)}
-.strip .logos small{font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 56px;padding-top:26px;padding-bottom:26px}
+.strip a{display:flex;align-items:center;opacity:.85;transition:opacity .2s,transform .2s}
+.strip a:hover{opacity:1;transform:translateY(-1px)}
+.strip img{height:30px;width:auto}
+.strip .pc{height:26px}
 
-.section{padding:104px 0}
-.head{max-width:680px;margin-bottom:48px}
+.section{padding:100px 0}
+.head{max-width:660px;margin-bottom:46px}
 .head h2{margin-top:14px}
-.head p{color:var(--ink-2);font-size:18px;margin-top:16px}
-@media (max-width:860px){.section{padding:76px 0}.head{margin-bottom:36px}}
+.head p{color:var(--ink-2);font-size:18px;margin-top:14px}
+@media (max-width:860px){.section{padding:74px 0}.head{margin-bottom:34px}}
 
 /* case studies */
-.case{display:grid;grid-template-columns:1.25fr .75fr;gap:52px;align-items:center;padding:56px 0 64px;border-top:1px solid var(--line)}
+.case{display:grid;grid-template-columns:1.2fr .8fr;gap:52px;align-items:center;padding:56px 0 64px;border-top:1px solid var(--line)}
 .case:first-of-type{border-top:0;padding-top:0}
-.case .shots{position:relative;padding-bottom:34px}
-.case .desk{border-radius:14px;border:1.5px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
-.case .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);font:500 11.5px var(--mono);color:var(--muted)}
-.case .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
-.case .bar span{margin-left:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.case .phone{position:absolute;right:-16px;bottom:0;width:28%;aspect-ratio:9/18.5;border-radius:24px;border:6px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--ink)}
-.case .phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.shots{position:relative;padding-bottom:34px}
+.frame{border-radius:14px;border:1.5px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.frame .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);font:500 11.5px var(--mono);color:var(--muted)}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
+.frame .bar span{margin-left:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.phone{position:absolute;right:-16px;bottom:0;width:28%;aspect-ratio:9/18.5;border-radius:24px;border:6px solid var(--ink);overflow:hidden;box-shadow:var(--shadow);background:var(--ink)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.shots.duo .frame{width:74%}
 .case h3{margin:10px 0 14px;font-size:30px}
 .case ul{margin:0 0 22px;padding:0;list-style:none}
 .case li{padding:10px 0 10px 26px;border-top:1px dashed var(--line);position:relative;color:var(--ink-2)}
 .case li::before{content:"→";position:absolute;left:0;color:var(--tag);font-weight:700}
 .case .link{font-weight:600;text-underline-offset:4px}
-@media (max-width:960px){.case{grid-template-columns:1fr;gap:28px}.case .phone{right:10px;width:30%}}
-
-.app{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;background:var(--ink);color:#fff;border-radius:20px;padding:30px 34px;margin-top:16px}
-.app .icon{width:70px;height:70px;border-radius:18px;background:var(--sun);display:grid;place-items:center;color:var(--ink);font:400 34px var(--display)}
-.app .mono{color:rgba(255,255,255,.6)}
-.app h3{font-size:28px;margin-top:6px}
-.app p{color:rgba(255,255,255,.78);margin-top:8px;max-width:600px}
-.app .btn{border-color:rgba(255,255,255,.7);color:#fff;white-space:nowrap}
-.app .btn:hover{background:#fff;color:var(--ink)}
-@media (max-width:860px){.app{grid-template-columns:1fr;padding:28px 24px}}
+@media (max-width:960px){.case{grid-template-columns:1fr;gap:28px}.phone{right:10px;width:30%}.shots.duo .frame{width:78%}}
+@media (max-width:560px){.shots.duo{padding-bottom:0}.shots.duo .frame{width:100%}.shots.duo .phone{display:none}}
 
 /* services */
 .band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .svc{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
 .svc:hover{border-color:var(--ink);transform:translateY(-3px)}
-.svc h3{font-size:26px}
+.svc h3{font-size:25px}
 .svc p{color:var(--ink-2)}
 .svc .price{font:600 13.5px var(--mono);margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
 .svc.new{border-color:var(--ink)}
-.svc .new-tag{align-self:flex-start}
+.svc .tag{align-self:flex-start}
 @media (max-width:960px){.services{grid-template-columns:1fr}}
 
 /* promises */
@@ -171,7 +167,7 @@ nav a:hover{color:var(--ink)}
 @media (max-width:560px){.promises{grid-template-columns:1fr}.promise{border-right:0;border-bottom:1px solid var(--line)}.promise:last-child{border-bottom:0}}
 
 /* steps */
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;list-style:none;margin:0;padding:0}
 .step{counter-increment:s;padding-top:18px;border-top:2px solid var(--ink)}
 .step::before{content:"0" counter(s);font:500 13px var(--mono);color:var(--tag)}
 .step h3{font-size:22px;margin:10px 0 6px}
@@ -180,36 +176,36 @@ nav a:hover{color:var(--ink)}
 @media (max-width:560px){.steps{grid-template-columns:1fr}}
 
 /* faq */
-.faq{max-width:820px}
+.faq{max-width:780px}
 details{border-top:1px solid var(--line)}
 details:last-of-type{border-bottom:1px solid var(--line)}
 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font:400 22px/1.25 var(--display)}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";flex:none;font:400 28px/1 var(--body);transition:transform .25s}
 details[open] summary::after{transform:rotate(45deg)}
-details p{padding:0 0 22px;color:var(--ink-2);max-width:700px}
+details p{padding:0 0 22px;color:var(--ink-2);max-width:680px}
 @media (max-width:560px){summary{font-size:19px}}
 
 /* about */
-.about{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;align-items:center}
+.about{display:grid;grid-template-columns:.55fr 1.45fr;gap:56px;align-items:center}
 .about .photo{position:relative}
 .about .photo img{border-radius:18px;border:1.5px solid var(--ink);aspect-ratio:1/1;object-fit:cover;width:100%}
 .about .photo .tag{position:absolute;left:16px;bottom:16px}
-.about p{color:var(--ink-2);font-size:18px;margin-top:16px;max-width:620px}
+.about p{color:var(--ink-2);font-size:18px;margin-top:16px;max-width:580px}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-@media (max-width:860px){.about{grid-template-columns:1fr;gap:32px}.about .photo{max-width:300px}}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:32px}.about .photo{max-width:280px}}
 
 /* cta */
 .cta{background:var(--ink);color:#fff;border-radius:28px;padding:72px 44px;text-align:center;position:relative;overflow:hidden}
 .cta::after{content:"";position:absolute;inset:14px;border:2px dashed rgba(255,255,255,.22);border-radius:20px;pointer-events:none}
-.cta h2{font-size:clamp(32px,4.6vw,56px);max-width:760px;margin:14px auto 16px}
-.cta p{color:rgba(255,255,255,.78);max-width:520px;margin:0 auto 30px;font-size:18px}
-.cta .btn{position:relative;z-index:1}
+.cta h2{font-size:clamp(32px,4.6vw,54px);max-width:720px;margin:14px auto 16px}
+.cta p{color:rgba(255,255,255,.8);max-width:480px;margin:0 auto 30px;font-size:18px}
+.cta .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;position:relative;z-index:1}
 .cta .btn.primary{background:var(--sun);color:var(--ink);border-color:var(--sun)}
 .cta .btn.primary:hover{background:#fff;border-color:#fff}
 .cta .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5)}
 .cta .btn.ghost:hover{background:rgba(255,255,255,.1)}
-.cta .eyebrow{justify-content:center;color:rgba(255,255,255,.7)}
+.cta .eyebrow{justify-content:center;color:rgba(255,255,255,.72)}
 @media (max-width:560px){.cta{padding:56px 22px;border-radius:22px}}
 
 footer{padding:34px 0 50px;color:var(--muted);font-size:14.5px}
@@ -225,42 +221,43 @@ footer a:hover{color:var(--ink)}
 .hero .stagger>*:nth-child(2){animation-delay:.08s}.hero .stagger>*:nth-child(3){animation-delay:.16s}.hero .stagger>*:nth-child(4){animation-delay:.24s}.hero .stagger>*:nth-child(5){animation-delay:.32s}
 .hero .demo{opacity:0;transform:translateY(18px);animation:up 1s .35s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes up{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero .stagger>*,.hero .demo{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero .stagger>*,.hero .demo{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><i></i>Mohamed Fatta</a>
+    <a class="brand" href="#top" aria-label="Mohamed Fatta, back to top"><i></i>Mohamed Fatta</a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#work">Work</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#how">Process</a></li>
+        <li><a href="#process">Process</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <a class="btn primary" href="#contact"><span class="long">Talk about your store</span><span class="short">Contact</span></a>
+    <a class="btn primary" href="#contact">Contact</a>
   </div>
 </header>
 
-<main id="top">
-<section class="hero">
+<main id="main">
+<section class="hero" id="top">
   <div class="wrap">
     <div class="stagger">
       <div class="eyebrow">Shopify developer</div>
       <h1>More revenue from the <em>visitors you already have.</em></h1>
-      <p class="lede">Custom Shopify features that raise order value — built into your theme, with no monthly app fees.</p>
+      <p class="lede">Custom Shopify features that raise order value — built into your theme, no monthly app fees.</p>
       <div class="ctas">
         <a class="btn primary" href="#contact">Get a free idea for your store →</a>
         <a class="btn ghost" href="#work">See my work</a>
       </div>
-      <div class="trust">
-        <span>Live on real stores</span>
-        <span>Shopify App Store developer</span>
-        <span>Fixed prices</span>
-      </div>
+      <ul class="trust">
+        <li>Live on real stores</li>
+        <li>Code you own</li>
+        <li>Fixed prices</li>
+      </ul>
     </div>
 
     <div class="demo" aria-labelledby="demo-title">
@@ -280,19 +277,16 @@ footer a:hover{color:var(--ink)}
         <div class="mono">Order value</div>
         <div><span class="was" id="was"></span><span class="price" id="price">$0</span></div>
       </div>
-      <p class="demo-caption">The idea behind the page I built for Postcards: bigger sets, bigger savings.</p>
+      <p class="demo-caption">The idea behind my Postcards bundle page: bigger sets, bigger savings.</p>
     </div>
   </div>
 </section>
 
-<div class="strip">
+<div class="strip" aria-label="Stores my work runs on">
   <div class="wrap">
     <span class="mono">Live on</span>
-    <div class="logos">
-      <a href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Postcards<small>Candles</small></a>
-      <a href="https://honeyswim.co/" target="_blank" rel="noopener">Honey Swim<small>Swimwear</small></a>
-      <a href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">Bundlora<small>My app</small></a>
-    </div>
+    <a href="https://postcards.shop/" target="_blank" rel="noopener"><img class="pc" src="assets/work/postcards-logo.svg" alt="Postcards" width="160" height="26"></a>
+    <a href="https://honeyswim.co/" target="_blank" rel="noopener"><img src="assets/work/honeyswim-logo.webp" alt="Honey Swim" width="64" height="30"></a>
   </div>
 </div>
 
@@ -306,53 +300,63 @@ footer a:hover{color:var(--ink)}
 
     <article class="case reveal">
       <div class="shots">
-        <div class="desk">
+        <div class="frame">
           <div class="bar"><i></i><i></i><i></i><span>postcards.shop/pages/build-a-bundle</span></div>
-          <img src="assets/work/postcards-builder-desktop.webp" alt="Postcards build-a-bundle page with 3 to 8-pack tiers, growing savings and a candle grid" width="1600" height="1000" loading="lazy">
+          <img src="assets/work/postcards-builder-desktop.webp" alt="Postcards build-a-bundle page with 3 to 8-pack tiers and a candle grid" width="1600" height="1000" loading="lazy">
         </div>
         <div class="phone"><img src="assets/work/postcards-builder-mobile.webp" alt="The Postcards bundle builder on a phone" width="720" height="1500" loading="lazy"></div>
       </div>
       <div>
-        <div class="mono">Postcards · Candles</div>
-        <h3>A build-your-own gift page that sells bigger packs</h3>
+        <div class="mono">Postcards · Bundle page</div>
+        <h3>Build your own gift set</h3>
         <ul>
-          <li>3 to 8-pack tiers — the saving grows up to $79</li>
-          <li>Clear "pick 3 more" prompt as the set fills</li>
-          <li>Whole set to cart in one click, mobile-first</li>
+          <li>3 to 8-pack tiers, saving up to $79</li>
+          <li>"Pick 3 more" prompt as the set fills</li>
+          <li>Whole set to cart in one click</li>
         </ul>
-        <a class="link" href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Try the live page ↗</a>
+        <a class="link" href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">Try it live ↗</a>
+      </div>
+    </article>
+
+    <article class="case reveal">
+      <div class="shots duo">
+        <div class="frame">
+          <div class="bar"><i></i><i></i><i></i><span>Cart drawer</span></div>
+          <img src="assets/work/postcards-cart-desktop.webp" alt="Postcards cart drawer: a 3-pack bundle shown with its three candles and $9 off, next to a single candle, with a free-shipping bar and discount code field" width="704" height="632" loading="lazy">
+        </div>
+        <div class="phone"><img src="assets/work/postcards-cart-mobile.webp" alt="The Postcards cart drawer on a phone" width="720" height="1500" loading="lazy"></div>
+      </div>
+      <div>
+        <div class="mono">Postcards · Cart drawer</div>
+        <h3>A cart that shows what's inside the bundle</h3>
+        <ul>
+          <li>Bundles show every item, next to single products</li>
+          <li>Savings and free-shipping progress at a glance</li>
+          <li>Quantities, discount codes and reviews in one drawer</li>
+        </ul>
+        <a class="link" href="https://postcards.shop/" target="_blank" rel="noopener">Visit the store ↗</a>
       </div>
     </article>
 
     <article class="case reveal">
       <div class="shots">
-        <div class="desk">
+        <div class="frame">
           <div class="bar"><i></i><i></i><i></i><span>honeyswim.co/pages/size-guide</span></div>
           <img src="assets/work/honeyswim-size-guide-desktop.webp" alt="Honey Swim size and coverage guide with tops, bottoms and one-pieces tabs" width="1600" height="1000" loading="lazy">
         </div>
         <div class="phone"><img src="assets/work/honeyswim-size-guide-mobile.webp" alt="The Honey Swim size guide on a phone" width="720" height="1500" loading="lazy"></div>
       </div>
       <div>
-        <div class="mono">Honey Swim · Swimwear</div>
-        <h3>A theme rework, a size guide, and one-click sales</h3>
+        <div class="mono">Honey Swim · Theme</div>
+        <h3>Size guide and one-switch sales</h3>
         <ul>
           <li>Size guide for tops, bottoms and one-pieces</li>
-          <li>Store-wide sales switched on from a single setting</li>
-          <li>Separate discounts per collection</li>
+          <li>Store-wide sales from a single setting</li>
+          <li>Discounts per collection</li>
         </ul>
-        <a class="link" href="https://honeyswim.co/pages/size-guide" target="_blank" rel="noopener">See the size guide ↗</a>
+        <a class="link" href="https://honeyswim.co/pages/size-guide" target="_blank" rel="noopener">See it live ↗</a>
       </div>
     </article>
-
-    <div class="app reveal">
-      <div class="icon">B</div>
-      <div>
-        <div class="mono">My own product</div>
-        <h3>Bundlora, on the Shopify App Store</h3>
-        <p>A bundle builder app I designed, built and published — reviewed by Shopify and used by paying merchants.</p>
-      </div>
-      <a class="btn" href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">View the app ↗</a>
-    </div>
   </div>
 </section>
 
@@ -360,24 +364,24 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="head reveal">
       <div class="eyebrow">Services</div>
-      <h2>Three ways to make every order worth more.</h2>
+      <h2>Bigger orders, built in.</h2>
     </div>
     <div class="services">
       <div class="svc reveal">
-        <h3>Bundle builder pages</h3>
-        <p>Shoppers build their own set, see the saving grow, and buy it in one click.</p>
+        <h3>Bundle builders</h3>
+        <p>Shoppers build a set, see the saving grow, buy in one click.</p>
         <span class="price">From $800 · 1–2 weeks</span>
       </div>
-      <div class="svc new reveal">
-        <span class="tag new-tag">New</span>
-        <h3>AI Gift Concierge</h3>
-        <p>Shoppers describe who it's for. AI builds the gift from your own products and adds it to the cart.</p>
-        <span class="price">2 pilot spots · ask me</span>
-      </div>
       <div class="svc reveal">
-        <h3>Theme features</h3>
-        <p>Size guides, sale logic, product page upgrades — without another monthly app.</p>
-        <span class="price">Fixed quote per feature</span>
+        <h3>Cart drawers</h3>
+        <p>Free-shipping bars, upsells and bundles that read clearly.</p>
+        <span class="price">Fixed quote</span>
+      </div>
+      <div class="svc new reveal">
+        <span class="tag">New</span>
+        <h3>AI Gift Concierge</h3>
+        <p>Shoppers describe who it's for. AI builds the gift from your products.</p>
+        <span class="price">2 pilot spots</span>
       </div>
     </div>
   </div>
@@ -386,45 +390,46 @@ footer a:hover{color:var(--ink)}
 <section class="section">
   <div class="wrap">
     <div class="head reveal">
-      <div class="eyebrow">Why merchants feel safe</div>
-      <h2>Your store is your income. I treat it that way.</h2>
+      <div class="eyebrow">Peace of mind</div>
+      <h2>Your store is your income.</h2>
     </div>
     <div class="promises reveal">
-      <div class="promise"><b>Your live store is never touched</b><p>I work on a copy. You preview, then publish.</p></div>
-      <div class="promise"><b>No monthly fees</b><p>The code lives in your theme. You own it.</p></div>
-      <div class="promise"><b>No slowdown</b><p>Native Liquid. No heavy app scripts.</p></div>
-      <div class="promise"><b>No surprises</b><p>Price and timeline in writing, upfront.</p></div>
+      <div class="promise"><b>Live store untouched</b><p>Built on a copy. You preview, then publish.</p></div>
+      <div class="promise"><b>No monthly fees</b><p>The code lives in your theme.</p></div>
+      <div class="promise"><b>Fast</b><p>Native Liquid, no heavy app scripts.</p></div>
+      <div class="promise"><b>Fixed price</b><p>Scope and date in writing, upfront.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="how" style="padding-top:0">
+<section class="section" id="process" style="padding-top:0">
   <div class="wrap">
     <div class="head reveal">
       <div class="eyebrow">Process</div>
       <h2>Live in about two weeks.</h2>
     </div>
-    <div class="steps reveal">
-      <div class="step"><h3>Free idea</h3><p>Send your store. I reply with one concrete idea.</p></div>
-      <div class="step"><h3>Fixed quote</h3><p>Scope, price and date — agreed in writing.</p></div>
-      <div class="step"><h3>Preview</h3><p>Built on a copy of your theme for you to test.</p></div>
-      <div class="step"><h3>Launch</h3><p>You publish. I show your team how to edit it.</p></div>
-    </div>
+    <ol class="steps reveal">
+      <li class="step"><h3>Free idea</h3><p>Send your store. Get one concrete idea back.</p></li>
+      <li class="step"><h3>Fixed quote</h3><p>Scope, price and date, in writing.</p></li>
+      <li class="step"><h3>Preview</h3><p>Test it on a copy of your theme.</p></li>
+      <li class="step"><h3>Launch</h3><p>You publish. Your team can edit it.</p></li>
+    </ol>
   </div>
 </section>
 
 <section class="section" id="faq" style="padding-top:0">
-  <div class="wrap"><div class="faq">
-    <div class="head reveal" style="margin-bottom:24px">
-      <div class="eyebrow">FAQ</div>
-      <h2>Straight answers.</h2>
+  <div class="wrap">
+    <div class="faq">
+      <div class="head reveal" style="margin-bottom:24px">
+        <div class="eyebrow">FAQ</div>
+        <h2>Straight answers.</h2>
+      </div>
+      <details class="reveal"><summary>Why not just install an app?</summary><p>Apps charge monthly, add scripts to every page, and only do what they allow. A custom build costs once and fits your brand.</p></details>
+      <details class="reveal"><summary>Will it work with my theme?</summary><p>Yes. It's built in Liquid, which every Shopify theme uses — on a copy of your theme first.</p></details>
+      <details class="reveal"><summary>Can my team edit it later?</summary><p>Yes. Text, colors, products and prices are theme editor settings.</p></details>
+      <details class="reveal"><summary>Where are you based?</summary><p>Agadir, Morocco. I work with stores in the US and Europe, in English or French.</p></details>
     </div>
-    <details class="reveal"><summary>Why not just install an app?</summary><p>Apps charge every month, load scripts on every page, and only do what they allow. A custom build costs once and fits your brand exactly. If an app is truly better for you, I'll say so.</p></details>
-    <details class="reveal"><summary>Will it work with my theme?</summary><p>Yes. I build in Liquid, which every Shopify theme uses — on a copy of your theme first.</p></details>
-    <details class="reveal"><summary>Can my team edit it later?</summary><p>Yes. Text, colors, products and prices are settings in the Shopify theme editor.</p></details>
-    <details class="reveal"><summary>How much does it cost?</summary><p>A fixed price, agreed before I start. Bundle pages start at $800.</p></details>
-    <details class="reveal"><summary>Where are you based?</summary><p>Agadir, Morocco. I work with stores in the US and Europe, in English or French.</p></details>
-  </div></div>
+  </div>
 </section>
 
 <section class="section" style="padding-top:0">
@@ -436,8 +441,8 @@ footer a:hover{color:var(--ink)}
     <div class="reveal">
       <div class="eyebrow">About</div>
       <h2 style="margin-top:14px">An engineer who thinks like a store owner.</h2>
-      <p>4+ years building software, including cloud systems at NTT DATA. Now I build Shopify features that are fast, reliable, and easy for your team to run.</p>
-      <div class="facts"><span class="pill">Shopify themes</span><span class="pill">Shopify apps</span><span class="pill">AI & automation</span><span class="pill">English · French</span></div>
+      <p>4+ years building software, including at NTT DATA. Now I build Shopify features that are fast, reliable and easy to run.</p>
+      <div class="facts"><span class="pill">Shopify themes</span><span class="pill">Liquid & JavaScript</span><span class="pill">AI & automation</span><span class="pill">English · French</span></div>
     </div>
   </div>
 </section>
@@ -446,10 +451,10 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="cta reveal">
       <div class="eyebrow">Free · no strings</div>
-      <h2>Send your store link. Get one idea to raise your order value.</h2>
-      <p>Specific to your store, whether or not we work together.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-        <a class="btn primary" href="mailto:med3fata@gmail.com?subject=Idea%20for%20my%20Shopify%20store&amp;body=Hi%20Mohamed%2C%0A%0AMy%20store%3A%20%0AWhat%20I%27d%20like%20to%20improve%3A%20%0A">Email me your store →</a>
+      <h2>Send your store link. Get one idea back.</h2>
+      <p>A specific way to raise your order value — whether or not we work together.</p>
+      <div class="row">
+        <a class="btn primary" href="mailto:med3fata@gmail.com?subject=Idea%20for%20my%20Shopify%20store&amp;body=Hi%20Mohamed%2C%0A%0AMy%20store%3A%20%0A">Email me your store →</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/mohamed-fatta/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
@@ -460,7 +465,7 @@ footer a:hover{color:var(--ink)}
 <footer>
   <div class="wrap">
     <span>© <span id="year">2026</span> Mohamed Fatta · Agadir, Morocco</span>
-    <span class="links"><a href="https://apps.shopify.com/bundlora" target="_blank" rel="noopener">Bundlora</a><a href="https://github.com/medfata" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/mohamed-fatta/" target="_blank" rel="noopener">LinkedIn</a><a href="assets/mohamed-fatta-en.pdf" target="_blank" rel="noopener">Résumé</a></span>
+    <span class="links"><a href="mailto:med3fata@gmail.com">Email</a><a href="https://www.linkedin.com/in/mohamed-fatta/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/medfata" target="_blank" rel="noopener">GitHub</a></span>
   </div>
 </footer>
 
