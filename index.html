@@ -107,7 +107,39 @@ nav a:hover{color:var(--ink)}
 .total .was{font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:line-through;margin-right:8px}
 .reset{font:600 12px var(--mono);border:1.5px solid var(--line);background:transparent;color:var(--ink-2);border-radius:999px;padding:7px 12px;cursor:pointer}
 .reset:hover{border-color:var(--ink);color:var(--ink)}
-.demo .tag{position:absolute;top:-14px;right:22px}
+.demo .tag{position:absolute;top:-14px;right:22px;z-index:3}
+.atc{width:100%;margin-top:14px;font:600 15.5px/1 var(--body);padding:15px 18px;border-radius:12px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;transition:background .2s,opacity .2s,transform .2s;text-align:center;text-decoration:none;display:block}
+.atc:hover:not(:disabled){background:#0f2a21;transform:translateY(-1px)}
+.atc:disabled{background:transparent;color:var(--muted);border-color:var(--line);cursor:not-allowed}
+/* cart drawer inside the demo */
+.drawer{position:absolute;inset:0;z-index:2;background:var(--card);border-radius:17px;display:flex;flex-direction:column;padding:22px;opacity:0;visibility:hidden;transform:translateX(18px);transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility 0s .35s}
+.drawer.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.drawer-head b{font:400 24px/1.1 var(--display)}
+.x{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:400 20px/1 var(--body);cursor:pointer}
+.x:hover{border-color:var(--ink)}
+.added{display:flex;align-items:center;gap:8px;margin:14px 0 4px;font-size:14px;color:var(--ink-2)}
+.added::before{content:"✓";width:20px;height:20px;border-radius:50%;background:var(--mint);color:var(--ink);font:700 12px/20px var(--body);text-align:center;flex:none}
+.line{border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;overflow:auto;min-height:0}
+.line-top{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.line-top b{display:block;font-size:15.5px;line-height:1.25}
+.line-top .mono{font-size:11px}
+.stack{display:flex;padding-left:10px}
+.stack img{width:40px;height:40px;border-radius:9px;object-fit:cover;border:2px solid var(--card);margin-left:-10px;background:var(--paper-2)}
+.line-price{text-align:right;white-space:nowrap}
+.line-price .was{display:block;margin:0}
+.line-price b{font:400 20px/1 var(--display)}
+.parts{list-style:none;margin:12px 0 0;padding:10px 0 0 10px;border-top:1px dashed var(--line);display:grid;gap:8px}
+.parts li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);position:relative;padding-left:14px}
+.parts li::before{content:"";position:absolute;left:0;top:-4px;width:8px;height:18px;border-left:1.5px solid var(--line);border-bottom:1.5px solid var(--line);border-bottom-left-radius:6px}
+.parts img{width:28px;height:28px;border-radius:7px;object-fit:cover;background:var(--paper-2)}
+.parts .q{margin-left:auto;font:500 12px var(--mono);color:var(--muted)}
+.drawer-foot{margin-top:auto;padding-top:14px}
+.drawer-foot .row{display:flex;justify-content:space-between;font-size:15px;padding:3px 0}
+.drawer-foot .row b{font-weight:600}
+.drawer-foot .save b{color:var(--tag)}
+.link-btn{display:block;margin:12px auto 0;background:none;border:0;font:600 13px var(--mono);color:var(--ink-2);cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.link-btn:hover{color:var(--ink)}
 .demo-caption{margin-top:12px;font-size:13.5px;color:var(--muted)}
 @media (max-width:560px){.tier span{display:block}.tier .sv{font-size:11px;color:var(--tag)}.tier.on .sv{color:var(--sun)}.tier .sv::before{content:""}}
 @media (max-width:420px){.demo{padding:18px 14px}.tier{padding:8px}}
@@ -164,7 +196,41 @@ nav a:hover{color:var(--ink)}
 .svc .price{font:600 13.5px var(--mono);margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
 .svc.new{border-color:var(--ink)}
 .svc .tag{align-self:flex-start}
+.svc .try{font-weight:600;font-size:15px;text-underline-offset:4px}
 @media (max-width:960px){.services{grid-template-columns:1fr}}
+
+/* gift concierge preview */
+.concierge{margin-top:18px;display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;background:var(--card);border:1.5px solid var(--ink);border-radius:22px;padding:40px;box-shadow:var(--shadow)}
+.cg-copy h3{font-size:clamp(28px,3vw,36px);margin:16px 0 12px}
+.cg-copy p{color:var(--ink-2)}
+.cg-copy .mono{margin-top:18px;font-size:11.5px}
+.chat{border:1.5px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden}
+.chat-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card);font-weight:600;font-size:15px}
+.chat-head .dot{width:9px;height:9px;border-radius:50%;background:#2f9e6e;box-shadow:0 0 0 3px var(--mint)}
+.chat-log{min-height:330px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.45;animation:pop .3s cubic-bezier(.2,.8,.2,1)}
+.msg.bot{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.me{background:var(--ink);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.typing{display:inline-flex;gap:4px;padding:14px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.pick{align-self:stretch;max-width:none;background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:14px}
+.pick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:12px}
+.pick-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:var(--paper-2)}
+.pick-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pick-row b{font-size:15.5px}
+.pick-row .mono{font-size:11px}
+.pick .atc{width:auto;margin:0;padding:11px 16px;font-size:14.5px;border-radius:999px}
+.pick .atc.done{background:var(--mint);color:var(--ink);border-color:var(--mint);cursor:default;transform:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:14px 18px 18px;border-top:1px solid var(--line);background:var(--card)}
+.chips button{font:500 14px var(--body);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+.chips button:hover:not(:disabled){border-color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips button:disabled{opacity:.5;cursor:wait}
+@media (max-width:960px){.concierge{grid-template-columns:1fr;gap:28px;padding:28px}}
+@media (max-width:560px){.concierge{padding:20px 16px;border-radius:18px}.chat-log{padding:14px;min-height:300px}.pick-grid{grid-template-columns:repeat(3,1fr)}.chips{padding:12px 14px 14px}}
 
 /* promises */
 .promises{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:var(--card)}
@@ -286,7 +352,30 @@ footer a:hover{color:var(--ink)}
         <div class="mono">Order value</div>
         <div><span class="was" id="was"></span><span class="price" id="price">$0</span></div>
       </div>
-      <p class="demo-caption">Recreated from the bundle page I built for Postcards — real candles, real pack prices.</p>
+      <button type="button" class="atc" id="atc" disabled>Add 3 candles to unlock the set</button>
+      <p class="demo-caption">Recreated from the bundle page and cart I built for Postcards — real candles, real pack prices.</p>
+
+      <div class="drawer" id="drawer" role="region" aria-labelledby="drawer-title" inert>
+        <div class="drawer-head">
+          <b id="drawer-title">Your cart</b>
+          <button type="button" class="x" id="close" aria-label="Close cart">×</button>
+        </div>
+        <p class="added">Your set is one line in the cart — every candle listed.</p>
+        <div class="line">
+          <div class="line-top">
+            <div class="stack" id="stack"></div>
+            <div><b id="line-name">Candle gift set</b><span class="mono" id="line-meta"></span></div>
+            <div class="line-price"><span class="was" id="line-was"></span><b id="line-price"></b></div>
+          </div>
+          <ul class="parts" id="parts"></ul>
+        </div>
+        <div class="drawer-foot">
+          <div class="row"><span>Subtotal</span><b id="sub"></b></div>
+          <div class="row save"><span>You save</span><b id="saved"></b></div>
+          <a class="atc" href="https://postcards.shop/pages/build-a-bundle" target="_blank" rel="noopener">See it live on Postcards →</a>
+          <button type="button" class="link-btn" id="edit">← Edit the set</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -398,7 +487,22 @@ footer a:hover{color:var(--ink)}
         <span class="tag">New</span>
         <h3>AI Gift Concierge</h3>
         <p>Shoppers describe who it's for. AI builds the gift from your products.</p>
+        <a class="try" href="#concierge">Try the preview ↓</a>
         <span class="price">2 pilot spots</span>
+      </div>
+    </div>
+
+    <div class="concierge reveal" id="concierge">
+      <div class="cg-copy">
+        <span class="tag">Preview</span>
+        <h3>A gift, picked in one message.</h3>
+        <p>Choose a shopper. The concierge builds a gift from the store's own products and adds it to the cart in one click.</p>
+        <p class="mono">Scripted preview · Postcards catalog</p>
+      </div>
+      <div class="chat">
+        <div class="chat-head"><span class="dot" aria-hidden="true"></span>Gift Concierge</div>
+        <div class="chat-log" id="log" aria-live="polite"></div>
+        <div class="chips" id="chips" aria-label="Example shoppers"></div>
       </div>
     </div>
   </div>
@@ -562,9 +666,76 @@ footer a:hover{color:var(--ink)}
     const r = priceFor(n);
     $("was").textContent = r.was ? "$" + r.was : "";
     animatePrice(r.price);
+    const atc = $("atc"), min = tiers[0].size;
+    atc.disabled = n < min;
+    atc.textContent = n < min ? "Add " + (min - n) + " more to unlock the set" : "Add set to cart — $" + r.price;
   }
   $("reset").addEventListener("click", () => { counts.fill(0); update(); });
   update();
+
+  // Cart drawer: the set lands as one line, with each candle listed under it.
+  const drawer = $("drawer");
+  function openCart() {
+    const n = total(), r = priceFor(n);
+    const picked = products.map((p, i) => ({ p, c: counts[i] })).filter((x) => x.c > 0);
+    $("stack").innerHTML = picked.slice(0, 3).map((x) => '<img src="assets/demo/' + x.p.img + '.webp" alt="" width="40" height="40">').join("");
+    $("line-meta").textContent = n + " candles";
+    $("line-price").textContent = "$" + r.price;
+    $("line-was").textContent = r.was ? "$" + r.was : "";
+    $("parts").innerHTML = picked.map((x) => '<li><img src="assets/demo/' + x.p.img + '.webp" alt="" width="28" height="28">' + x.p.name + '<span class="q">×' + x.c + "</span></li>").join("");
+    $("sub").textContent = "$" + r.price;
+    $("saved").textContent = "$" + (r.was ? r.was - r.price : 0);
+    drawer.inert = false; drawer.classList.add("open");
+    $("close").focus();
+  }
+  function closeCart() {
+    drawer.classList.remove("open"); drawer.inert = true;
+    $("atc").focus();
+  }
+  $("atc").addEventListener("click", openCart);
+  $("close").addEventListener("click", closeCart);
+  $("edit").addEventListener("click", closeCart);
+  drawer.addEventListener("keydown", (e) => { if (e.key === "Escape") closeCart(); });
+
+  // Gift Concierge preview: scripted answers built from the same Postcards catalog.
+  const img = (name) => products.find((p) => p.name === name).img;
+  const shoppers = [
+    { ask: "Birthday · sister · beach lover · ~$70", say: "Three beach candles for an ocean lover — just under budget.",
+      pick: ["Lanikai Beach", "North Shore", "Honolua Bay"], label: "3-pack", price: 69, save: 9 },
+    { ask: "Anniversary · partner · ~$85", say: "A 4-pack mixing coast and valley candles.",
+      pick: ["Road to Hana", "Na Pali Coast", "Manoa Valley", "Lanikai Beach"], label: "4-pack", price: 83, save: 21 },
+    { ask: "Housewarming · couple · ~$110", say: "The full 6-pack — a candle for every room.",
+      pick: products.map((p) => p.name), label: "6-pack", price: 109, save: 47 },
+    { ask: "Thank-you · coworker · ~$30", say: "One candle keeps it thoughtful and under $30.",
+      pick: ["Road to Hana"], label: "Single candle", price: 26, save: 0 },
+  ];
+  const log = $("log"), chips = $("chips");
+  const bot = (html, cls) => { const d = document.createElement("div"); d.className = "msg " + (cls || "bot"); d.innerHTML = html; log.appendChild(d); return d; };
+  function greet() { log.innerHTML = ""; bot("Hi! Who are you shopping for?"); }
+  function ask(s, btn) {
+    Array.from(chips.children).forEach((b) => { b.disabled = true; b.setAttribute("aria-pressed", String(b === btn)); });
+    greet();
+    bot(s.ask, "me");
+    const typing = bot('<span class="typing" aria-label="Typing"><i></i><i></i><i></i></span>');
+    typing.style.padding = "0";
+    setTimeout(() => {
+      typing.remove();
+      bot(s.say);
+      const card = bot('<div class="pick-grid">' + s.pick.map((n) => '<img src="assets/demo/' + img(n) + '.webp" alt="' + n + '" width="80" height="80">').join("") + "</div>" +
+        '<div class="pick-row"><div><b>' + s.label + " · $" + s.price + '</b><div class="mono">' + (s.save ? "Saves $" + s.save : s.pick[0]) + "</div></div>" +
+        '<button type="button" class="atc">Add gift to cart</button></div>', "bot pick");
+      const add = card.querySelector("button");
+      add.addEventListener("click", () => { add.textContent = "✓ In the cart as one line"; add.classList.add("done"); add.disabled = true; });
+      Array.from(chips.children).forEach((b) => { b.disabled = false; });
+    }, 900);
+  }
+  shoppers.forEach((s) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = s.ask; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => ask(s, b));
+    chips.appendChild(b);
+  });
+  greet();
 
   // Case-study tabs (WAI-ARIA tabs pattern).
   const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
