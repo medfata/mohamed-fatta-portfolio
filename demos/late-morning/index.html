@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>build your late morning table — concept demo</title>
 <meta name="description" content="A concept bundle builder for late morning, designed by Mohamed Fatta.">
+<link rel="icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
@@ -31,9 +32,8 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .dm { font-family: "DM Sans", Helvetica, Arial, sans-serif; }
 
   /* ---------- header (mirrors latemorning.com.sg) ---------- */
   .announce {
@@ -67,15 +67,16 @@
   /* ---------- page ---------- */
   main { max-width: 1240px; margin: 0 auto; padding: 34px 40px 110px; }
   .crumb { font-size: 11px; color: var(--ink-faint); letter-spacing: .02em; }
-  .intro { margin: 34px 0 44px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  .intro { margin: 34px 0 40px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
   h1 { font: 400 34px/1.15 "DM Sans", sans-serif; letter-spacing: -.015em; }
   .intro p { margin-top: 12px; color: var(--ink-soft); max-width: 470px; }
 
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .9s var(--ease-out) forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
+  @keyframes fadeSwap { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
 
   /* tiers */
-  .tiers { display: flex; border: 1px solid var(--line); position: relative; }
+  .tiers { display: flex; border: 1px solid var(--line); }
   .tier {
     position: relative; padding: 12px 22px 13px; font-size: 12px; text-align: center; white-space: nowrap;
     color: var(--ink-faint); border-right: 1px solid var(--line); overflow: hidden;
@@ -88,10 +89,8 @@
   }
   .tier > * { position: relative; z-index: 1; }
   .tier b { display: block; font: 500 13px "DM Sans", sans-serif; color: var(--ink-soft); transition: color .45s var(--ease); }
-  .tier.passed { color: var(--ink); }
-  .tier.passed b { color: var(--ink); }
-  .tier.on { color: #fff; }
-  .tier.on b { color: #fff; }
+  .tier.passed, .tier.passed b { color: var(--ink); }
+  .tier.on, .tier.on b { color: #fff; }
   .tier.on::before { transform: none; }
   .tier .ck { display: inline-block; width: 13px; margin-left: -13px; opacity: 0; vertical-align: -1px; transition: opacity .35s var(--ease); }
   .tier.passed .ck, .tier.on .ck { opacity: 1; }
@@ -99,22 +98,42 @@
 
   .layout { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start; }
 
-  /* steps */
-  .step { padding: 26px 0 36px; border-top: 1px solid var(--line); }
-  .step-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; gap: 16px; }
-  .step-head h2 { font: 400 17px "DM Sans", sans-serif; }
-  .step-head h2 span { color: var(--ink-faint); margin-right: 14px; font-size: 13px; }
-  .step-head h2 em { font-style: normal; font-size: 12px; color: var(--ink-faint); margin-left: 10px; font-family: Helvetica, Arial, sans-serif; }
-  .status { font-size: 11px; color: var(--ink-faint); display: flex; align-items: center; gap: 6px; text-transform: lowercase; }
-  .status svg { width: 10px; height: 10px; stroke: var(--ink); fill: none; stroke-width: 2.4; }
-  .status.done { color: var(--ink); }
-  .status .txt { display: inline-block; animation: fadeSwap .45s var(--ease-out); }
-  @keyframes fadeSwap { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  /* ---------- filter tabs ---------- */
+  .tabs {
+    position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); backdrop-filter: blur(6px);
+    display: flex; gap: 28px; border-bottom: 1px solid var(--line); padding-top: 4px;
+  }
+  .tab {
+    position: relative; padding: 12px 0 13px; font: 400 14px "DM Sans", sans-serif; color: var(--ink-faint);
+    transition: color .3s var(--ease); display: flex; align-items: baseline; gap: 6px;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.on { color: var(--ink); }
+  .tab sup { font: 10px Helvetica, Arial, sans-serif; color: var(--ink-faint); top: 0; }
+  .tab .dot {
+    width: 0; height: 5px; margin-left: -6px; border-radius: 50%; background: var(--ink); align-self: center;
+    transform: scale(0); transition: transform .35s var(--ease-out), width .3s var(--ease), margin .3s var(--ease);
+  }
+  .tab .dot.show { width: 5px; margin-left: 0; transform: scale(1); }
+  .tabs .ind {
+    position: absolute; bottom: -1px; left: 0; height: 1px; background: var(--ink);
+    transition: transform .45s var(--ease-out), width .45s var(--ease-out);
+  }
 
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
-  .card { cursor: pointer; position: relative; text-align: left; display: flex; flex-direction: column; justify-content: flex-start; align-self: start; width: 100%; -webkit-tap-highlight-color: transparent; }
+  /* ---------- groups + cards ---------- */
+  .group { padding: 28px 0 22px; }
+  .group.hide { display: none; }
+  .group.enter { animation: rise .55s var(--ease-out); }
+  .group-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
+  .group-head h2 { font: 400 17px "DM Sans", sans-serif; }
+  .group-head .status { font-size: 11px; color: var(--ink-faint); }
+  .group-head .status.done { color: var(--ink); }
+  .group-head .status span { display: inline-block; animation: fadeSwap .45s var(--ease-out); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 16px; align-items: start; }
+  .card { position: relative; }
   .card .ph {
-    position: relative; aspect-ratio: 4/5; background: var(--wash); overflow: hidden;
+    position: relative; display: block; width: 100%; aspect-ratio: 4/5; background: var(--wash); overflow: hidden;
     outline: 1px solid transparent; outline-offset: 0;
     transition: outline-color .3s var(--ease), outline-offset .45s var(--ease-out);
   }
@@ -123,7 +142,7 @@
     transition: opacity .7s var(--ease), transform 1.1s var(--ease-out);
   }
   .card .ph img.ld { opacity: 1; transform: none; }
-  .card:hover .ph img.ld { transform: scale(1.035); }
+  @media (hover: hover) { .card:hover .ph img.ld { transform: scale(1.035); } }
   .card .ph::after {
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
@@ -131,59 +150,78 @@
   }
   .card .ph.ready::after { display: none; }
   @keyframes shimmer { from { background-position: 120% 0; } to { background-position: -120% 0; } }
-  .card:hover .ph { outline-color: var(--line); }
   .card.sel .ph { outline-color: var(--ink); outline-offset: 4px; }
-  .card .tick {
-    position: absolute; top: 9px; right: 9px; width: 22px; height: 22px; border-radius: 50%;
-    background: var(--ink); display: flex; align-items: center; justify-content: center;
-    transform: scale(0); transition: transform .45s var(--ease-out); z-index: 2;
+  .card .badge {
+    position: absolute; top: 9px; right: 9px; z-index: 2; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px;
+    background: var(--ink); color: #fff; font: 500 11px/22px "DM Sans", sans-serif; text-align: center;
+    transform: scale(0); transition: transform .45s var(--ease-out);
   }
-  .card .tick svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset .35s .15s var(--ease); }
-  .card.sel .tick { transform: scale(1); }
-  .card.sel .tick svg { stroke-dashoffset: 0; }
-  .card .add {
-    position: absolute; left: 10px; right: 10px; bottom: 10px; height: 34px; z-index: 2;
-    background: rgba(255,255,255,.94); font-size: 11px; letter-spacing: .03em;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transform: translateY(6px); transition: opacity .3s var(--ease), transform .4s var(--ease-out);
-  }
-  .card:hover .add { opacity: 1; transform: none; }
-  .card .maker { margin-top: 12px; font-size: 11px; color: var(--ink-faint); text-transform: lowercase; }
+  .card.sel .badge { transform: scale(1); }
+  .card .badge.bump { animation: bump .4s var(--ease-out); }
+  .card .badge svg { width: 10px; height: 10px; stroke: #fff; fill: none; stroke-width: 2.4; vertical-align: -1px; }
+  @keyframes bump { 40% { transform: scale(1.25); } }
+
+  .info { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-top: 12px; }
+  .info .txt { min-width: 0; }
+  .card .maker { font-size: 11px; color: var(--ink-faint); text-transform: lowercase; }
   .card .name { font-size: 13px; text-transform: lowercase; }
   .card .price { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* + / − qty + control */
+  .qty {
+    flex: none; display: flex; align-items: center; height: 32px; border: 1px solid var(--line); border-radius: 16px;
+    transition: border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .qty button { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background .25s var(--ease); }
+  .qty button svg { width: 11px; height: 11px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; }
+  .qty .minus, .qty .n {
+    width: 0; overflow: hidden; opacity: 0;
+    transition: width .4s var(--ease-out), opacity .25s var(--ease);
+  }
+  .qty .n { font: 500 12px "DM Sans", sans-serif; text-align: center; }
+  .qty .n span { display: inline-block; }
+  .qty .n span.tick { animation: fadeSwap .3s var(--ease-out); }
+  @media (hover: hover) {
+    .card:not(.sel) .qty:hover { background: var(--ink); border-color: var(--ink); }
+    .card:not(.sel) .qty:hover svg { stroke: #fff; }
+    .card.sel .qty button:not(:disabled):hover { background: var(--wash); }
+  }
+  .card.sel .qty button:active { background: var(--wash); }
+  .card.sel .qty { border-color: var(--ink); }
+  .card.sel .qty .minus { width: 30px; opacity: 1; }
+  .card.sel .qty .n { width: 18px; opacity: 1; }
+  .qty button:disabled { cursor: default; opacity: .3; }
 
   /* ---------- summary ---------- */
   .summary { position: sticky; top: 24px; border: 1px solid var(--line); padding: 26px 24px 24px; background: var(--bg); }
   .summary h3 { font: 400 17px "DM Sans", sans-serif; display: flex; justify-content: space-between; align-items: baseline; }
   .summary h3 small { font: 11px Helvetica, Arial, sans-serif; color: var(--ink-faint); }
 
-  .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 20px 0 4px; }
+  .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 20px 0 4px; }
   .slot { position: relative; aspect-ratio: 1; background: var(--wash); overflow: hidden; }
   .slot .sk {
     position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
     border: 1px dashed #cfcbc4; color: #9a958d;
     transition: opacity .4s var(--ease), transform .5s var(--ease-out);
   }
-  .slot .sk svg { width: 48%; height: auto; stroke: currentColor; fill: none; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
-  .slot .sk span { font-size: 9.5px; letter-spacing: .06em; }
+  .slot .sk svg { width: 44%; height: auto; stroke: currentColor; fill: none; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+  .slot .sk span { font-size: 10px; letter-spacing: .06em; }
   .slot img { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity .5s var(--ease), transform .8s var(--ease-out); }
   .slot.full .sk { opacity: 0; transform: scale(.9); }
   .slot.full img { opacity: 1; transform: none; }
   .slot .more {
-    position: absolute; right: 4px; bottom: 4px; padding: 0 6px; height: 17px; border-radius: 9px;
-    background: var(--ink); color: #fff; font: 500 9.5px/17px "DM Sans", sans-serif; z-index: 2;
+    position: absolute; right: 5px; bottom: 5px; padding: 0 7px; height: 18px; border-radius: 9px; z-index: 2;
+    background: var(--ink); color: #fff; font: 500 10px/18px "DM Sans", sans-serif;
   }
   .slot.pulse { animation: pulse .6s var(--ease-out); }
-  @keyframes pulse { 0% { transform: scale(1); } 40% { transform: scale(.94); } 100% { transform: scale(1); } }
+  @keyframes pulse { 40% { transform: scale(.94); } }
 
   .lines { margin-top: 14px; }
-  .line {
-    display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line);
-    min-height: 54px; align-items: flex-start;
-  }
+  .line { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); min-height: 54px; align-items: flex-start; }
   .line .l small { display: block; font-size: 11px; color: var(--ink-faint); text-transform: lowercase; }
   .line .l span { text-transform: lowercase; }
-  .line .r { white-space: nowrap; }
+  .line .l em { font-style: normal; color: var(--ink-faint); margin-right: 4px; }
+  .line .r { white-space: nowrap; display: flex; align-items: center; }
   .line.empty .l span, .line.empty .r { color: #b3b0aa; }
   .line.new { animation: lineIn .55s var(--ease-out); }
   @keyframes lineIn { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
@@ -200,16 +238,12 @@
   .was.show { opacity: 1; }
 
   .ship { margin: 16px 0 4px; font-size: 11px; color: var(--ink-soft); }
-  .ship .txt { display: inline-block; }
   .bar { height: 2px; background: var(--line); margin-top: 8px; overflow: hidden; }
   .bar i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .9s var(--ease-out); }
+  .swap { display: inline-block; animation: fadeSwap .5s var(--ease-out); }
 
-  .nudge {
-    margin: 18px 0 16px; padding: 11px 14px; background: var(--sand); font-size: 12px; min-height: 42px;
-    display: flex; align-items: center; gap: 10px;
-  }
+  .nudge { margin: 18px 0 16px; padding: 11px 14px; background: var(--sand); font-size: 12px; min-height: 42px; display: flex; align-items: center; gap: 10px; }
   .nudge svg { flex: none; width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 1.3; }
-  .nudge .txt { animation: fadeSwap .5s var(--ease-out); }
 
   .btn {
     position: relative; width: 100%; height: 48px; background: var(--ink); color: #fff; overflow: hidden;
@@ -227,14 +261,14 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .fine { margin-top: 12px; text-align: center; font-size: 11px; color: var(--ink-faint); }
 
-  .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 70px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--line); }
   .notes h4 { font: 400 14px "DM Sans", sans-serif; margin-bottom: 6px; }
   .notes p { color: var(--ink-soft); font-size: 12px; max-width: 300px; }
 
   /* ---------- fly-to-slot ---------- */
   .fly {
     position: fixed; z-index: 60; pointer-events: none; overflow: hidden; background: var(--wash);
-    transition: transform .75s var(--ease-out), opacity .75s var(--ease), border-radius .75s;
+    transition: transform .75s var(--ease-out), opacity .75s var(--ease);
     transform-origin: 0 0; will-change: transform;
   }
 
@@ -243,8 +277,7 @@
   .veil.open { opacity: 1; pointer-events: auto; }
   .drawer {
     position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 100%; background: #fff; z-index: 90;
-    transform: translateX(100%); transition: transform .6s var(--ease-out);
-    display: flex; flex-direction: column;
+    transform: translateX(100%); transition: transform .6s var(--ease-out); display: flex; flex-direction: column;
   }
   .drawer.open { transform: none; }
   .dr-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; border-bottom: 1px solid var(--line); }
@@ -253,34 +286,29 @@
   .dr-body { flex: 1; overflow: auto; padding: 22px 26px; }
   .dr-ship { font-size: 11px; color: var(--ink-soft); margin-bottom: 22px; }
   .bundle { border: 1px solid var(--line); padding: 18px; }
-  .bundle-top { display: flex; gap: 14px; align-items: center; }
-  .bundle-top > div:nth-child(1) { flex: 1; }
-  .thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 14px; }
-  .thumbs div { aspect-ratio: 1; overflow: hidden; background: var(--wash); }
+  .bundle-top { display: flex; gap: 14px; align-items: flex-start; }
+  .bundle-top > div:first-child { flex: 1; }
   .bundle-top h4 { font: 400 14px "DM Sans", sans-serif; }
   .bundle-top p { font-size: 11px; color: var(--ink-faint); }
-  .bundle-top .pr { margin-left: auto; text-align: right; white-space: nowrap; }
+  .bundle-top .pr { text-align: right; white-space: nowrap; }
   .bundle-top .pr s { display: block; font-size: 11px; color: var(--ink-faint); }
+  .thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 14px; }
+  .thumbs div { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--wash); }
+  .thumbs b { position: absolute; right: 3px; bottom: 3px; background: var(--ink); color: #fff; font: 500 9px/15px "DM Sans", sans-serif; padding: 0 5px; border-radius: 8px; }
   .bundle ul { list-style: none; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
-  .bundle li { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; color: var(--ink-soft); text-transform: lowercase; }
+  .bundle li { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; padding: 4px 0; color: var(--ink-soft); text-transform: lowercase; }
   .bundle li.sv { color: var(--ink); text-transform: none; padding-top: 8px; }
-  .bundle .qty { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
-  .qbox { display: flex; border: 1px solid var(--line); }
-  .qbox span { width: 32px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--ink-soft); }
-  .qbox span:nth-child(2) { border-left: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink); }
-  .edit { font-size: 11px; text-decoration: underline; text-underline-offset: 3px; color: var(--ink-soft); }
+  .edit { display: inline-block; margin-top: 12px; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; color: var(--ink-soft); }
   .dr-foot { border-top: 1px solid var(--line); padding: 20px 26px 24px; }
   .dr-foot .sum.total { padding: 0 0 14px; }
-  .dr-foot .fine { margin-top: 10px; }
   .drawer .stag > * { opacity: 0; transform: translateY(10px); }
   .drawer.open .stag > * { animation: rise .6s var(--ease-out) forwards; }
   .drawer.open .stag > *:nth-child(2) { animation-delay: .08s; }
-  .drawer.open .stag > *:nth-child(3) { animation-delay: .16s; }
 
   /* ---------- toast + demo tag ---------- */
   .toast {
     position: fixed; left: 50%; bottom: 28px; z-index: 100; transform: translate(-50%, 20px); opacity: 0;
-    background: var(--ink); color: #fff; padding: 12px 18px; font-size: 12px; pointer-events: none;
+    background: var(--ink); color: #fff; padding: 12px 18px; font-size: 12px; pointer-events: none; text-align: center;
     transition: opacity .35s var(--ease), transform .5s var(--ease-out);
   }
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
@@ -289,11 +317,10 @@
     padding: 9px 14px 9px 12px; border-radius: 20px; background: rgba(255,255,255,.92); border: 1px solid var(--line);
     font-size: 11px; color: var(--ink-soft); backdrop-filter: blur(6px);
   }
-  .demo-tag i { width: 6px; height: 6px; border-radius: 50%; background: #8fae8b; box-shadow: 0 0 0 0 rgba(143,174,139,.6); animation: live 2s infinite; }
-  @keyframes live { 70% { box-shadow: 0 0 0 7px rgba(143,174,139,0); } 100% { box-shadow: 0 0 0 0 rgba(143,174,139,0); } }
+  .demo-tag i { width: 6px; height: 6px; border-radius: 50%; background: #8fae8b; animation: live 2s infinite; }
+  @keyframes live { 0% { box-shadow: 0 0 0 0 rgba(143,174,139,.6); } 70%, 100% { box-shadow: 0 0 0 7px rgba(143,174,139,0); } }
   .demo-tag a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
 
-  /* ---------- mobile bar ---------- */
   .mbar { display: none; }
 
   @media (max-width: 1080px) {
@@ -310,13 +337,14 @@
     .icons { gap: 18px; }
     .icons .hide-m { display: none; }
     main { padding: 18px 16px 130px; }
-    .intro { flex-direction: column; align-items: stretch; margin: 22px 0 28px; gap: 22px; }
+    .intro { flex-direction: column; align-items: stretch; margin: 22px 0 22px; gap: 22px; }
     h1 { font-size: 27px; }
     .tier { flex: 1; padding: 11px 6px 12px; }
+    .tabs { gap: 22px; margin: 0 -16px; padding: 4px 16px 0; overflow-x: auto; scrollbar-width: none; }
     .layout { grid-template-columns: 1fr; gap: 0; }
     .summary { position: static; margin-top: 10px; }
-    .grid { gap: 12px; }
-    .card .add { display: none; }
+    .grid { gap: 24px 12px; }
+    .info { flex-direction: column; align-items: flex-start; gap: 8px; }
     .notes { grid-template-columns: 1fr; gap: 22px; margin-top: 44px; }
     .demo-tag { display: none; }
     .mbar {
@@ -329,9 +357,8 @@
     .mbar .t b { font: 500 17px "DM Sans", sans-serif; }
     .mbar .btn { width: auto; padding: 0 22px; height: 44px; }
     .drawer { width: 100%; }
-    .toast { bottom: 90px; }
+    .toast { bottom: 90px; width: calc(100% - 32px); }
   }
-
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
@@ -362,7 +389,7 @@
   <div class="intro">
     <div class="reveal" style="animation-delay:.06s">
       <h1>build your late morning table</h1>
-      <p>choose a plate, a bowl and a cup from the makers you love. mix artists freely — the more pieces you set, the more you save.</p>
+      <p>pick plates, bowls and cups from the makers you love. mix artists freely — the more pieces you set, the more you save.</p>
     </div>
     <div class="tiers reveal" id="tiers" style="animation-delay:.14s">
       <div class="tier" data-n="2"><b><span class="ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg></span>2 pieces</b><span>5% off</span></div>
@@ -372,9 +399,12 @@
   </div>
 
   <div class="layout">
-    <div id="steps" class="reveal" style="animation-delay:.2s"></div>
+    <div class="reveal" style="animation-delay:.2s">
+      <div class="tabs" id="tabs" role="tablist"><span class="ind" id="ind"></span></div>
+      <div id="groups"></div>
+    </div>
 
-    <aside class="summary reveal" style="animation-delay:.26s" id="summary">
+    <aside class="summary reveal" style="animation-delay:.26s">
       <h3>your table <small id="count">0 pieces</small></h3>
       <div class="slots" id="slots"></div>
       <div class="lines" id="lines"></div>
@@ -383,8 +413,8 @@
         <div class="sum save off"><span id="saveLabel">table set saving</span><span id="save">−$0.00</span></div>
         <div class="sum total"><span>total<small>SGD</small></span><span><span class="was" id="was"></span><span id="total">$0.00</span></span></div>
       </div>
-      <div class="ship"><span class="txt" id="shipText"></span><div class="bar"><i id="shipBar"></i></div></div>
-      <div class="nudge"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9.3l-4.4 3.9 1.3 5.8L12 16l-4.9 3 1.3-5.8L4 9.3l5.8-.7z"/></svg><span class="txt" id="nudge"></span></div>
+      <div class="ship"><span id="shipText"></span><div class="bar"><i id="shipBar"></i></div></div>
+      <div class="nudge"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9.3l-4.4 3.9 1.3 5.8L12 16l-4.9 3 1.3-5.8L4 9.3l5.8-.7z"/></svg><span id="nudge"></span></div>
       <button class="btn" id="addBtn" disabled><span class="lbl" id="addLbl">choose at least 2 pieces</span></button>
       <div class="fine">set price applied automatically at checkout</div>
     </aside>
@@ -419,68 +449,112 @@
 <script>
 (() => {
   const cdn = (f) => `https://cdn.shopify.com/s/files/1/0629/1298/7358/files/${f}&width=640`;
+  const MAX_QTY = 9;
 
-  /* line-sketch placeholders for the empty slots */
+  /* line sketches shown in empty slots */
   const SK = {
     plate: '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="19" ry="8.5"/><ellipse cx="24" cy="25.2" rx="11" ry="4.6"/><path d="M5 26c0 3 1.2 4.6 3.4 5.8M43 26c0 3-1.2 4.6-3.4 5.8"/></svg>',
     bowl:  '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="18" rx="17" ry="4.5"/><path d="M7 18c0 9.5 7.6 16.5 17 16.5S41 27.5 41 18"/><path d="M18 34.5l1.2 4h9.6l1.2-4"/></svg>',
     cup:   '<svg viewBox="0 0 48 48"><ellipse cx="21" cy="14" rx="11" ry="3"/><path d="M10 14l1.6 19.5c.2 2 1.6 3.5 3.6 3.5h11.6c2 0 3.4-1.5 3.6-3.5L32 14"/><path d="M31.4 19.5h3.1c2.6 0 4.5 2 4.5 4.6s-1.9 4.6-4.5 4.6h-3.8"/></svg>',
-    extra: '<svg viewBox="0 0 48 48"><path d="M24 12v24M12 24h24"/><circle cx="24" cy="24" r="16" stroke-dasharray="2.5 3.5"/></svg>',
   };
+  const PLUS = '<svg viewBox="0 0 12 12"><path d="M6 1.5v9M1.5 6h9"/></svg>';
+  const TICK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const MINUS = '<svg viewBox="0 0 12 12"><path d="M1.5 6h9"/></svg>';
 
-  const steps = [
-    { key: "plate", no: "01", title: "the plate", items: [
+  const groups = [
+    { key: "plate", title: "plates", items: [
       { maker: "Zhou Yuxuan", name: "round plate", price: 58, img: cdn("DSCF2351.jpg?v=1786526435") },
       { maker: "Zhou Yuxuan", name: "dessert plate", price: 56, img: cdn("DSCF2440.jpg?v=1786526702") },
       { maker: "Takashi Sogo", name: "ash glaze plate", price: 48, img: cdn("DSCF2920.jpg?v=1786862730") },
       { maker: "yumiko iihoshi", name: "unjour plate in beige", price: 16, img: cdn("IMG_1029.jpg?v=1791264425") },
+      { maker: "yumiko iihoshi", name: "unjour plate in pale pink", price: 16, img: cdn("IMG_1031.jpg?v=1791264470") },
+      { maker: "Zhou Yuxuan", name: "oval plate", price: 64, img: cdn("DSCF2412.jpg?v=1786525742") },
     ]},
-    { key: "bowl", no: "02", title: "the bowl", items: [
+    { key: "bowl", title: "bowls", items: [
       { maker: "Fuminari Araga", name: "hakeme brush-stroke egg bowl", price: 46, img: cdn("DSCF2006.jpg?v=1786023363") },
       { maker: "Zhou Yuxuan", name: "round bowl", price: 55, img: cdn("DSCF2578_b5327f96-6a45-4c56-b59e-43d22173f3cc.jpg?v=1786525392") },
       { maker: "Zhuo Yue", name: "rim bowl", price: 62, img: cdn("DSCF3807.jpg?v=1787979527") },
       { maker: "yumiko iihoshi", name: "unjour bowl in dark gray", price: 39, img: cdn("IMG_1023.jpg?v=1791264191") },
     ]},
-    { key: "cup", no: "03", title: "the cup", items: [
+    { key: "cup", title: "cups", items: [
       { maker: "yumiko iihoshi", name: "unjour cup in beige", price: 39, img: cdn("IMG_1020_f79e40de-9629-4819-9a49-2ef679bf8023.jpg?v=1791264103") },
       { maker: "Lolo Saliu", name: "yui cup", price: 23, img: cdn("Screenshot2025-10-30at1.27.59PM.png?v=1761802106") },
       { maker: "Zhou Yuxuan", name: "round cup", price: 52, img: cdn("DSCF2275.jpg?v=1786526156") },
       { maker: "Takashi Sogo", name: "ash glaze mug", price: 68, img: cdn("DSCF2933_59b43771-68ea-469a-a784-f5713574b49b.jpg?v=1786862908") },
-    ]},
-    { key: "extra", no: "04", title: "a little extra", optional: true, items: [
-      { maker: "yumiko iihoshi", name: "unjour plate in pale pink", price: 16, img: cdn("IMG_1031.jpg?v=1791264470") },
       { maker: "Zhou Yuxuan", name: "small cup", price: 23, img: cdn("DSCF2237.jpg?v=1786525913") },
       { maker: "Zhou Yuxuan", name: "tumbler", price: 56, img: cdn("DSCF2291.jpg?v=1786525958") },
-      { maker: "Zhou Yuxuan", name: "oval plate", price: 64, img: cdn("DSCF2412.jpg?v=1786525742") },
     ]},
   ];
 
-  const picks = [null, null, null];   // one per core step
-  const extras = [];                   // item indexes in step 4, in pick order
+  // flat catalogue with stable ids
+  const items = [];
+  groups.forEach((g) => g.items.forEach((it, i) => items.push({ id: `${g.key}-${i}`, group: g.key, ...it })));
+  const byId = Object.fromEntries(items.map((i) => [i.id, i]));
+
+  const qty = {};          // id -> quantity
+  const order = [];        // ids in the order they were first added
+  let filter = "all";
   let shown = { sub: 0, save: 0, total: 0 };
-  let cartCount = 0;
+  let prevLines = new Set();
 
   const $ = (id) => document.getElementById(id);
   const money = (n) => "$" + n.toFixed(2);
-  const tickSvg = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const rateFor = (n) => (n >= 4 ? 0.15 : n === 3 ? 0.1 : n === 2 ? 0.05 : 0);
+  const picked = () => order.filter((id) => qty[id] > 0).map((id) => ({ ...byId[id], q: qty[id] }));
+  const pieces = () => picked().reduce((a, c) => a + c.q, 0);
+  const inGroup = (g) => picked().filter((c) => c.group === g);
 
-  /* ---------- steps ---------- */
-  $("steps").innerHTML = steps.map((s, si) => `
-    <section class="step" data-step="${si}">
-      <div class="step-head">
-        <h2><span>${s.no}</span>${s.title}${s.optional ? "<em>optional</em>" : ""}</h2>
-        <div class="status" id="st${si}"></div>
-      </div>
-      <div class="grid">${s.items.map((it, ii) => `
-        <button class="card" data-s="${si}" data-i="${ii}" aria-pressed="false">
-          <div class="ph"><img src="${it.img}" alt="${it.maker} ${it.name}" loading="${si < 2 ? "eager" : "lazy"}"></div>
-          <div class="tick">${tickSvg}</div>
-          <div class="add">${s.optional ? "add to table" : "choose"}</div>
-          <div class="maker">${it.maker}</div>
-          <div class="name">${it.name}</div>
-          <div class="price">${money(it.price)}</div>
-        </button>`).join("")}
+  /* ---------- tabs ---------- */
+  const tabDefs = [{ key: "all", title: "all" }, ...groups.map((g) => ({ key: g.key, title: g.title }))];
+  $("tabs").insertAdjacentHTML("beforeend", tabDefs.map((t) => `
+    <button class="tab ${t.key === "all" ? "on" : ""}" role="tab" data-f="${t.key}">
+      ${t.title}<sup>${t.key === "all" ? items.length : groups.find((g) => g.key === t.key).items.length}</sup>
+      ${t.key === "all" ? "" : `<i class="dot" id="dot-${t.key}"></i>`}
+    </button>`).join(""));
+
+  function moveInd() {
+    const on = document.querySelector(".tab.on"), ind = $("ind");
+    ind.style.width = on.offsetWidth + "px";
+    ind.style.transform = `translateX(${on.offsetLeft}px)`;
+  }
+  $("tabs").addEventListener("click", (e) => {
+    const t = e.target.closest(".tab");
+    if (!t || t.dataset.f === filter) return;
+    filter = t.dataset.f;
+    document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x === t));
+    moveInd();
+    document.querySelectorAll(".group").forEach((g) => {
+      const show = filter === "all" || g.dataset.g === filter;
+      g.classList.toggle("hide", !show);
+      g.classList.remove("enter");
+      if (show) { void g.offsetWidth; g.classList.add("enter"); }
+    });
+    const top = $("tabs").getBoundingClientRect().top;
+    if (top < 0) scrollBy({ top: top, behavior: reduced ? "auto" : "smooth" });
+  });
+  addEventListener("resize", moveInd);
+  document.fonts && document.fonts.ready.then(moveInd);
+
+  /* ---------- groups ---------- */
+  $("groups").innerHTML = groups.map((g) => `
+    <section class="group" data-g="${g.key}">
+      <div class="group-head"><h2>${g.title}</h2><div class="status" id="st-${g.key}"></div></div>
+      <div class="grid">${g.items.map((it, i) => {
+        const id = `${g.key}-${i}`;
+        return `
+        <div class="card" data-id="${id}">
+          <button class="ph" data-act="img" aria-label="add ${it.name}"><img src="${it.img}" alt="${it.maker} ${it.name}" loading="${g.key === "plate" ? "eager" : "lazy"}"></button>
+          <span class="badge" id="b-${id}"></span>
+          <div class="info">
+            <div class="txt"><div class="maker">${it.maker}</div><div class="name">${it.name}</div><div class="price">${money(it.price)}</div></div>
+            <div class="qty">
+              <button class="minus" data-act="dec" aria-label="remove one">${MINUS}</button>
+              <div class="n" id="n-${id}"><span>0</span></div>
+              <button class="plus" data-act="inc" aria-label="add one">${PLUS}</button>
+            </div>
+          </div>
+        </div>`; }).join("")}
       </div>
     </section>`).join("");
 
@@ -490,19 +564,10 @@
   });
 
   /* ---------- slots ---------- */
-  const slotKeys = ["plate", "bowl", "cup", "extra"];
-  $("slots").innerHTML = slotKeys.map((k) => `
-    <div class="slot" id="slot-${k}"><div class="sk">${SK[k]}<span>${k}</span></div><img alt=""></div>`).join("");
+  $("slots").innerHTML = groups.map((g) => `
+    <div class="slot" id="slot-${g.key}"><div class="sk">${SK[g.key]}<span>${g.key}</span></div><img alt=""></div>`).join("");
 
-  /* ---------- state helpers ---------- */
-  const chosen = () => {
-    const out = [];
-    picks.forEach((p, si) => p !== null && out.push({ si, ii: p, ...steps[si].items[p] }));
-    extras.forEach((ii) => out.push({ si: 3, ii, ...steps[3].items[ii] }));
-    return out;
-  };
-  const rateFor = (n) => (n >= 4 ? 0.15 : n === 3 ? 0.1 : n === 2 ? 0.05 : 0);
-
+  /* ---------- helpers ---------- */
   function tween(key, el, to, prefix = "") {
     const from = shown[key];
     shown[key] = to;
@@ -515,76 +580,74 @@
     };
     requestAnimationFrame(step);
   }
-
-  function setText(el, text) {
+  function setSwap(el, text) {
     if (el.dataset.t === text) return;
     el.dataset.t = text;
-    el.textContent = text;
-    el.style.animation = "none"; void el.offsetWidth; el.style.animation = "";
+    el.innerHTML = `<span class="swap">${text}</span>`;
   }
 
   /* ---------- render ---------- */
-  let prevLines = new Set();
+  const held = new Set();  // slots waiting for a flying image to land
   function render() {
-    const list = chosen();
-    const n = list.length;
+    const list = picked();
+    const n = pieces();
     const rate = rateFor(n);
-    const sub = list.reduce((a, c) => a + c.price, 0);
+    const sub = list.reduce((a, c) => a + c.price * c.q, 0);
     const save = Math.round(sub * rate * 100) / 100;
     const total = sub - save;
 
     // cards
-    document.querySelectorAll(".card").forEach((c) => {
-      const si = +c.dataset.s, ii = +c.dataset.i;
-      const on = si < 3 ? picks[si] === ii : extras.includes(ii);
-      c.classList.toggle("sel", on);
-      c.setAttribute("aria-pressed", on);
-    });
-
-    // step status
-    steps.forEach((s, si) => {
-      const el = $("st" + si);
-      let html;
-      if (si < 3) {
-        html = picks[si] === null ? '<span class="txt">choose one</span>'
-          : `${tickSvg}<span class="txt">${s.items[picks[si]].name}</span>`;
-        el.classList.toggle("done", picks[si] !== null);
-      } else {
-        html = extras.length ? `${tickSvg}<span class="txt">${extras.length} added</span>` : '<span class="txt">add any</span>';
-        el.classList.toggle("done", extras.length > 0);
+    items.forEach((it) => {
+      const q = qty[it.id] || 0;
+      const card = document.querySelector(`.card[data-id="${it.id}"]`);
+      card.classList.toggle("sel", q > 0);
+      const nEl = $("n-" + it.id), badge = $("b-" + it.id);
+      if (q > 0 && nEl.textContent !== String(q)) { nEl.innerHTML = `<span class="tick">${q}</span>`; }
+      const mark = q > 1 ? "×" + q : TICK;
+      if (q > 0 && badge.dataset.m !== mark) {
+        badge.dataset.m = mark;
+        badge.innerHTML = mark;
+        badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
       }
-      if (el.dataset.h !== html) { el.dataset.h = html; el.innerHTML = html; }
+      card.querySelector(".plus").disabled = q >= MAX_QTY;
     });
 
-    // slots
-    slotKeys.forEach((k, si) => {
-      const slot = $("slot-" + k), img = slot.querySelector("img");
-      const item = si < 3 ? (picks[si] !== null ? steps[si].items[picks[si]] : null)
-        : (extras.length ? steps[3].items[extras[extras.length - 1]] : null);
-      if (item) {
-        if (img.getAttribute("src") !== item.img) img.src = item.img;
+    // group status, tab dots, slots
+    groups.forEach((g) => {
+      const gl = inGroup(g.key);
+      const c = gl.reduce((a, x) => a + x.q, 0);
+      const st = $("st-" + g.key);
+      st.classList.toggle("done", c > 0);
+      setSwap(st, c ? `${c} in your table` : `choose any ${g.key}`);
+      $("dot-" + g.key).classList.toggle("show", c > 0);
+
+      const slot = $("slot-" + g.key), img = slot.querySelector("img");
+      const latest = gl[gl.length - 1];
+      if (latest && !held.has(g.key)) {
+        if (img.getAttribute("src") !== latest.img) img.src = latest.img;
         slot.classList.add("full");
-      } else slot.classList.remove("full");
+      } else if (!latest) slot.classList.remove("full");
       let more = slot.querySelector(".more");
-      if (si === 3 && extras.length > 1) {
+      if (c > 1) {
         if (!more) { more = document.createElement("span"); more.className = "more"; slot.appendChild(more); }
-        more.textContent = "+" + (extras.length - 1);
+        more.textContent = "×" + c;
       } else if (more) more.remove();
     });
 
-    // lines (placeholder rows for the empty core slots)
+    // summary lines: picked items, plus a placeholder for each empty group
     const rows = [];
-    steps.slice(0, 3).forEach((s, si) => {
-      if (picks[si] === null) rows.push({ id: "e" + si, empty: true, maker: s.title.replace("the ", ""), name: "not chosen yet" });
-      else { const it = s.items[picks[si]]; rows.push({ id: `c${si}-${picks[si]}`, si, ii: picks[si], ...it }); }
+    groups.forEach((g) => {
+      const gl = inGroup(g.key);
+      if (!gl.length) rows.push({ empty: true, key: "e-" + g.key, maker: g.key, name: "not chosen yet" });
+      gl.forEach((c) => rows.push({ key: c.id, ...c }));
     });
-    extras.forEach((ii) => rows.push({ id: `c3-${ii}`, si: 3, ii, ...steps[3].items[ii] }));
-    $("lines").innerHTML = rows.map((r) => `
-      <div class="line ${r.empty ? "empty" : ""} ${!r.empty && !prevLines.has(r.id) ? "new" : ""}">
-        <div class="l"><small>${r.maker}</small><span>${r.name}</span></div>
-        <div class="r">${r.empty ? "—" : money(r.price) + `<button class="x" data-s="${r.si}" data-i="${r.ii}" aria-label="remove">×</button>`}</div>
+    $("lines").innerHTML = rows.map((r) => r.empty ? `
+      <div class="line empty"><div class="l"><small>${r.maker}</small><span>${r.name}</span></div><div class="r">—</div></div>` : `
+      <div class="line ${prevLines.has(r.key) ? "" : "new"}">
+        <div class="l"><small>${r.maker}</small><span>${r.q > 1 ? `<em>${r.q} ×</em>` : ""}${r.name}</span></div>
+        <div class="r">${money(r.price * r.q)}<button class="x" data-id="${r.id}" aria-label="remove">×</button></div>
       </div>`).join("");
-    prevLines = new Set(rows.filter((r) => !r.empty).map((r) => r.id));
+    prevLines = new Set(rows.filter((r) => !r.empty).map((r) => r.key));
 
     // totals
     $("count").textContent = n === 1 ? "1 piece" : `${n} pieces`;
@@ -593,34 +656,30 @@
     tween("total", $("total"), total);
     $("saveLabel").textContent = rate ? `table set saving (${Math.round(rate * 100)}%)` : "table set saving";
     document.querySelector(".sum.save").classList.toggle("off", !rate);
-    const was = $("was");
-    was.textContent = money(sub);
-    was.classList.toggle("show", rate > 0);
+    $("was").textContent = money(sub);
+    $("was").classList.toggle("show", rate > 0);
 
-    // shipping
     const left = Math.max(0, 100 - total);
-    setText($("shipText"), n === 0 ? "free shipping in singapore on orders over $100"
+    setSwap($("shipText"), n === 0 ? "free shipping in singapore on orders over $100"
       : left > 0 ? `${money(left)} away from free shipping in singapore` : "free shipping in singapore unlocked");
     $("shipBar").style.width = Math.min(100, total) + "%";
 
-    // tiers
     document.querySelectorAll(".tier").forEach((t) => {
-      const need = +t.dataset.n;
-      const current = n >= 4 ? 4 : n;
-      t.classList.toggle("on", need === current);
-      t.classList.toggle("passed", n > need && need !== current);
+      const need = +t.dataset.n, cur = Math.min(n, 4);
+      t.classList.toggle("on", need === cur);
+      t.classList.toggle("passed", need < cur);
     });
 
-    // nudge
-    const msg = [
-      "start with a plate — your table builds from here.",
-      "add one more piece to unlock 5% off your set.",
-      "add a third piece to save 10% on the whole table.",
-      "add a little extra and save 15% on everything.",
-    ][n] || "you've unlocked the best price — 15% off your table.";
-    setText($("nudge"), msg);
+    // nudge: complete the table first, then chase the next tier
+    const missing = groups.filter((g) => !inGroup(g.key).length).map((g) => g.key);
+    let msg;
+    if (n === 0) msg = "start with a plate, a bowl or a cup — your table builds from here.";
+    else if (n === 1) msg = "add one more piece to unlock 5% off your set.";
+    else if (n === 2) msg = missing.length ? `add a ${missing[0]} to complete your table and save 10%.` : "add one more piece to save 10% on the whole table.";
+    else if (n === 3) msg = "one more piece takes the whole table to 15% off.";
+    else msg = missing.length ? `best price unlocked — a ${missing[0]} would complete your table.` : "you've unlocked the best price — 15% off your table.";
+    setSwap($("nudge"), msg);
 
-    // buttons
     const ok = n >= 2;
     $("addBtn").disabled = !ok;
     $("mAdd").disabled = !ok;
@@ -629,14 +688,11 @@
     $("mTotal").textContent = money(total);
   }
 
-  /* ---------- fly animation ---------- */
-  function fly(fromEl, slotKey, src) {
-    if (reduced) return Promise.resolve();
-    const slot = $("slot-" + slotKey);
-    const a = fromEl.getBoundingClientRect();
-    const b = slot.getBoundingClientRect();
-    const visible = b.top < innerHeight && b.bottom > 0;
-    if (!visible) return Promise.resolve();
+  /* ---------- fly-to-slot ---------- */
+  function fly(fromEl, group, src) {
+    const slot = $("slot-" + group);
+    const a = fromEl.getBoundingClientRect(), b = slot.getBoundingClientRect();
+    if (reduced || b.top > innerHeight || b.bottom < 0) return Promise.resolve();
     const f = document.createElement("div");
     f.className = "fly";
     Object.assign(f.style, { left: a.left + "px", top: a.top + "px", width: a.width + "px", height: a.height + "px" });
@@ -653,57 +709,60 @@
     }, 720));
   }
 
-  /* ---------- interactions ---------- */
-  function toggle(si, ii, cardEl) {
-    const item = steps[si].items[ii];
-    let adding;
-    if (si < 3) { adding = picks[si] !== ii; picks[si] = adding ? ii : null; }
-    else {
-      const at = extras.indexOf(ii);
-      adding = at === -1;
-      adding ? extras.push(ii) : extras.splice(at, 1);
-    }
-    if (adding && cardEl) {
-      const k = slotKeys[si];
-      const slot = $("slot-" + k);
-      // hold the slot visually until the image lands
-      const img = slot.querySelector("img");
-      const wasFull = slot.classList.contains("full");
+  function change(id, delta, sourceEl) {
+    const it = byId[id];
+    const before = qty[id] || 0;
+    const after = Math.max(0, Math.min(MAX_QTY, before + delta));
+    if (after === before) return;
+    qty[id] = after;
+    if (after > 0 && !order.includes(id)) order.push(id);
+    if (after === 0) order.splice(order.indexOf(id), 1);
+
+    if (delta > 0 && sourceEl && !reduced) {
+      held.add(it.group);
       render();
-      if (!wasFull) slot.classList.remove("full");
-      fly(cardEl.querySelector(".ph"), k, item.img).then(() => { img.src = item.img; slot.classList.add("full"); });
+      fly(sourceEl, it.group, it.img).then(() => {
+        held.delete(it.group);
+        render();
+      });
     } else render();
   }
 
-  $("steps").addEventListener("click", (e) => {
-    const c = e.target.closest(".card");
-    if (c) toggle(+c.dataset.s, +c.dataset.i, c);
+  $("groups").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-act]");
+    if (!btn) return;
+    const card = btn.closest(".card"), id = card.dataset.id;
+    const ph = card.querySelector(".ph");
+    if (btn.dataset.act === "inc") change(id, 1, ph);
+    else if (btn.dataset.act === "dec") change(id, -1);
+    else if (btn.dataset.act === "img" && !(qty[id] > 0)) change(id, 1, ph);
   });
   $("lines").addEventListener("click", (e) => {
     const x = e.target.closest(".x");
-    if (x) toggle(+x.dataset.s, +x.dataset.i, null);
+    if (x) change(x.dataset.id, -(qty[x.dataset.id] || 0));
   });
 
   /* ---------- cart drawer ---------- */
   function openCart() {
-    const list = chosen(), n = list.length;
-    const sub = list.reduce((a, c) => a + c.price, 0);
-    const save = Math.round(sub * rateFor(n) * 100) / 100;
+    const list = picked(), n = pieces();
+    const sub = list.reduce((a, c) => a + c.price * c.q, 0);
+    const rate = rateFor(n);
+    const save = Math.round(sub * rate * 100) / 100;
     const total = sub - save;
     const left = Math.max(0, 100 - total);
+    const makers = new Set(list.map((c) => c.maker.toLowerCase())).size;
     $("drBody").innerHTML = `
       <div class="dr-ship">${left > 0 ? `${money(left)} away from free shipping in singapore` : "you've unlocked free shipping in singapore"}<div class="bar"><i id="drBar"></i></div></div>
       <div class="bundle">
         <div class="bundle-top">
-          <div><h4>late morning table set</h4><p>${n} pieces · ${list.map((c) => c.maker).filter((v, i, a) => a.indexOf(v) === i).length} makers</p></div>
+          <div><h4>late morning table set</h4><p>${n} pieces · ${makers} ${makers === 1 ? "maker" : "makers"}</p></div>
           <div class="pr"><s>${money(sub)}</s>${money(total)}</div>
         </div>
-        <div class="thumbs">${list.map((c) => `<div><img src="${c.img}" alt=""></div>`).join("")}</div>
-        <ul>${list.map((c) => `<li><span>${c.maker} — ${c.name}</span><span>${money(c.price)}</span></li>`).join("")}
-          <li class="sv"><span>table set saving (${Math.round(rateFor(n) * 100)}%)</span><span>−${money(save)}</span></li></ul>
-        <div class="qty"><div class="qbox"><span>−</span><span>1</span><span>+</span></div><button class="edit" id="editSet">edit set</button></div>
-      </div>
-      <div></div>`;
+        <div class="thumbs">${list.slice(0, 5).map((c) => `<div><img src="${c.img}" alt="">${c.q > 1 ? `<b>×${c.q}</b>` : ""}</div>`).join("")}</div>
+        <ul>${list.map((c) => `<li><span>${c.q > 1 ? c.q + " × " : ""}${c.maker} — ${c.name}</span><span>${money(c.price * c.q)}</span></li>`).join("")}
+          <li class="sv"><span>table set saving (${Math.round(rate * 100)}%)</span><span>−${money(save)}</span></li></ul>
+        <button class="edit" id="editSet">edit set</button>
+      </div>`;
     $("drTotal").textContent = money(total);
     $("drawer").classList.add("open");
     $("veil").classList.add("open");
@@ -713,21 +772,19 @@
   function closeCart() { $("drawer").classList.remove("open"); $("veil").classList.remove("open"); }
 
   function addToCart(btn) {
-    const lbl = btn.querySelector(".lbl");
-    const keep = lbl.innerHTML;
+    const lbl = btn.querySelector(".lbl"), keep = lbl.innerHTML;
     btn.disabled = true;
     lbl.innerHTML = '<span class="spin"></span>adding';
     setTimeout(() => {
       lbl.innerHTML = keep;
       btn.disabled = false;
-      cartCount = 1;
-      const b = $("bagCount"); b.textContent = cartCount; b.classList.add("show");
+      const b = $("bagCount"); b.textContent = "1"; b.classList.add("show");
       openCart();
     }, 650);
   }
   $("addBtn").addEventListener("click", () => addToCart($("addBtn")));
   $("mAdd").addEventListener("click", () => addToCart($("mAdd")));
-  $("bagBtn").addEventListener("click", () => cartCount && openCart());
+  $("bagBtn").addEventListener("click", () => $("bagCount").classList.contains("show") && openCart());
   $("closeDr").addEventListener("click", closeCart);
   $("veil").addEventListener("click", closeCart);
   addEventListener("keydown", (e) => e.key === "Escape" && closeCart());
@@ -742,6 +799,7 @@
   });
 
   render();
+  moveInd();
 })();
 </script>
 </body>
