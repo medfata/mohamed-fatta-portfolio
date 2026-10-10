@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>build your late morning table — concept demo</title>
+<meta name="description" content="A concept bundle builder for late morning, designed by Mohamed Fatta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #000;
+    --ink-soft: #555;
+    --ink-faint: #8f8f8f;
+    --line: #e6e6e6;
+    --wash: #f4f3f1;
+    --sand: #ece6db;
+    --bg: #fff;
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 13px/1.55 Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .dm { font-family: "DM Sans", Helvetica, Arial, sans-serif; }
+
+  /* ---------- header (mirrors latemorning.com.sg) ---------- */
+  .announce {
+    height: 40px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; font-size: 12px; letter-spacing: .02em;
+  }
+  .announce span { font-size: 14px; color: var(--ink-soft); }
+  header {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 18px 40px 26px;
+  }
+  nav { display: flex; gap: 20px; font-size: 12px; }
+  nav a { position: relative; }
+  nav a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px;
+    background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease);
+  }
+  nav a:hover::after { transform: scaleX(1); }
+  .logo { height: 36px; width: auto; }
+  .icons { display: flex; justify-content: flex-end; gap: 22px; align-items: center; }
+  .icons svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.4; }
+  .bag { position: relative; display: flex; }
+  .bag b {
+    position: absolute; top: -6px; right: -8px; min-width: 15px; height: 15px; padding: 0 4px;
+    border-radius: 8px; background: var(--ink); color: #fff; font: 500 9px/15px "DM Sans", sans-serif;
+    text-align: center; transform: scale(0); transition: transform .4s var(--ease-out);
+  }
+  .bag b.show { transform: scale(1); }
+  .burger { display: none; }
+
+  /* ---------- page ---------- */
+  main { max-width: 1240px; margin: 0 auto; padding: 34px 40px 110px; }
+  .crumb { font-size: 11px; color: var(--ink-faint); letter-spacing: .02em; }
+  .intro { margin: 34px 0 44px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  h1 { font: 400 34px/1.15 "DM Sans", sans-serif; letter-spacing: -.015em; }
+  .intro p { margin-top: 12px; color: var(--ink-soft); max-width: 470px; }
+
+  .reveal { opacity: 0; transform: translateY(14px); animation: rise .9s var(--ease-out) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* tiers */
+  .tiers { display: flex; border: 1px solid var(--line); position: relative; }
+  .tier {
+    position: relative; padding: 12px 22px 13px; font-size: 12px; text-align: center; white-space: nowrap;
+    color: var(--ink-faint); border-right: 1px solid var(--line); overflow: hidden;
+    transition: color .45s var(--ease);
+  }
+  .tier:last-child { border-right: 0; }
+  .tier::before {
+    content: ""; position: absolute; inset: 0; background: var(--ink);
+    transform: translateY(101%); transition: transform .55s var(--ease-out); z-index: 0;
+  }
+  .tier > * { position: relative; z-index: 1; }
+  .tier b { display: block; font: 500 13px "DM Sans", sans-serif; color: var(--ink-soft); transition: color .45s var(--ease); }
+  .tier.passed { color: var(--ink); }
+  .tier.passed b { color: var(--ink); }
+  .tier.on { color: #fff; }
+  .tier.on b { color: #fff; }
+  .tier.on::before { transform: none; }
+  .tier .ck { display: inline-block; width: 13px; margin-left: -13px; opacity: 0; vertical-align: -1px; transition: opacity .35s var(--ease); }
+  .tier.passed .ck, .tier.on .ck { opacity: 1; }
+  .tier .ck svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2.4; }
+
+  .layout { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start; }
+
+  /* steps */
+  .step { padding: 26px 0 36px; border-top: 1px solid var(--line); }
+  .step-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; gap: 16px; }
+  .step-head h2 { font: 400 17px "DM Sans", sans-serif; }
+  .step-head h2 span { color: var(--ink-faint); margin-right: 14px; font-size: 13px; }
+  .step-head h2 em { font-style: normal; font-size: 12px; color: var(--ink-faint); margin-left: 10px; font-family: Helvetica, Arial, sans-serif; }
+  .status { font-size: 11px; color: var(--ink-faint); display: flex; align-items: center; gap: 6px; text-transform: lowercase; }
+  .status svg { width: 10px; height: 10px; stroke: var(--ink); fill: none; stroke-width: 2.4; }
+  .status.done { color: var(--ink); }
+  .status .txt { display: inline-block; animation: fadeSwap .45s var(--ease-out); }
+  @keyframes fadeSwap { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+  .card { cursor: pointer; position: relative; text-align: left; display: flex; flex-direction: column; justify-content: flex-start; align-self: start; width: 100%; -webkit-tap-highlight-color: transparent; }
+  .card .ph {
+    position: relative; aspect-ratio: 4/5; background: var(--wash); overflow: hidden;
+    outline: 1px solid transparent; outline-offset: 0;
+    transition: outline-color .3s var(--ease), outline-offset .45s var(--ease-out);
+  }
+  .card .ph img {
+    opacity: 0; transform: scale(1.02);
+    transition: opacity .7s var(--ease), transform 1.1s var(--ease-out);
+  }
+  .card .ph img.ld { opacity: 1; transform: none; }
+  .card:hover .ph img.ld { transform: scale(1.035); }
+  .card .ph::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+    background-size: 220% 100%; animation: shimmer 1.4s linear infinite;
+  }
+  .card .ph.ready::after { display: none; }
+  @keyframes shimmer { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+  .card:hover .ph { outline-color: var(--line); }
+  .card.sel .ph { outline-color: var(--ink); outline-offset: 4px; }
+  .card .tick {
+    position: absolute; top: 9px; right: 9px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ink); display: flex; align-items: center; justify-content: center;
+    transform: scale(0); transition: transform .45s var(--ease-out); z-index: 2;
+  }
+  .card .tick svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset .35s .15s var(--ease); }
+  .card.sel .tick { transform: scale(1); }
+  .card.sel .tick svg { stroke-dashoffset: 0; }
+  .card .add {
+    position: absolute; left: 10px; right: 10px; bottom: 10px; height: 34px; z-index: 2;
+    background: rgba(255,255,255,.94); font-size: 11px; letter-spacing: .03em;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(6px); transition: opacity .3s var(--ease), transform .4s var(--ease-out);
+  }
+  .card:hover .add { opacity: 1; transform: none; }
+  .card .maker { margin-top: 12px; font-size: 11px; color: var(--ink-faint); text-transform: lowercase; }
+  .card .name { font-size: 13px; text-transform: lowercase; }
+  .card .price { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ---------- summary ---------- */
+  .summary { position: sticky; top: 24px; border: 1px solid var(--line); padding: 26px 24px 24px; background: var(--bg); }
+  .summary h3 { font: 400 17px "DM Sans", sans-serif; display: flex; justify-content: space-between; align-items: baseline; }
+  .summary h3 small { font: 11px Helvetica, Arial, sans-serif; color: var(--ink-faint); }
+
+  .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 20px 0 4px; }
+  .slot { position: relative; aspect-ratio: 1; background: var(--wash); overflow: hidden; }
+  .slot .sk {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    border: 1px dashed #cfcbc4; color: #9a958d;
+    transition: opacity .4s var(--ease), transform .5s var(--ease-out);
+  }
+  .slot .sk svg { width: 48%; height: auto; stroke: currentColor; fill: none; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+  .slot .sk span { font-size: 9.5px; letter-spacing: .06em; }
+  .slot img { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity .5s var(--ease), transform .8s var(--ease-out); }
+  .slot.full .sk { opacity: 0; transform: scale(.9); }
+  .slot.full img { opacity: 1; transform: none; }
+  .slot .more {
+    position: absolute; right: 4px; bottom: 4px; padding: 0 6px; height: 17px; border-radius: 9px;
+    background: var(--ink); color: #fff; font: 500 9.5px/17px "DM Sans", sans-serif; z-index: 2;
+  }
+  .slot.pulse { animation: pulse .6s var(--ease-out); }
+  @keyframes pulse { 0% { transform: scale(1); } 40% { transform: scale(.94); } 100% { transform: scale(1); } }
+
+  .lines { margin-top: 14px; }
+  .line {
+    display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line);
+    min-height: 54px; align-items: flex-start;
+  }
+  .line .l small { display: block; font-size: 11px; color: var(--ink-faint); text-transform: lowercase; }
+  .line .l span { text-transform: lowercase; }
+  .line .r { white-space: nowrap; }
+  .line.empty .l span, .line.empty .r { color: #b3b0aa; }
+  .line.new { animation: lineIn .55s var(--ease-out); }
+  @keyframes lineIn { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+  .line .x { margin-left: 10px; color: var(--ink-faint); font-size: 14px; line-height: 1; transition: color .2s; }
+  .line .x:hover { color: var(--ink); }
+
+  .sums { padding: 16px 0 4px; }
+  .sum { display: flex; justify-content: space-between; padding: 3px 0; color: var(--ink-soft); }
+  .sum.save { color: var(--ink); transition: opacity .4s; }
+  .sum.save.off { opacity: .35; }
+  .sum.total { color: var(--ink); font: 500 20px "DM Sans", sans-serif; padding-top: 12px; }
+  .sum.total small { font: 11px Helvetica, Arial, sans-serif; color: var(--ink-faint); align-self: center; margin-left: 4px; }
+  .was { font: 12px Helvetica, Arial, sans-serif; color: var(--ink-faint); text-decoration: line-through; margin-right: 8px; opacity: 0; transition: opacity .4s; }
+  .was.show { opacity: 1; }
+
+  .ship { margin: 16px 0 4px; font-size: 11px; color: var(--ink-soft); }
+  .ship .txt { display: inline-block; }
+  .bar { height: 2px; background: var(--line); margin-top: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .9s var(--ease-out); }
+
+  .nudge {
+    margin: 18px 0 16px; padding: 11px 14px; background: var(--sand); font-size: 12px; min-height: 42px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nudge svg { flex: none; width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 1.3; }
+  .nudge .txt { animation: fadeSwap .5s var(--ease-out); }
+
+  .btn {
+    position: relative; width: 100%; height: 48px; background: var(--ink); color: #fff; overflow: hidden;
+    font: 500 13px "DM Sans", sans-serif; letter-spacing: .03em;
+    transition: background .3s var(--ease), color .3s var(--ease);
+  }
+  .btn::after {
+    content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 35%, rgba(255,255,255,.18) 50%, transparent 65%);
+    transform: translateX(-100%); transition: transform .9s var(--ease);
+  }
+  .btn:not(:disabled):hover::after { transform: translateX(100%); }
+  .btn:disabled { background: var(--wash); color: #a7a39c; cursor: default; }
+  .btn .lbl { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; }
+  .btn .spin { width: 14px; height: 14px; border: 1.4px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .fine { margin-top: 12px; text-align: center; font-size: 11px; color: var(--ink-faint); }
+
+  .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 70px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .notes h4 { font: 400 14px "DM Sans", sans-serif; margin-bottom: 6px; }
+  .notes p { color: var(--ink-soft); font-size: 12px; max-width: 300px; }
+
+  /* ---------- fly-to-slot ---------- */
+  .fly {
+    position: fixed; z-index: 60; pointer-events: none; overflow: hidden; background: var(--wash);
+    transition: transform .75s var(--ease-out), opacity .75s var(--ease), border-radius .75s;
+    transform-origin: 0 0; will-change: transform;
+  }
+
+  /* ---------- cart drawer ---------- */
+  .veil { position: fixed; inset: 0; background: rgba(0,0,0,.28); opacity: 0; pointer-events: none; transition: opacity .45s var(--ease); z-index: 80; }
+  .veil.open { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 100%; background: #fff; z-index: 90;
+    transform: translateX(100%); transition: transform .6s var(--ease-out);
+    display: flex; flex-direction: column;
+  }
+  .drawer.open { transform: none; }
+  .dr-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; border-bottom: 1px solid var(--line); }
+  .dr-head h3 { font: 400 17px "DM Sans", sans-serif; }
+  .dr-head button svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.3; }
+  .dr-body { flex: 1; overflow: auto; padding: 22px 26px; }
+  .dr-ship { font-size: 11px; color: var(--ink-soft); margin-bottom: 22px; }
+  .bundle { border: 1px solid var(--line); padding: 18px; }
+  .bundle-top { display: flex; gap: 14px; align-items: center; }
+  .bundle-top > div:nth-child(1) { flex: 1; }
+  .thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 14px; }
+  .thumbs div { aspect-ratio: 1; overflow: hidden; background: var(--wash); }
+  .bundle-top h4 { font: 400 14px "DM Sans", sans-serif; }
+  .bundle-top p { font-size: 11px; color: var(--ink-faint); }
+  .bundle-top .pr { margin-left: auto; text-align: right; white-space: nowrap; }
+  .bundle-top .pr s { display: block; font-size: 11px; color: var(--ink-faint); }
+  .bundle ul { list-style: none; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .bundle li { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; color: var(--ink-soft); text-transform: lowercase; }
+  .bundle li.sv { color: var(--ink); text-transform: none; padding-top: 8px; }
+  .bundle .qty { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+  .qbox { display: flex; border: 1px solid var(--line); }
+  .qbox span { width: 32px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--ink-soft); }
+  .qbox span:nth-child(2) { border-left: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink); }
+  .edit { font-size: 11px; text-decoration: underline; text-underline-offset: 3px; color: var(--ink-soft); }
+  .dr-foot { border-top: 1px solid var(--line); padding: 20px 26px 24px; }
+  .dr-foot .sum.total { padding: 0 0 14px; }
+  .dr-foot .fine { margin-top: 10px; }
+  .drawer .stag > * { opacity: 0; transform: translateY(10px); }
+  .drawer.open .stag > * { animation: rise .6s var(--ease-out) forwards; }
+  .drawer.open .stag > *:nth-child(2) { animation-delay: .08s; }
+  .drawer.open .stag > *:nth-child(3) { animation-delay: .16s; }
+
+  /* ---------- toast + demo tag ---------- */
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; z-index: 100; transform: translate(-50%, 20px); opacity: 0;
+    background: var(--ink); color: #fff; padding: 12px 18px; font-size: 12px; pointer-events: none;
+    transition: opacity .35s var(--ease), transform .5s var(--ease-out);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .demo-tag {
+    position: fixed; left: 20px; bottom: 20px; z-index: 70; display: flex; align-items: center; gap: 8px;
+    padding: 9px 14px 9px 12px; border-radius: 20px; background: rgba(255,255,255,.92); border: 1px solid var(--line);
+    font-size: 11px; color: var(--ink-soft); backdrop-filter: blur(6px);
+  }
+  .demo-tag i { width: 6px; height: 6px; border-radius: 50%; background: #8fae8b; box-shadow: 0 0 0 0 rgba(143,174,139,.6); animation: live 2s infinite; }
+  @keyframes live { 70% { box-shadow: 0 0 0 7px rgba(143,174,139,0); } 100% { box-shadow: 0 0 0 0 rgba(143,174,139,0); } }
+  .demo-tag a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ---------- mobile bar ---------- */
+  .mbar { display: none; }
+
+  @media (max-width: 1080px) {
+    .layout { grid-template-columns: 1fr 320px; gap: 36px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .announce { padding: 0 16px; font-size: 11px; }
+    header { padding: 12px 16px 18px; }
+    nav { display: none; }
+    .burger { display: flex; }
+    .burger svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.3; }
+    .logo { height: 28px; }
+    .icons { gap: 18px; }
+    .icons .hide-m { display: none; }
+    main { padding: 18px 16px 130px; }
+    .intro { flex-direction: column; align-items: stretch; margin: 22px 0 28px; gap: 22px; }
+    h1 { font-size: 27px; }
+    .tier { flex: 1; padding: 11px 6px 12px; }
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .summary { position: static; margin-top: 10px; }
+    .grid { gap: 12px; }
+    .card .add { display: none; }
+    .notes { grid-template-columns: 1fr; gap: 22px; margin-top: 44px; }
+    .demo-tag { display: none; }
+    .mbar {
+      display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 75; background: #fff;
+      border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      align-items: center; gap: 14px;
+    }
+    .mbar .t { flex: 1; }
+    .mbar .t small { display: block; font-size: 11px; color: var(--ink-faint); }
+    .mbar .t b { font: 500 17px "DM Sans", sans-serif; }
+    .mbar .btn { width: auto; padding: 0 22px; height: 44px; }
+    .drawer { width: 100%; }
+    .toast { bottom: 90px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>‹</span>
+  <div>Free shipping on orders over SGD $100 in Singapore.</div>
+  <span>›</span>
+</div>
+
+<header>
+  <nav><a href="#">Artist</a><a href="#">Brand</a><a href="#">Shop</a><a href="#">Sale</a><a href="#">Gift Card</a><a href="#">Experience</a><a href="#">gallery</a></nav>
+  <button class="burger" aria-label="menu"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+  <img class="logo" src="https://www.latemorning.com.sg/cdn/shop/files/logo_732c5b5f-41b4-4e08-abd0-7ab4897bf0c4.png?height=72&v=1763547062" alt="late morning">
+  <div class="icons">
+    <svg class="hide-m" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+    <svg class="hide-m" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+    <button class="bag" id="bagBtn" aria-label="cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="bagCount">0</b></button>
+  </div>
+</header>
+
+<main>
+  <div class="crumb reveal">home &nbsp;/&nbsp; tableware &nbsp;/&nbsp; build your table</div>
+
+  <div class="intro">
+    <div class="reveal" style="animation-delay:.06s">
+      <h1>build your late morning table</h1>
+      <p>choose a plate, a bowl and a cup from the makers you love. mix artists freely — the more pieces you set, the more you save.</p>
+    </div>
+    <div class="tiers reveal" id="tiers" style="animation-delay:.14s">
+      <div class="tier" data-n="2"><b><span class="ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg></span>2 pieces</b><span>5% off</span></div>
+      <div class="tier" data-n="3"><b><span class="ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg></span>3 pieces</b><span>10% off</span></div>
+      <div class="tier" data-n="4"><b><span class="ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg></span>4+ pieces</b><span>15% off</span></div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div id="steps" class="reveal" style="animation-delay:.2s"></div>
+
+    <aside class="summary reveal" style="animation-delay:.26s" id="summary">
+      <h3>your table <small id="count">0 pieces</small></h3>
+      <div class="slots" id="slots"></div>
+      <div class="lines" id="lines"></div>
+      <div class="sums">
+        <div class="sum"><span>subtotal</span><span id="sub">$0.00</span></div>
+        <div class="sum save off"><span id="saveLabel">table set saving</span><span id="save">−$0.00</span></div>
+        <div class="sum total"><span>total<small>SGD</small></span><span><span class="was" id="was"></span><span id="total">$0.00</span></span></div>
+      </div>
+      <div class="ship"><span class="txt" id="shipText"></span><div class="bar"><i id="shipBar"></i></div></div>
+      <div class="nudge"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9.3l-4.4 3.9 1.3 5.8L12 16l-4.9 3 1.3-5.8L4 9.3l5.8-.7z"/></svg><span class="txt" id="nudge"></span></div>
+      <button class="btn" id="addBtn" disabled><span class="lbl" id="addLbl">choose at least 2 pieces</span></button>
+      <div class="fine">set price applied automatically at checkout</div>
+    </aside>
+  </div>
+
+  <div class="notes">
+    <div><h4>made by independent artists</h4><p>every piece is handmade in small batches, so glazes and forms vary slightly from one to the next.</p></div>
+    <div><h4>mix makers freely</h4><p>pair a brush-stroke bowl with a porcelain cup — your set, your table.</p></div>
+    <div><h4>free local shipping</h4><p>complimentary delivery on orders over SGD $100 in Singapore, worldwide shipping available.</p></div>
+  </div>
+</main>
+
+<div class="mbar">
+  <div class="t"><small id="mCount">your table · 0 pieces</small><b id="mTotal">$0.00</b></div>
+  <button class="btn" id="mAdd" disabled><span class="lbl">add set</span></button>
+</div>
+
+<div class="veil" id="veil"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="cart">
+  <div class="dr-head"><h3>your cart</h3><button id="closeDr" aria-label="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="dr-body stag" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="sum total"><span>total<small>SGD</small></span><span id="drTotal"></span></div>
+    <button class="btn" id="checkout"><span class="lbl">check out</span></button>
+    <div class="fine">taxes calculated at checkout</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="demo-tag"><i></i>concept demo for late morning · by <a href="/">mohamed fatta</a></div>
+
+<script>
+(() => {
+  const cdn = (f) => `https://cdn.shopify.com/s/files/1/0629/1298/7358/files/${f}&width=640`;
+
+  /* line-sketch placeholders for the empty slots */
+  const SK = {
+    plate: '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="19" ry="8.5"/><ellipse cx="24" cy="25.2" rx="11" ry="4.6"/><path d="M5 26c0 3 1.2 4.6 3.4 5.8M43 26c0 3-1.2 4.6-3.4 5.8"/></svg>',
+    bowl:  '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="18" rx="17" ry="4.5"/><path d="M7 18c0 9.5 7.6 16.5 17 16.5S41 27.5 41 18"/><path d="M18 34.5l1.2 4h9.6l1.2-4"/></svg>',
+    cup:   '<svg viewBox="0 0 48 48"><ellipse cx="21" cy="14" rx="11" ry="3"/><path d="M10 14l1.6 19.5c.2 2 1.6 3.5 3.6 3.5h11.6c2 0 3.4-1.5 3.6-3.5L32 14"/><path d="M31.4 19.5h3.1c2.6 0 4.5 2 4.5 4.6s-1.9 4.6-4.5 4.6h-3.8"/></svg>',
+    extra: '<svg viewBox="0 0 48 48"><path d="M24 12v24M12 24h24"/><circle cx="24" cy="24" r="16" stroke-dasharray="2.5 3.5"/></svg>',
+  };
+
+  const steps = [
+    { key: "plate", no: "01", title: "the plate", items: [
+      { maker: "Zhou Yuxuan", name: "round plate", price: 58, img: cdn("DSCF2351.jpg?v=1786526435") },
+      { maker: "Zhou Yuxuan", name: "dessert plate", price: 56, img: cdn("DSCF2440.jpg?v=1786526702") },
+      { maker: "Takashi Sogo", name: "ash glaze plate", price: 48, img: cdn("DSCF2920.jpg?v=1786862730") },
+      { maker: "yumiko iihoshi", name: "unjour plate in beige", price: 16, img: cdn("IMG_1029.jpg?v=1791264425") },
+    ]},
+    { key: "bowl", no: "02", title: "the bowl", items: [
+      { maker: "Fuminari Araga", name: "hakeme brush-stroke egg bowl", price: 46, img: cdn("DSCF2006.jpg?v=1786023363") },
+      { maker: "Zhou Yuxuan", name: "round bowl", price: 55, img: cdn("DSCF2578_b5327f96-6a45-4c56-b59e-43d22173f3cc.jpg?v=1786525392") },
+      { maker: "Zhuo Yue", name: "rim bowl", price: 62, img: cdn("DSCF3807.jpg?v=1787979527") },
+      { maker: "yumiko iihoshi", name: "unjour bowl in dark gray", price: 39, img: cdn("IMG_1023.jpg?v=1791264191") },
+    ]},
+    { key: "cup", no: "03", title: "the cup", items: [
+      { maker: "yumiko iihoshi", name: "unjour cup in beige", price: 39, img: cdn("IMG_1020_f79e40de-9629-4819-9a49-2ef679bf8023.jpg?v=1791264103") },
+      { maker: "Lolo Saliu", name: "yui cup", price: 23, img: cdn("Screenshot2025-10-30at1.27.59PM.png?v=1761802106") },
+      { maker: "Zhou Yuxuan", name: "round cup", price: 52, img: cdn("DSCF2275.jpg?v=1786526156") },
+      { maker: "Takashi Sogo", name: "ash glaze mug", price: 68, img: cdn("DSCF2933_59b43771-68ea-469a-a784-f5713574b49b.jpg?v=1786862908") },
+    ]},
+    { key: "extra", no: "04", title: "a little extra", optional: true, items: [
+      { maker: "yumiko iihoshi", name: "unjour plate in pale pink", price: 16, img: cdn("IMG_1031.jpg?v=1791264470") },
+      { maker: "Zhou Yuxuan", name: "small cup", price: 23, img: cdn("DSCF2237.jpg?v=1786525913") },
+      { maker: "Zhou Yuxuan", name: "tumbler", price: 56, img: cdn("DSCF2291.jpg?v=1786525958") },
+      { maker: "Zhou Yuxuan", name: "oval plate", price: 64, img: cdn("DSCF2412.jpg?v=1786525742") },
+    ]},
+  ];
+
+  const picks = [null, null, null];   // one per core step
+  const extras = [];                   // item indexes in step 4, in pick order
+  let shown = { sub: 0, save: 0, total: 0 };
+  let cartCount = 0;
+
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => "$" + n.toFixed(2);
+  const tickSvg = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- steps ---------- */
+  $("steps").innerHTML = steps.map((s, si) => `
+    <section class="step" data-step="${si}">
+      <div class="step-head">
+        <h2><span>${s.no}</span>${s.title}${s.optional ? "<em>optional</em>" : ""}</h2>
+        <div class="status" id="st${si}"></div>
+      </div>
+      <div class="grid">${s.items.map((it, ii) => `
+        <button class="card" data-s="${si}" data-i="${ii}" aria-pressed="false">
+          <div class="ph"><img src="${it.img}" alt="${it.maker} ${it.name}" loading="${si < 2 ? "eager" : "lazy"}"></div>
+          <div class="tick">${tickSvg}</div>
+          <div class="add">${s.optional ? "add to table" : "choose"}</div>
+          <div class="maker">${it.maker}</div>
+          <div class="name">${it.name}</div>
+          <div class="price">${money(it.price)}</div>
+        </button>`).join("")}
+      </div>
+    </section>`).join("");
+
+  document.querySelectorAll(".card .ph img").forEach((img) => {
+    const done = () => { img.classList.add("ld"); img.parentElement.classList.add("ready"); };
+    img.complete && img.naturalWidth ? done() : img.addEventListener("load", done);
+  });
+
+  /* ---------- slots ---------- */
+  const slotKeys = ["plate", "bowl", "cup", "extra"];
+  $("slots").innerHTML = slotKeys.map((k) => `
+    <div class="slot" id="slot-${k}"><div class="sk">${SK[k]}<span>${k}</span></div><img alt=""></div>`).join("");
+
+  /* ---------- state helpers ---------- */
+  const chosen = () => {
+    const out = [];
+    picks.forEach((p, si) => p !== null && out.push({ si, ii: p, ...steps[si].items[p] }));
+    extras.forEach((ii) => out.push({ si: 3, ii, ...steps[3].items[ii] }));
+    return out;
+  };
+  const rateFor = (n) => (n >= 4 ? 0.15 : n === 3 ? 0.1 : n === 2 ? 0.05 : 0);
+
+  function tween(key, el, to, prefix = "") {
+    const from = shown[key];
+    shown[key] = to;
+    if (reduced || from === to) { el.textContent = prefix + money(to); return; }
+    const t0 = performance.now(), dur = 650;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + money(from + (to - from) * e);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function setText(el, text) {
+    if (el.dataset.t === text) return;
+    el.dataset.t = text;
+    el.textContent = text;
+    el.style.animation = "none"; void el.offsetWidth; el.style.animation = "";
+  }
+
+  /* ---------- render ---------- */
+  let prevLines = new Set();
+  function render() {
+    const list = chosen();
+    const n = list.length;
+    const rate = rateFor(n);
+    const sub = list.reduce((a, c) => a + c.price, 0);
+    const save = Math.round(sub * rate * 100) / 100;
+    const total = sub - save;
+
+    // cards
+    document.querySelectorAll(".card").forEach((c) => {
+      const si = +c.dataset.s, ii = +c.dataset.i;
+      const on = si < 3 ? picks[si] === ii : extras.includes(ii);
+      c.classList.toggle("sel", on);
+      c.setAttribute("aria-pressed", on);
+    });
+
+    // step status
+    steps.forEach((s, si) => {
+      const el = $("st" + si);
+      let html;
+      if (si < 3) {
+        html = picks[si] === null ? '<span class="txt">choose one</span>'
+          : `${tickSvg}<span class="txt">${s.items[picks[si]].name}</span>`;
+        el.classList.toggle("done", picks[si] !== null);
+      } else {
+        html = extras.length ? `${tickSvg}<span class="txt">${extras.length} added</span>` : '<span class="txt">add any</span>';
+        el.classList.toggle("done", extras.length > 0);
+      }
+      if (el.dataset.h !== html) { el.dataset.h = html; el.innerHTML = html; }
+    });
+
+    // slots
+    slotKeys.forEach((k, si) => {
+      const slot = $("slot-" + k), img = slot.querySelector("img");
+      const item = si < 3 ? (picks[si] !== null ? steps[si].items[picks[si]] : null)
+        : (extras.length ? steps[3].items[extras[extras.length - 1]] : null);
+      if (item) {
+        if (img.getAttribute("src") !== item.img) img.src = item.img;
+        slot.classList.add("full");
+      } else slot.classList.remove("full");
+      let more = slot.querySelector(".more");
+      if (si === 3 && extras.length > 1) {
+        if (!more) { more = document.createElement("span"); more.className = "more"; slot.appendChild(more); }
+        more.textContent = "+" + (extras.length - 1);
+      } else if (more) more.remove();
+    });
+
+    // lines (placeholder rows for the empty core slots)
+    const rows = [];
+    steps.slice(0, 3).forEach((s, si) => {
+      if (picks[si] === null) rows.push({ id: "e" + si, empty: true, maker: s.title.replace("the ", ""), name: "not chosen yet" });
+      else { const it = s.items[picks[si]]; rows.push({ id: `c${si}-${picks[si]}`, si, ii: picks[si], ...it }); }
+    });
+    extras.forEach((ii) => rows.push({ id: `c3-${ii}`, si: 3, ii, ...steps[3].items[ii] }));
+    $("lines").innerHTML = rows.map((r) => `
+      <div class="line ${r.empty ? "empty" : ""} ${!r.empty && !prevLines.has(r.id) ? "new" : ""}">
+        <div class="l"><small>${r.maker}</small><span>${r.name}</span></div>
+        <div class="r">${r.empty ? "—" : money(r.price) + `<button class="x" data-s="${r.si}" data-i="${r.ii}" aria-label="remove">×</button>`}</div>
+      </div>`).join("");
+    prevLines = new Set(rows.filter((r) => !r.empty).map((r) => r.id));
+
+    // totals
+    $("count").textContent = n === 1 ? "1 piece" : `${n} pieces`;
+    tween("sub", $("sub"), sub);
+    tween("save", $("save"), save, "−");
+    tween("total", $("total"), total);
+    $("saveLabel").textContent = rate ? `table set saving (${Math.round(rate * 100)}%)` : "table set saving";
+    document.querySelector(".sum.save").classList.toggle("off", !rate);
+    const was = $("was");
+    was.textContent = money(sub);
+    was.classList.toggle("show", rate > 0);
+
+    // shipping
+    const left = Math.max(0, 100 - total);
+    setText($("shipText"), n === 0 ? "free shipping in singapore on orders over $100"
+      : left > 0 ? `${money(left)} away from free shipping in singapore` : "free shipping in singapore unlocked");
+    $("shipBar").style.width = Math.min(100, total) + "%";
+
+    // tiers
+    document.querySelectorAll(".tier").forEach((t) => {
+      const need = +t.dataset.n;
+      const current = n >= 4 ? 4 : n;
+      t.classList.toggle("on", need === current);
+      t.classList.toggle("passed", n > need && need !== current);
+    });
+
+    // nudge
+    const msg = [
+      "start with a plate — your table builds from here.",
+      "add one more piece to unlock 5% off your set.",
+      "add a third piece to save 10% on the whole table.",
+      "add a little extra and save 15% on everything.",
+    ][n] || "you've unlocked the best price — 15% off your table.";
+    setText($("nudge"), msg);
+
+    // buttons
+    const ok = n >= 2;
+    $("addBtn").disabled = !ok;
+    $("mAdd").disabled = !ok;
+    $("addLbl").textContent = ok ? `add table set to cart · ${money(total)}` : "choose at least 2 pieces";
+    $("mCount").textContent = `your table · ${n === 1 ? "1 piece" : n + " pieces"}${rate ? ` · ${Math.round(rate * 100)}% off` : ""}`;
+    $("mTotal").textContent = money(total);
+  }
+
+  /* ---------- fly animation ---------- */
+  function fly(fromEl, slotKey, src) {
+    if (reduced) return Promise.resolve();
+    const slot = $("slot-" + slotKey);
+    const a = fromEl.getBoundingClientRect();
+    const b = slot.getBoundingClientRect();
+    const visible = b.top < innerHeight && b.bottom > 0;
+    if (!visible) return Promise.resolve();
+    const f = document.createElement("div");
+    f.className = "fly";
+    Object.assign(f.style, { left: a.left + "px", top: a.top + "px", width: a.width + "px", height: a.height + "px" });
+    f.innerHTML = `<img src="${src}" alt="">`;
+    document.body.appendChild(f);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      f.style.transform = `translate(${b.left - a.left}px, ${b.top - a.top}px) scale(${b.width / a.width}, ${b.height / a.height})`;
+    }));
+    return new Promise((res) => setTimeout(() => {
+      f.style.opacity = "0";
+      slot.classList.remove("pulse"); void slot.offsetWidth; slot.classList.add("pulse");
+      res();
+      setTimeout(() => f.remove(), 300);
+    }, 720));
+  }
+
+  /* ---------- interactions ---------- */
+  function toggle(si, ii, cardEl) {
+    const item = steps[si].items[ii];
+    let adding;
+    if (si < 3) { adding = picks[si] !== ii; picks[si] = adding ? ii : null; }
+    else {
+      const at = extras.indexOf(ii);
+      adding = at === -1;
+      adding ? extras.push(ii) : extras.splice(at, 1);
+    }
+    if (adding && cardEl) {
+      const k = slotKeys[si];
+      const slot = $("slot-" + k);
+      // hold the slot visually until the image lands
+      const img = slot.querySelector("img");
+      const wasFull = slot.classList.contains("full");
+      render();
+      if (!wasFull) slot.classList.remove("full");
+      fly(cardEl.querySelector(".ph"), k, item.img).then(() => { img.src = item.img; slot.classList.add("full"); });
+    } else render();
+  }
+
+  $("steps").addEventListener("click", (e) => {
+    const c = e.target.closest(".card");
+    if (c) toggle(+c.dataset.s, +c.dataset.i, c);
+  });
+  $("lines").addEventListener("click", (e) => {
+    const x = e.target.closest(".x");
+    if (x) toggle(+x.dataset.s, +x.dataset.i, null);
+  });
+
+  /* ---------- cart drawer ---------- */
+  function openCart() {
+    const list = chosen(), n = list.length;
+    const sub = list.reduce((a, c) => a + c.price, 0);
+    const save = Math.round(sub * rateFor(n) * 100) / 100;
+    const total = sub - save;
+    const left = Math.max(0, 100 - total);
+    $("drBody").innerHTML = `
+      <div class="dr-ship">${left > 0 ? `${money(left)} away from free shipping in singapore` : "you've unlocked free shipping in singapore"}<div class="bar"><i id="drBar"></i></div></div>
+      <div class="bundle">
+        <div class="bundle-top">
+          <div><h4>late morning table set</h4><p>${n} pieces · ${list.map((c) => c.maker).filter((v, i, a) => a.indexOf(v) === i).length} makers</p></div>
+          <div class="pr"><s>${money(sub)}</s>${money(total)}</div>
+        </div>
+        <div class="thumbs">${list.map((c) => `<div><img src="${c.img}" alt=""></div>`).join("")}</div>
+        <ul>${list.map((c) => `<li><span>${c.maker} — ${c.name}</span><span>${money(c.price)}</span></li>`).join("")}
+          <li class="sv"><span>table set saving (${Math.round(rateFor(n) * 100)}%)</span><span>−${money(save)}</span></li></ul>
+        <div class="qty"><div class="qbox"><span>−</span><span>1</span><span>+</span></div><button class="edit" id="editSet">edit set</button></div>
+      </div>
+      <div></div>`;
+    $("drTotal").textContent = money(total);
+    $("drawer").classList.add("open");
+    $("veil").classList.add("open");
+    setTimeout(() => { const b = $("drBar"); if (b) b.style.width = Math.min(100, total) + "%"; }, 350);
+    $("editSet").onclick = closeCart;
+  }
+  function closeCart() { $("drawer").classList.remove("open"); $("veil").classList.remove("open"); }
+
+  function addToCart(btn) {
+    const lbl = btn.querySelector(".lbl");
+    const keep = lbl.innerHTML;
+    btn.disabled = true;
+    lbl.innerHTML = '<span class="spin"></span>adding';
+    setTimeout(() => {
+      lbl.innerHTML = keep;
+      btn.disabled = false;
+      cartCount = 1;
+      const b = $("bagCount"); b.textContent = cartCount; b.classList.add("show");
+      openCart();
+    }, 650);
+  }
+  $("addBtn").addEventListener("click", () => addToCart($("addBtn")));
+  $("mAdd").addEventListener("click", () => addToCart($("mAdd")));
+  $("bagBtn").addEventListener("click", () => cartCount && openCart());
+  $("closeDr").addEventListener("click", closeCart);
+  $("veil").addEventListener("click", closeCart);
+  addEventListener("keydown", (e) => e.key === "Escape" && closeCart());
+
+  let toastT;
+  $("checkout").addEventListener("click", () => {
+    const t = $("toast");
+    t.textContent = "concept demo — on your store this goes straight to shopify checkout";
+    t.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(() => t.classList.remove("show"), 2600);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
