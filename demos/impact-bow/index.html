@@ -122,13 +122,42 @@
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 364px; gap: 56px; align-items: start; }
   @media (max-width: 1180px) { .layout { grid-template-columns: 1fr; gap: 0; } }
 
-  /* ---------- steps ---------- */
-  .step + .step { margin-top: 64px; }
-  .step-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
-  .num { font-size: 11px; letter-spacing: .2em; color: var(--orange); font-weight: 700; margin-bottom: 7px; }
-  h2 { font-size: 22px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.1; }
-  .hint { font-size: 13px; color: var(--muted); text-align: right; max-width: 36ch; }
-  @media (max-width: 720px) { .step + .step { margin-top: 46px; } .step-head { display: block; } .hint { text-align: left; margin-top: 8px; } }
+  /* ---------- steps: one wrapper per group, folds away when the group is done ---------- */
+  .step { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 12px; scroll-margin-top: 24px; }
+  .step:last-child { margin-bottom: 0; }
+  .step-head { display: grid; grid-template-columns: auto auto 1fr auto auto; align-items: center; gap: 14px; width: 100%; padding: 15px 18px; text-align: left; transition: background .2s; }
+  .step-head:hover { background: #fcfcfc; }
+  .step.open .step-head { border-bottom: 1px solid var(--line); }
+  .num { font-size: 11px; letter-spacing: .2em; color: var(--orange); font-weight: 700; }
+  .st-thumb { width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+  .st-thumb[hidden] { display: none; }
+  .st-thumb img { width: 84%; height: 84%; object-fit: contain; }
+  .st-t { display: block; font-size: 14px; letter-spacing: .11em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.2; }
+  .st-s { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .st-p { font-size: 14px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .st-p:empty { display: none; }
+  .chev { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s; }
+  .step.open .chev { transform: rotate(180deg); }
+  .step-panel { display: none; padding: 18px; }
+  .step.open .step-panel { display: block; animation: unfold .32s var(--ease-out); }
+  @keyframes unfold { from { opacity: 0; transform: translateY(-6px); } }
+  @media (max-width: 720px) {
+    .step-head { grid-template-columns: auto auto 1fr auto; gap: 10px; padding: 13px 14px; }
+    .st-p { display: none; }
+    .st-t { font-size: 13px; }
+    .step-panel { padding: 14px; }
+  }
+
+  /* ---------- tabs inside the set step ---------- */
+  .tabs-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  .tabs { display: flex; gap: 2px; overflow-x: auto; }
+  .tab { padding: 9px 13px; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; transition: color .2s; }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--orange); border-color: var(--orange); }
+  .tab .cnt { font-size: 10px; letter-spacing: 0; font-weight: 700; background: var(--grey); color: var(--muted); border-radius: 20px; padding: 1px 7px; }
+  .tab .cnt.on { background: var(--orange); color: #fff; }
+  .addall { font-size: 12px; letter-spacing: .04em; color: var(--orange); font-weight: 600; padding-bottom: 9px; flex: none; }
+  .addall:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   /* ---------- crossbow cards (mirrors the collection grid) ---------- */
   .bows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -170,11 +199,6 @@
 
   /* ---------- accessories ---------- */
   .locked-note { border: 1px solid var(--line); border-radius: 6px; padding: 26px; text-align: center; color: var(--muted); font-size: 14px; background: #fcfcfc; }
-  .acg + .acg { margin-top: 26px; }
-  .acg-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
-  .acg-head h3 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
-  .addall { font-size: 12px; letter-spacing: .04em; color: var(--orange); font-weight: 600; }
-  .addall:hover { text-decoration: underline; text-underline-offset: 3px; }
   .rows { display: grid; gap: 6px; }
   .row {
     display: grid; grid-template-columns: 22px 58px 1fr auto; align-items: center; gap: 14px;
@@ -333,12 +357,8 @@
   @media (max-width: 900px) { .demo-tag { display: none; } }
 
   /* ---------- reveal ---------- */
-  .io { opacity: 1; transform: none; transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
-  .js .io { opacity: 0; transform: translateY(12px); }
-  .js .io.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-    .io, .js .io { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -389,42 +409,55 @@
   <div class="layout">
     <div class="builder">
 
-      <section class="step" id="step-bow">
-        <div class="step-head io">
-          <div>
-            <div class="num">01</div>
-            <h2>Kies je kruisboog</h2>
-          </div>
-          <div class="hint">Zes modellen, van instap tot topmodel. Kies wat bij je doel past.</div>
-        </div>
-        <div class="bows io" id="bows"></div>
-        <div class="reco io" id="reco" hidden>
-          <div class="txt" id="recoTxt"></div>
-          <button id="recoBtn" type="button">Neem deze set over</button>
+      <section class="step open" id="step-bow">
+        <button class="step-head" type="button" data-step="bow" aria-expanded="true" aria-controls="panel-bow">
+          <span class="num">01</span>
+          <span class="st-thumb" id="th-bow" hidden><img alt=""></span>
+          <span class="st">
+            <span class="st-t">Kies je kruisboog</span>
+            <span class="st-s" id="sum-bow">Zes modellen, van instap tot topmodel</span>
+          </span>
+          <span class="st-p" id="pr-bow"></span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="step-panel" id="panel-bow">
+          <div class="bows" id="bows"></div>
         </div>
       </section>
 
       <section class="step" id="step-sight">
-        <div class="step-head io">
-          <div>
-            <div class="num">02</div>
-            <h2>Kies je richtmiddel</h2>
-          </div>
-          <div class="hint">Een richtmiddel met Picatinny-voet past op de rail van je kruisboog.</div>
+        <button class="step-head" type="button" data-step="sight" aria-expanded="false" aria-controls="panel-sight">
+          <span class="num">02</span>
+          <span class="st-thumb" id="th-sight" hidden><img alt=""></span>
+          <span class="st">
+            <span class="st-t">Kies je richtmiddel</span>
+            <span class="st-s" id="sum-sight">Kies eerst je kruisboog</span>
+          </span>
+          <span class="st-p" id="pr-sight"></span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="step-panel" id="panel-sight">
+          <div class="sights" id="sights"></div>
         </div>
-        <div class="sights io" id="sights"></div>
       </section>
 
       <section class="step" id="step-set">
-        <div class="step-head io">
-          <div>
-            <div class="num">03</div>
-            <h2>Maak je set compleet</h2>
+        <button class="step-head" type="button" data-step="set" aria-expanded="false" aria-controls="panel-set">
+          <span class="num">03</span>
+          <span class="st-thumb" id="th-set" hidden><img alt=""></span>
+          <span class="st">
+            <span class="st-t">Maak je set compleet</span>
+            <span class="st-s" id="sum-set">Kies eerst je kruisboog</span>
+          </span>
+          <span class="st-p" id="pr-set"></span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="step-panel" id="panel-set">
+          <div class="reco" id="reco" hidden>
+            <div class="txt" id="recoTxt"></div>
+            <button id="recoBtn" type="button">Neem deze set over</button>
           </div>
-          <div class="hint" id="setHint">Alleen onderdelen die bij jouw model passen.</div>
-        </div>
-        <div class="io" id="accs">
-          <div class="locked-note">Kies eerst je kruisboog. Dan zie je hier alleen de pijlen, magazijnen en accessoires die erop passen.</div>
+          <div id="accs"></div>
         </div>
       </section>
 
@@ -554,7 +587,6 @@
 
 <script>
 (() => {
-  document.documentElement.classList.add("js");
   const CDN = "https://cdn.shopify.com/s/files/1/0989/3419/4560/files/";
   const SET_OFF = 0.15;                 // the same 15% the shop gives in its "Bundel deal"
   const $ = (id) => document.getElementById(id);
@@ -613,7 +645,9 @@
   Object.values(BAGS).flat().forEach((a) => (byId[a.id] = { ...a, kind: "bag" }));
   EXTRAS.forEach((a) => (byId[a.id] = { ...a, kind: "extra" }));
 
-  const state = { goal: null, bow: null, sight: null, extras: new Set(), cart: null };
+  const state = { goal: null, bow: null, sight: null, extras: new Set(), cart: null, tab: null,
+                  open: { bow: true, sight: false, set: false } };
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- which parts fit which crossbow ---------- */
   function groupsFor(bow) {
@@ -662,29 +696,37 @@
       <div class="price-row"><span class="pill">${eur(disc(s.price))}</span><span class="was">${eur(s.price)}</span></div>
     </button>`).join("");
 
-  /* ---------- accessories (rebuilt per crossbow) ---------- */
+  /* ---------- set step: one tab per product group ---------- */
   const accWrap = $("accs");
-  function renderAccessories() {
+  const rowHtml = (it) => `
+    <button class="row" data-id="${it.id}" aria-pressed="${state.extras.has(it.id)}">
+      <span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <img src="${img(it.img)}" alt="" loading="lazy" width="120" height="96">
+      <span><span class="t">${it.name}</span><div class="s">${it.spec}</div></span>
+      <span class="pr"><b>${eur(disc(it.price))}</b><s>${eur(it.price)}</s></span>
+    </button>`;
+
+  function renderSetStep() {
     const bow = state.bow ? byId[state.bow] : null;
     if (!bow) {
       accWrap.innerHTML = `<div class="locked-note">Kies eerst je kruisboog. Dan zie je hier alleen de pijlen, magazijnen en accessoires die erop passen.</div>`;
-      $("setHint").textContent = "Alleen onderdelen die bij jouw model passen.";
       return;
     }
-    $("setHint").textContent = `Afgestemd op de ${bow.name}.`;
-    accWrap.innerHTML = groupsFor(bow).map((g) => `
-      <div class="acg">
-        <div class="acg-head"><h3>${g.name}</h3><button class="addall" data-group="${g.key}">Alles toevoegen</button></div>
-        <div class="rows">
-          ${g.items.map((it) => `
-            <button class="row" data-id="${it.id}" aria-pressed="${state.extras.has(it.id)}">
-              <span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-              <img src="${img(it.img)}" alt="" loading="lazy" width="120" height="96">
-              <span><span class="t">${it.name}</span><div class="s">${it.spec}</div></span>
-              <span class="pr"><b>${eur(disc(it.price))}</b><s>${eur(it.price)}</s></span>
-            </button>`).join("")}
+    const groups = groupsFor(bow);
+    if (!groups.some((g) => g.key === state.tab)) state.tab = groups[0].key;
+    const active = groups.find((g) => g.key === state.tab) || groups[0];
+    const every = active.items.every((i) => state.extras.has(i.id));
+    accWrap.innerHTML = `
+      <div class="tabs-row">
+        <div class="tabs" role="tablist">
+          ${groups.map((g) => {
+            const n = g.items.filter((i) => state.extras.has(i.id)).length;
+            return `<button class="tab" role="tab" data-tab="${g.key}" aria-selected="${g.key === state.tab}">${g.name}<span class="cnt${n ? " on" : ""}">${n}</span></button>`;
+          }).join("")}
         </div>
-      </div>`).join("");
+        <button class="addall" data-group="${active.key}">${every ? "Alles verwijderen" : "Alles toevoegen"}</button>
+      </div>
+      <div class="rows" role="tabpanel">${active.items.map(rowHtml).join("")}</div>`;
   }
 
   /* ---------- goal chips ---------- */
@@ -707,7 +749,7 @@
     });
   }
 
-  /* ---------- pick a crossbow ---------- */
+  /* ---------- pick a crossbow: fold the group away and move on ---------- */
   bowWrap.addEventListener("click", (e) => {
     const el = e.target.closest(".bow");
     if (!el) return;
@@ -719,47 +761,60 @@
     if (!state.bow) {
       state.extras.clear();
       state.sight = null;
-      renderAccessories();
+      state.open = { bow: true, sight: false, set: false };
       refreshSights();
-    } else {
-      const ok = allowed(byId[state.bow]);
-      let removed = 0;
-      state.extras.forEach((x) => { if (!ok.has(x)) { state.extras.delete(x); removed++; } });
-      renderAccessories();
-      refreshSights();
-      if (removed) toast("Onderdelen die niet op dit model passen zijn uit je set gehaald.");
+      renderReco();
+      render();
+      focusStep("bow");
+      return;
     }
+    const ok = allowed(byId[state.bow]);
+    let removed = 0;
+    state.extras.forEach((x) => { if (!ok.has(x)) { state.extras.delete(x); removed++; } });
+    state.open.bow = false;
+    state.open.sight = true;
+    refreshSights();
     renderReco();
     render();
+    if (removed) toast("Onderdelen die niet op dit model passen zijn uit je set gehaald.");
+    focusStep("sight");
   });
 
-  /* ---------- pick a sight ---------- */
+  /* ---------- pick a sight: fold the group away and move on ---------- */
   $("sights").addEventListener("click", (e) => {
     const el = e.target.closest(".sight");
     if (!el) return;
     if (!state.bow) {
       toast("Kies eerst je kruisboog — dan rekenen we het setvoordeel mee.");
-      $("step-bow").scrollIntoView({ behavior: "smooth", block: "start" });
+      state.open.bow = true;
+      state.open.sight = false;
+      renderSteps();
+      focusStep("bow");
       return;
     }
     state.sight = state.sight === el.dataset.id ? null : el.dataset.id;
+    state.open.sight = !state.sight;
+    state.open.set = !!state.sight;
     refreshSights();
     renderReco();
     render();
+    focusStep(state.sight ? "set" : "sight");
   });
   function refreshSights() {
     [...$("sights").querySelectorAll(".sight")].forEach((s) => s.setAttribute("aria-pressed", String(s.dataset.id === state.sight)));
   }
 
-  /* ---------- toggle accessories ---------- */
+  /* ---------- tabs and accessories (the set step keeps its own groups open) ---------- */
   accWrap.addEventListener("click", (e) => {
+    const tab = e.target.closest(".tab");
+    if (tab) { state.tab = tab.dataset.tab; renderSetStep(); return; }
     const all = e.target.closest(".addall");
     if (all) {
       if (!state.bow) return;
       const g = groupsFor(byId[state.bow]).find((x) => x.key === all.dataset.group);
       const every = g.items.every((i) => state.extras.has(i.id));
       g.items.forEach((i) => (every ? state.extras.delete(i.id) : state.extras.add(i.id)));
-      renderAccessories();
+      renderSetStep();
       render();
       return;
     }
@@ -767,9 +822,59 @@
     if (!row) return;
     const id = row.dataset.id;
     if (state.extras.has(id)) state.extras.delete(id); else state.extras.add(id);
-    renderAccessories();
+    renderSetStep();
     render();
   });
+
+  /* ---------- step wrappers: click a header to fold it open or away ---------- */
+  document.querySelectorAll(".step-head").forEach((h) => {
+    h.addEventListener("click", () => {
+      const k = h.dataset.step;
+      state.open[k] = !state.open[k];
+      renderSteps();
+    });
+  });
+
+  function focusStep(key) {
+    const el = $("step-" + key);
+    if (!el) return;
+    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    const head = el.querySelector(".step-head");
+    if (head) setTimeout(() => head.focus({ preventScroll: true }), reduced ? 0 : 400);
+  }
+
+  function setThumb(id, item) {
+    const el = $(id);
+    if (!item) { el.hidden = true; return; }
+    el.hidden = false;
+    const im = el.querySelector("img");
+    im.src = img(item.img);
+    im.alt = item.name;
+  }
+
+  function renderSteps() {
+    const { bow, parts } = set();
+    const sight = state.sight ? byId[state.sight] : null;
+    const extra = parts.filter((p) => p.kind !== "bow");
+
+    ["bow", "sight", "set"].forEach((k) => {
+      const sec = $("step-" + k);
+      sec.classList.toggle("open", !!state.open[k]);
+      sec.querySelector(".step-head").setAttribute("aria-expanded", String(!!state.open[k]));
+    });
+
+    $("sum-bow").textContent = bow ? `${bow.name} · ${bow.spec}` : "Zes modellen, van instap tot topmodel";
+    $("pr-bow").textContent = bow ? eur(bow.price) : "";
+    setThumb("th-bow", bow);
+
+    $("sum-sight").textContent = sight ? sight.name : bow ? "Een richtmiddel met Picatinny-voet" : "Kies eerst je kruisboog";
+    $("pr-sight").textContent = sight ? eur(disc(sight.price)) : "";
+    setThumb("th-sight", sight);
+
+    $("sum-set").textContent = extra.length ? `${nParts(extra.length)} gekozen` : bow ? `Alleen onderdelen die bij de ${bow.name} passen` : "Kies eerst je kruisboog";
+    $("pr-set").textContent = "";
+    setThumb("th-set", extra[0]);
+  }
 
   /* ---------- recommended set ---------- */
   function recommendation() {
@@ -792,7 +897,7 @@
       state.sight = r.sight ? r.sight.id : null;
       if (r.arrows) state.extras.add(r.arrows.id);
       if (r.extra) state.extras.add(r.extra.id);
-      refreshSights(); renderAccessories(); render();
+      refreshSights(); render();
       toast("Aanbevolen set toegevoegd.");
     };
   }
@@ -879,6 +984,8 @@
   }
 
   function render() {
+    renderSetStep();
+    renderSteps();
     renderPanel();
     renderBar();
     renderCart();
@@ -899,8 +1006,9 @@
 
   $("sideClear").addEventListener("click", () => {
     state.bow = null; state.sight = null; state.extras.clear();
+    state.open = { bow: true, sight: false, set: false };
     [...bowWrap.querySelectorAll(".bow")].forEach((b) => b.setAttribute("aria-pressed", "false"));
-    refreshSights(); renderAccessories(); renderReco(); render();
+    refreshSights(); renderReco(); render();
     toast("Set leeggemaakt.");
   });
 
@@ -929,14 +1037,7 @@
     toastT = setTimeout(() => el.classList.remove("on"), 3400);
   }
 
-  /* ---------- reveal on scroll ---------- */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { rootMargin: "0px 0px -40px 0px", threshold: 0.01 });
-  document.querySelectorAll(".io").forEach((el) => io.observe(el));
-
   /* ---------- boot ---------- */
-  renderAccessories();
   renderReco();
   render();
 })();
