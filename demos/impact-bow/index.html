@@ -29,6 +29,7 @@
     --bar-h: 78px;
     --ease: cubic-bezier(.22,.61,.36,1);
     --ease-out: cubic-bezier(.16,1,.3,1);
+    --soft: cubic-bezier(.22,.68,.32,1);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; }
@@ -125,27 +126,36 @@
   /* ---------- steps: one wrapper per group, folds away when the group is done ---------- */
   .step { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 12px; scroll-margin-top: 24px; }
   .step:last-child { margin-bottom: 0; }
-  .step-head { display: grid; grid-template-columns: auto auto 1fr auto auto; align-items: center; gap: 14px; width: 100%; padding: 15px 18px; text-align: left; transition: background .2s; }
+  .step-head { display: grid; grid-template-columns: auto auto 1fr auto auto; align-items: center; gap: 14px; width: 100%; padding: 15px 18px; text-align: left; transition: background .35s var(--soft); }
   .step-head:hover { background: #fcfcfc; }
-  .step.open .step-head { border-bottom: 1px solid var(--line); }
+  .step.open > .step-head { background: #fdfdfd; }
   .num { font-size: 11px; letter-spacing: .2em; color: var(--orange); font-weight: 700; }
-  .st-thumb { width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+  .st-thumb { width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; animation: pop .5s var(--soft); }
   .st-thumb[hidden] { display: none; }
   .st-thumb img { width: 84%; height: 84%; object-fit: contain; }
+  @keyframes pop { from { opacity: 0; transform: scale(.72); } }
   .st-t { display: block; font-size: 14px; letter-spacing: .11em; text-transform: uppercase; font-weight: 500; color: var(--ink); line-height: 1.2; }
-  .st-s { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .st-p { font-size: 14px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .st-s { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; transition: color .35s var(--soft), opacity .35s var(--soft); }
+  .st-p { font-size: 14px; font-weight: 700; color: var(--ink); white-space: nowrap; transition: opacity .35s var(--soft); }
   .st-p:empty { display: none; }
-  .chev { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s; }
+  .chev { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .45s var(--soft); }
   .step.open .chev { transform: rotate(180deg); }
-  .step-panel { display: none; padding: 18px; }
-  .step.open .step-panel { display: block; animation: unfold .32s var(--ease-out); }
-  @keyframes unfold { from { opacity: 0; transform: translateY(-6px); } }
+  .step-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .52s var(--soft); }
+  .step.open .step-panel { grid-template-rows: 1fr; }
+  .step-inner {
+    overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: opacity .38s ease, transform .58s var(--soft), visibility 0s linear .52s;
+  }
+  .step.open .step-inner {
+    opacity: 1; visibility: visible; transform: none;
+    transition: opacity .45s ease .14s, transform .62s var(--soft), visibility 0s;
+  }
+  .step-body { padding: 18px; }
   @media (max-width: 720px) {
     .step-head { grid-template-columns: auto auto 1fr auto; gap: 10px; padding: 13px 14px; }
     .st-p { display: none; }
     .st-t { font-size: 13px; }
-    .step-panel { padding: 14px; }
+    .step-body { padding: 14px; }
   }
 
   /* ---------- tabs inside the set step ---------- */
@@ -421,7 +431,11 @@
           <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="step-panel" id="panel-bow">
-          <div class="bows" id="bows"></div>
+          <div class="step-inner">
+            <div class="step-body">
+              <div class="bows" id="bows"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -437,7 +451,11 @@
           <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="step-panel" id="panel-sight">
-          <div class="sights" id="sights"></div>
+          <div class="step-inner">
+            <div class="step-body">
+              <div class="sights" id="sights"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -453,11 +471,15 @@
           <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="step-panel" id="panel-set">
-          <div class="reco" id="reco" hidden>
-            <div class="txt" id="recoTxt"></div>
-            <button id="recoBtn" type="button">Neem deze set over</button>
+          <div class="step-inner">
+            <div class="step-body">
+              <div class="reco" id="reco" hidden>
+                <div class="txt" id="recoTxt"></div>
+                <button id="recoBtn" type="button">Neem deze set over</button>
+              </div>
+              <div id="accs"></div>
+            </div>
           </div>
-          <div id="accs"></div>
         </div>
       </section>
 
@@ -765,19 +787,18 @@
       refreshSights();
       renderReco();
       render();
-      focusStep("bow");
+      scrollToStep("bow");
       return;
     }
     const ok = allowed(byId[state.bow]);
     let removed = 0;
     state.extras.forEach((x) => { if (!ok.has(x)) { state.extras.delete(x); removed++; } });
     state.open.bow = false;
-    state.open.sight = true;
     refreshSights();
     renderReco();
     render();
     if (removed) toast("Onderdelen die niet op dit model passen zijn uit je set gehaald.");
-    focusStep("sight");
+    openNext("sight");
   });
 
   /* ---------- pick a sight: fold the group away and move on ---------- */
@@ -789,16 +810,17 @@
       state.open.bow = true;
       state.open.sight = false;
       renderSteps();
-      focusStep("bow");
+      scrollToStep("bow");
       return;
     }
     state.sight = state.sight === el.dataset.id ? null : el.dataset.id;
     state.open.sight = !state.sight;
-    state.open.set = !!state.sight;
+    state.open.set = false;
     refreshSights();
     renderReco();
     render();
-    focusStep(state.sight ? "set" : "sight");
+    if (state.sight) openNext("set");
+    else scrollToStep("sight");
   });
   function refreshSights() {
     [...$("sights").querySelectorAll(".sight")].forEach((s) => s.setAttribute("aria-pressed", String(s.dataset.id === state.sight)));
@@ -835,12 +857,41 @@
     });
   });
 
-  function focusStep(key) {
+  /* ---------- soft scroll to the next step, no focus stealing ---------- */
+  let scrollAnim = 0;
+  function scrollToStep(key) {
     const el = $("step-" + key);
     if (!el) return;
-    el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-    const head = el.querySelector(".step-head");
-    if (head) setTimeout(() => head.focus({ preventScroll: true }), reduced ? 0 : 400);
+    const target = el.getBoundingClientRect().top + scrollY - 22;
+    const start = scrollY;
+    const diff = target - start;
+    if (reduced || Math.abs(diff) < 6) { scrollTo(0, target); return; }
+    const dur = Math.min(1000, Math.max(450, Math.abs(diff) * 0.55));
+    const t0 = performance.now();
+    const id = ++scrollAnim;
+    const step = (t) => {
+      if (id !== scrollAnim) return;                       // a newer scroll wins
+      const p = Math.min(1, (t - t0) / dur);
+      const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      scrollTo(0, start + diff * e);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  ["wheel", "touchstart", "keydown"].forEach((ev) =>
+    window.addEventListener(ev, () => { scrollAnim++; }, { passive: true })
+  );
+
+  /* ---------- open the next group a beat later, so the fold can breathe ---------- */
+  let advanceToken = 0;
+  function openNext(key) {
+    const token = ++advanceToken;
+    setTimeout(() => {
+      if (token !== advanceToken) return;
+      state.open[key] = true;
+      renderSteps();
+      scrollToStep(key);
+    }, 300);
   }
 
   function setThumb(id, item) {
