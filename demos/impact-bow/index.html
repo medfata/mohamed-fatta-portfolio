@@ -133,7 +133,8 @@
   }
 
   /* ---------- steps ---------- */
-  main { padding-bottom: calc(var(--bar-h) + 56px); }
+  main { padding-bottom: 72px; }
+  body.has-bar main { padding-bottom: calc(var(--bar-h) + 56px); }
   .step { padding: 56px 0 0; scroll-margin-top: 20px; }
   .step + .step { margin-top: 0; }
   .step-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); padding-top: 26px; margin-bottom: 26px; }
@@ -804,6 +805,7 @@
 
     // bar
     $("bar").classList.toggle("up", !!bow);
+    document.body.classList.toggle("has-bar", !!bow);
     $("stack").innerHTML = chosen.slice(0, 3).map((i) => `<span class="th"><img src="${img(i.img)}" alt=""></span>`).join("") +
       (chosen.length > 3 ? `<span class="n">+${chosen.length - 3}</span>` : "");
     $("barTitle").textContent = bow ? bow.name : "Nog geen kruisboog gekozen";
